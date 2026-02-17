@@ -91,7 +91,8 @@ footer #social-icons a:focus {
   color: var(--color-accent-3);
 }
 
-footer #social-icons svg {
+footer #social-icons svg,
+footer #social-icons img {
   width: 32px;
   height: 32px;
 }

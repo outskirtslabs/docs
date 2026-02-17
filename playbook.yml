@@ -2,6 +2,8 @@ site:
   title: Outskirts Labs Docs
   url: https://docs.outskirtslabs.com
   start_page: ROOT::index.adoc
+urls:
+  html_extension_style: drop
 content:
   sources:
     - url: .
