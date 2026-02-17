@@ -1,4 +1,5 @@
 * xref:index.adoc[Home]
+* xref:recent.adoc[Recent Releases]
 * xref:open-source-vital-signs.adoc[Open Source Vital Signs]
 * xref:security-policy.adoc[Security Policy]
 * xref:contributing-guide.adoc[Contributing Guide]
