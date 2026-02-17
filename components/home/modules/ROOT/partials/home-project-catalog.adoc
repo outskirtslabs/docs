@@ -1,7 +1,18 @@
 == Releases
 
 ++++
+<div class="releases-scroll">
 <table class="releases-table">
+<tr>
+<td class="release-date">2025-12-18</td>
+<td class="release-lib"><a href="../nixos-hetzner/next/">nixos-hetzner</a></td>
+<td class="release-version">static</td>
+</tr>
+<tr>
+<td class="release-date">2025-12-18</td>
+<td class="release-lib"><a href="../nixos-hetzner-demo/next/">nixos-hetzner-demo</a></td>
+<td class="release-version">static</td>
+</tr>
 <tr>
 <td class="release-date">2025-10-03</td>
 <td class="release-lib"><a href="../ol.sops/next/">ol.sops</a></td>
@@ -28,6 +39,10 @@
 <td class="release-version">experimental</td>
 </tr>
 </table>
+</div>
+<div class="releases-footer">
+<a href="recent">View all releases</a>
+</div>
 ++++
 
 == Project Docs

@@ -1,0 +1,37 @@
+= Recent Releases
+
+Full release feed across all tracked projects.
+
+[cols="1,2,1",options="header",stripes=hover]
+|===
+| Date | Library | Version
+
+| 2025-12-18
+| link:../nixos-hetzner/next/[nixos-hetzner]
+| `static`
+
+| 2025-12-18
+| link:../nixos-hetzner-demo/next/[nixos-hetzner-demo]
+| `static`
+
+| 2025-10-03
+| link:../ol.sops/next/[ol.sops]
+| `maturing`
+
+| 2025-09-08
+| link:../ol.sfv/0.1/[ol.sfv]
+| `v0.1.0`
+
+| 2025-08-18
+| link:../ol.client-ip/0.1/[ol.client-ip]
+| `v0.1.0`
+
+| 2025-04-22
+| link:../datahike-sqlite/next/[datahike-sqlite]
+| `experimental`
+
+| 2025-04-14
+| link:../datastar-expressions/next/[datastar-expressions]
+| `experimental`
+
+|===

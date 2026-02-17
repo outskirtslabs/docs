@@ -289,6 +289,19 @@ html.dark-theme .status-inactive {
 }
 
 /* ── Releases table ── */
+.releases-scroll {
+  max-height: 13.5rem;
+  overflow-y: auto;
+  padding-right: 0.2rem;
+  scrollbar-gutter: stable;
+}
+
+@media screen and (max-width: 767.5px) {
+  .releases-scroll {
+    max-height: 35rem;
+  }
+}
+
 .releases-table {
   width: 100%;
   border-collapse: collapse;
@@ -331,6 +344,12 @@ html.dark-theme .status-inactive {
   font-size: 0.9em;
   color: var(--body-font-light-color);
   white-space: nowrap;
+}
+
+.releases-footer {
+  margin-top: 0.7rem;
+  display: flex;
+  justify-content: flex-end;
 }
 
 /* ── Home page: hide TOC sidebar (minimal content, not worth the space) ── */
