@@ -11,21 +11,19 @@ const merge = require('merge-stream')
 const ospath = require('path')
 const path = ospath.posix
 const postcss = require('gulp-postcss')
-const postcssCalc = require('postcss-calc')
 const postcssImport = require('postcss-import')
 const postcssUrl = require('postcss-url')
 const postcssVar = require('postcss-custom-properties')
 const { Transform } = require('stream')
 const map = (transform) => new Transform({ objectMode: true, transform })
 const replace = require('gulp-replace')
-const through = () => map((file, enc, next) => next(null, file))
 const uglify = require('gulp-uglify')
 const vfs = require('vinyl-fs')
 const git = require('git-rev-sync')
 
-module.exports = (src, dest, preview) => () => {
+module.exports = (src, dest) => () => {
   const opts = { base: src, cwd: src }
-  const sourcemaps = preview || process.env.SOURCEMAPS === 'true'
+  const sourcemaps = process.env.SOURCEMAPS === 'true'
   const postcssPlugins = [
     postcssImport,
     (css, { messages, opts: { file } }) =>
@@ -52,14 +50,11 @@ module.exports = (src, dest, preview) => () => {
     ]),
     // NOTE importFrom is for supplemental CSS files
     postcssVar({ disableDeprecationNotice: true, importFrom: path.join(src, 'css', 'vars.css'), preserve: true }),
-    preview ? postcssCalc : () => {},
     autoprefixer,
-    preview
-      ? () => {}
-      : (css, result) =>
-        cssnano()
-          .process(css, result.opts)
-          .then(() => postcssPseudoElementFixer(css, result)),
+    (css, result) =>
+      cssnano()
+        .process(css, result.opts)
+        .then(() => postcssPseudoElementFixer(css, result)),
   ]
 
   return merge(
@@ -83,22 +78,20 @@ module.exports = (src, dest, preview) => () => {
       .pipe(postcss((file) => ({ plugins: postcssPlugins, options: { file } }))),
     vfs.src('font/*.{ttf,woff*(2)}', opts),
     vfs.src('img/**/*.{gif,ico,jpg,png,svg}', opts).pipe(
-      preview
-        ? through()
-        : imagemin(
-          [
-            imagemin.gifsicle(),
-            imagemin.jpegtran(),
-            imagemin.optipng(),
-            imagemin.svgo({
-              plugins: [
-                { cleanupIDs: { preservePrefixes: ['icon-', 'view-'] } },
-                { removeViewBox: false },
-                { removeDesc: false },
-              ],
-            }),
-          ].reduce((accum, it) => (it ? accum.concat(it) : accum), [])
-        )
+      imagemin(
+        [
+          imagemin.gifsicle(),
+          imagemin.jpegtran(),
+          imagemin.optipng(),
+          imagemin.svgo({
+            plugins: [
+              { cleanupIDs: { preservePrefixes: ['icon-', 'view-'] } },
+              { removeViewBox: false },
+              { removeDesc: false },
+            ],
+          }),
+        ].reduce((accum, it) => (it ? accum.concat(it) : accum), [])
+      )
     ),
     vfs.src('helpers/*.js', opts),
     vfs.src('layouts/*.hbs', opts),
