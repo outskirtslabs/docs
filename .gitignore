@@ -7,3 +7,5 @@ ui/build/
 ui/public/_/
 .clj-kondo/
 !.clj-kondo/config.edn
+.lsp/
+archive/
