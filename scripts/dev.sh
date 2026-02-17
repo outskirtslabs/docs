@@ -5,6 +5,9 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT_DIR"
 DEV_SITE_URL="http://localhost:8084"
 DEV_SOURCEMAPS="${DEV_SOURCEMAPS:-true}"
+WATCH_PATHS=(ui/src components)
+INOTIFY_EXCLUDE_REGEX='home-project-catalog\.adoc$'
+HASH_EXCLUDE_PATH='components/home/modules/ROOT/partials/home-project-catalog.adoc'
 
 cleanup() {
   echo ""
@@ -15,7 +18,7 @@ cleanup() {
 }
 trap cleanup INT TERM
 
-# --- Fast UI-only rebuild (skip api docs + readme sync) ---
+# --- Fast local rebuild (skip api docs + readme sync) ---
 rebuild() {
   echo "--- Rebuilding theme + site ---"
   bb gen-home && \
@@ -41,14 +44,17 @@ echo "Starting dev server at http://localhost:8084 ..."
 npx live-server build/site --port=8084 --no-browser &
 SERVER_PID=$!
 
-# --- Watch ui/src/ and rebuild on changes ---
-echo "Watching ui/src/ for changes..."
+# --- Watch source paths and rebuild on changes ---
+echo "Watching ${WATCH_PATHS[*]} for changes..."
 echo ""
 
 if command -v inotifywait &>/dev/null; then
   # inotifywait is efficient and debounces well
   while true; do
-    inotifywait -r -q -e modify,create,delete,move ui/src/ 2>/dev/null
+    inotifywait -r -q -e modify,create,delete,move \
+      --exclude "$INOTIFY_EXCLUDE_REGEX" \
+      "${WATCH_PATHS[@]}" \
+      2>/dev/null
     rebuild_or_continue
   done &
   WATCH_PID=$!
@@ -57,7 +63,7 @@ else
   echo "(tip: install inotify-tools for instant change detection)"
   LAST_HASH=""
   while true; do
-    HASH=$(find ui/src -type f -exec stat -c '%Y %n' {} + 2>/dev/null | sort | md5sum)
+    HASH=$(find "${WATCH_PATHS[@]}" -type f ! -path "$HASH_EXCLUDE_PATH" -exec stat -c '%Y %n' {} + 2>/dev/null | sort | md5sum)
     if [ "$HASH" != "$LAST_HASH" ] && [ -n "$LAST_HASH" ]; then
       rebuild_or_continue
     fi

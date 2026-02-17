@@ -504,3 +504,43 @@ body.status-404 a {
     display: none;
   }
 }
+
+/* the logo flask */
+.ol-logo {
+  color: #201e1d;
+  .flask,
+  .cactus {
+    fill: currentColor;
+  }
+
+  .bubble {
+    fill: #e76227;
+  }
+  .logo-text {
+    fill: #e76227;
+    stroke: black;
+  }
+}
+
+html.dark .ol-logo {
+  color: white;
+}
+
+@media (prefers-color-scheme: light) {
+  .ol-logo {
+    color: #201e1d;
+  }
+  html.dark .ol-logo {
+    color: white;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .ol-logo {
+    color: white;
+  }
+
+  html:not(.dark) .ol-logo {
+    color: #201e1d;
+  }
+}
