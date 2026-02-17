@@ -1,5 +1,6 @@
 site:
   title: Outskirts Labs Docs
+  url: https://docs.outskirtslabs.com
   start_page: ROOT::index.adoc
 content:
   sources:

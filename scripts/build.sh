@@ -5,6 +5,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 
 PLAYBOOK="${1:?Usage: build.sh <playbook.yml>}"
+shift
 
 # -- Generate home project catalog partial --
 echo "Generating home project catalog partial..."
@@ -16,7 +17,7 @@ echo "Building UI theme..."
 
 # -- Build the site --
 echo "Building Antora site..."
-npx antora --stacktrace "$ROOT_DIR/$PLAYBOOK"
+npx antora --stacktrace "$@" "$ROOT_DIR/$PLAYBOOK"
 
 # -- Apply static syntax highlighting --
 echo "Applying Arborium syntax highlighting..."
