@@ -4,6 +4,7 @@
   document.querySelectorAll('.content article a').forEach(function (item) {
     const location = window.location
     if (location) {
+      if (item.hasAttribute('data-no-external-target')) return
       if (item.hostname && item.hostname !== location.hostname) {
         item.classList.add('external')
         item.setAttribute('target', '_blank')
