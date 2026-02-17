@@ -268,7 +268,7 @@
          "++++\n\n"
          "== Project Docs\n\n"
          "Documentation that applies across projects:\n\n"
-         "* xref:project-statuses.adoc[Project Statuses]\n"
+         "* xref:open-source-vital-signs.adoc[Open Source Vital Signs]\n"
          "* xref:security-policy.adoc[Security Policy]\n"
          "* xref:contributing-guide.adoc[Contributing Guide]\n\n"
          "== Libraries\n\n"

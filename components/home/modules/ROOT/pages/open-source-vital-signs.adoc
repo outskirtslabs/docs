@@ -1,0 +1,148 @@
+= Open Source Vital Signs
+
+This page outlines the taxonomy I employ to describe the maturity levels of my
+various open source projects. By understanding a project's current status, you
+can make informed decisions about its suitability for your needs, the level of
+engagement you should expect from me, and whether it's on track for long-term
+support.
+
+
+If you rely on a project for critical use cases, prefer those marked *Stable*.
+If you enjoy shaping software early, look for *Experimental* and *Maturing* projects.
+
+== Experimental
+
+_Beware of moving parts and sharp edges._
+
+Experimental projects are early-stage explorations. I am validating ideas, APIs, and architecture. Breaking changes are likely. Documentation may be incomplete. The goal is learning and iteration, not stability.
+
+Contribute early and often. Experimental projects are where your input can make the biggest difference.
+
+[cols="2,1",options="header"]
+|===
+| Activity
+| Supported
+
+| New features
+| Yes
+
+| Feature requests
+| Yes
+
+| Bug and security fixes
+| No
+
+| Bug reports
+| Yes
+
+| New releases
+| Maybe?
+|===
+
+== Maturing
+
+_Actively developed and moving toward stability._
+
+Maturing projects have graduated from my mad science lab and taken up residence
+in the "maybe someday this could be useful" wing of my brain. They've proven
+themselves useful, are under active development, and are moving closer to
+stability. APIs may change, but those changes are more deliberate now.
+Documentation is improving, and I try not to break things quite as much.
+Backward compatibility is considered, though it can't be guaranteed.
+
+If you're cool with the idea of keeping up with the project's evolution (and
+occasional minor breaking changes), maturing projects are worth a closer look.
+They might even be suitable for early production use.
+
+[cols="2,1",options="header"]
+|===
+| Activity
+| Supported
+
+| New features
+| Limited
+
+| Feature requests
+| Limited
+
+| Bug and security fixes
+| Yes
+
+| Bug reports
+| Yes
+
+| New releases
+| Yes
+|===
+
+== Stable
+
+_Production-ready and well behaved._
+
+Stable projects have left their rebellious teenager phase behind. They've found steady jobs, bought houses, and aren't looking for new hobbies.
+The scope is defined, the API is predictable, and documentation is complete enough that you should be able to use them independently.
+New features are rare, not because these projects are neglected, but because they do what they set out to do.
+If they had driver's licenses, I'd feel comfortable letting you loan them out for road trips.
+
+Use Stable projects in production with confidence. Major changes will be rare and clearly communicated.
+
+[cols="2,1",options="header"]
+|===
+| Activity
+| Supported
+
+| New features
+| Limited
+
+| Feature requests
+| No
+
+| Bug and security fixes
+| Yes
+
+| Bug reports
+| Yes
+
+| New releases
+| Yes
+|===
+
+== Retired
+
+_Inactive and out of service._
+
+Retired projects have left the building for good. They may depend on outdated technologies, have been replaced by newer projects, or no longer align with my interests.
+If you're inclined, feel free to fork them and keep the dream alive; but I do not plan to review issues, accept pull requests, or publish new releases.
+
+If you're inclined, feel free to keep the dream alive on your own terms (just keep the license intact).
+
+[cols="2,1",options="header"]
+|===
+| Activity
+| Supported
+
+| New features
+| No
+
+| Feature requests
+| No
+
+| Bug and security fixes
+| No
+
+| Bug reports
+| No
+
+| New releases
+| No
+|===
+
+
+== Static
+
+_Code with a "do not feed" sign._
+
+Static projects are like exhibits at the zoo: they're here to be observed and appreciated, not taken home.
+These are snippets of code published alongside research papers or blog posts, demonstration examples, or educational materials.
+Don't expect any updates; I won't be making any, because the purpose of these projects is to serve as a reference, not to build your production system.
+
