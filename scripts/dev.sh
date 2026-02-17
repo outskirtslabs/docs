@@ -4,6 +4,7 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT_DIR"
 DEV_SITE_URL="http://localhost:8084"
+DEV_SOURCEMAPS="${DEV_SOURCEMAPS:-true}"
 
 cleanup() {
   echo ""
@@ -18,7 +19,7 @@ trap cleanup INT TERM
 rebuild() {
   echo "--- Rebuilding theme + site ---"
   bb gen-home && \
-  (cd ui && npx gulp bundle) && \
+  (cd ui && SOURCEMAPS="$DEV_SOURCEMAPS" npx gulp bundle) && \
   npx antora --stacktrace --url "$DEV_SITE_URL" playbook.yml && \
   node scripts/highlight-arborium.mjs --site-dir build/site && \
   echo "--- Rebuild complete ---"
@@ -32,7 +33,7 @@ rebuild_or_continue() {
 
 # --- Initial full build ---
 echo "Running initial build..."
-bash scripts/build.sh playbook.yml --url "$DEV_SITE_URL"
+SOURCEMAPS="$DEV_SOURCEMAPS" bash scripts/build.sh playbook.yml --url "$DEV_SITE_URL"
 
 # --- Start live-server (auto-reloads browser when build/site changes) ---
 echo ""
