@@ -31,8 +31,10 @@
           commands = [
             { package = pkgs.antora; }
             { package = pkgs.arborium; }
+            { package = pkgs.babashka; }
           ];
           packages = [
+            pkgs.nodejs_24
             pkgs.playwright
             pkgs.playwright-test
             pkgs.playwright-mcp
