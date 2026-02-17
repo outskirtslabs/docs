@@ -77,6 +77,13 @@ An assortment of general intersest documentation for the OSS project collector.
 <td class="lib-desc">Hetzner Cloud Images with NixOS and DetSys nix</td>
 </tr>
 <tr>
+<td class="lib-name"><a href="../nixos-hetzner-demo/next/">nixos-hetzner-demo</a></td>
+<td><span class="platform-tag">nix</span> <span class="platform-tag">linux</span></td>
+<td class="lib-version">&mdash;</td>
+<td><span class="status-badge status-static">static</span></td>
+<td class="lib-desc">Continuous, rapid NixOS deployments to Hetzner Cloud with FlakeHub and OpenTofu</td>
+</tr>
+<tr>
 <td class="lib-name"><a href="../ol.client-ip/0.1/">ol.client-ip</a></td>
 <td><span class="platform-tag">clj</span></td>
 <td class="lib-version"><a href="https://github.com/outskirtslabs/client-ip/releases/tag/v0.1.0">v0.1.0</a></td>
@@ -135,6 +142,17 @@ An assortment of general intersest documentation for the OSS project collector.
 </span>
 </div>
 <div class="project-desc">Hetzner Cloud Images with NixOS and DetSys nix</div>
+</div>
+
+<div class="project-entry">
+<div class="project-header">
+<a href="../nixos-hetzner-demo/next/" class="project-name">nixos-hetzner-demo</a>
+<span class="project-meta">
+<span class="platform-tag">nix</span> <span class="platform-tag">linux</span>
+<span class="status-badge status-static">static</span>
+</span>
+</div>
+<div class="project-desc">Continuous, rapid NixOS deployments to Hetzner Cloud with FlakeHub and OpenTofu</div>
 </div>
 
 <div class="project-entry">

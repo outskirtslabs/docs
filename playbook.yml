@@ -30,6 +30,10 @@ content:
       branches: [HEAD]
       start_path: doc
 
+    - url: /home/ramblurr/src/github.com/outskirtslabs/nixos-hetzner-demo
+      branches: [HEAD]
+      start_path: doc
+
     - url: /home/ramblurr/src/github.com/outskirtslabs/ol.sops
       branches: [HEAD]
       start_path: doc
