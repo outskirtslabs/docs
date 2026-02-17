@@ -1,9 +1,14 @@
 = Security Policy
 
-This page is a placeholder for the Outskirts Labs cross-project security policy.
+== Report a Security Issue
 
-It will document:
+I take security reports seriously and will give them prompt attention.
+Security issues should be reported privately to `casey@outskirtslabs.com`, please use the string `OSS-SEC` somewhere in the subject line.
+_Please_ do not file public issues for security vulnerabilities.
 
-* how to report a suspected vulnerability
-* supported versions and response expectations
-* coordinated disclosure process
+== Security Advisories
+
+Remediation of security vulnerabilities for xref:open-source-vital-signs.adoc#maturing[maturing] and xref:open-source-vital-signs.adoc#stable[stable] projects is prioritized.
+I endeavor to coordinate remediation with third-party stakeholders and am committed to transparency in the disclosure process.
+
+Security issues are announced via Release notes and Security Advisories on the affected project's repository, as well as at https://docs.outskirtslabs.com[docs.outskirtslabs.com] on a best-effort basis.
