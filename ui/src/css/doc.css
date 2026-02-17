@@ -497,14 +497,17 @@
   margin-top: 1rem;
 }
 
-.doc .support-sponsor-button {
+.doc .support-sponsor-button,
+.doc .support-sponsor-button-gh-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   line-height: 0;
 }
 
-.doc .support-sponsor-button > img {
+.doc .support-sponsor-button > img,
+.doc .support-sponsor-button-gh-link > img,
+.doc .support-sponsor-button-gh-link > svg {
   display: block;
   border-radius: 6px;
   transform-origin: center;
@@ -523,16 +526,43 @@
   box-shadow: 0 4px 10px color-mix(in oklab, var(--color-ol-orange) 30%, transparent);
 }
 
-.doc .support-sponsor-button-gh-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 0;
+.doc .support-sponsor-button-gh-link .support-sponsor-button-gh {
+  height: 32px;
+  width: 114px;
 }
 
-.doc .support-sponsor-button-gh-link > img {
-  display: block;
-  border-radius: 6px;
+.doc .support-sponsor-button-gh-link:hover > svg,
+.doc .support-sponsor-button-gh-link:focus-visible > svg {
+  transform: translateY(-2px) scale(1.06);
+  filter: saturate(1.12) contrast(1.06);
+  box-shadow: 0 10px 22px color-mix(in oklab, #0969da 40%, transparent);
+}
+
+.doc .support-sponsor-button-gh-link:active > svg {
+  transform: translateY(0) scale(1.02);
+  box-shadow: 0 4px 10px color-mix(in oklab, #0969da 30%, transparent);
+}
+
+html.dark-theme .doc .support-sponsor-button-gh-link > svg > rect {
+  fill: #21262d;
+  stroke: #3d444d;
+}
+
+html.dark-theme .doc .support-sponsor-button-gh-link .gh_heartpath {
+  stroke: #db61a2;
+}
+
+html.dark-theme .doc .support-sponsor-button-gh-link .gh_sponsor {
+  fill: #f0f6fc;
+}
+
+html.dark-theme .doc .support-sponsor-button-gh-link:hover > svg,
+html.dark-theme .doc .support-sponsor-button-gh-link:focus-visible > svg {
+  box-shadow: 0 10px 22px color-mix(in oklab, #1f6feb 55%, transparent);
+}
+
+html.dark-theme .doc .support-sponsor-button-gh-link:active > svg {
+  box-shadow: 0 4px 10px color-mix(in oklab, #1f6feb 40%, transparent);
 }
 
 #preamble .abstract blockquote {
