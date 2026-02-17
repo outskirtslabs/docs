@@ -4,6 +4,7 @@
 
 I take security reports seriously and will give them prompt attention.
 Security issues should be reported privately to `casey@outskirtslabs.com`, please use the string `OSS-SEC` somewhere in the subject line.
+You may encrypt emails with https://casey.link/pgp.asc[my public PGP key].
 _Please_ do not file public issues for security vulnerabilities.
 
 == Security Advisories

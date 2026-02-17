@@ -1,9 +1,59 @@
 = Contributing Guide
 
-This page is a placeholder for the Outskirts Labs cross-project contributing guide.
+I welcome third party contributions.
+The most straightforward way to do so, is to fork the project and submit a PR.
+If you want to contribute even something trivial please do not hesitate, but follow the guidelines below.
 
-It will document:
+If the change you're proposing is substantial, _please open an issue in the issue tracker in order to discuss it first_.
 
-* development prerequisites
-* coding and documentation expectations
-* contribution workflow (issues, pull requests, reviews)
+By submitting a pull request, you agree to license the submitted code under
+https://eupl.eu/1.2/en/[the EUPL-1.2 License] (or whatever the project license actually is).
+
+If you do not own the copyright of the code that is being submitted, please clarify the name of the copyright holder and the license under which the copyrighted material can be used so that we can review if it could be incorporated as part of the project.
+
+If you have questions about contributing contact https://casey.link/about[Casey] directly :)
+
+== Environment Setup
+
+Nearly all OL projects use nix flake devshells. Getting started is easy, and it works on every platform.
+
+1. Install Nix. Follow the one pager at https://zero-to-nix.com/start/install/
+2. Clone the project git repository
+3. Run `nix develop`
+
+Tada, now you have a working dev environment.
+
+== Common Development Commands
+
+I have more-or-less standardized on a common set of babashka tasks and a common `bb.edn` across all projects.
+
+[source,shell]
+----
+bb fmt   # run the formatter
+bb lint  # run the linter
+bb test  # run the test suite
+----
+
+All three of these must come back clean/green before committing and sharing a PR.
+
+
+== Continuous Integration (CI)
+
+Most projects use continuous integration to check the commits.
+The CI jobs are triggered by pushing to the Git repository and are listed on Github Actions.
+
+If a PR of yours fails a check, be proactive to figure out what failed.
+
+== AI/LLM Policy
+
+If you use LLMs for your contribution (issue, comment, PR), it's now your job to check and clean up its output, just like with any other tool. You have to spend the time doing this.
+
+Using AI to write code is fine.
+What's not fine is submitting agent-generated slop without understanding it.
+You must be able to explain what your changes do and how they interact with the rest of the system. If you can't, your PR will be closed. 
+
+In particular:
+
+* If I can tell that a PR is mostly LLM-generated via the usual indicators that violate the conventional style of the codebase, it'll take significantly more time/effort than usual to review and finish. I'm not interested in such PRs.
+* When using an LLM to write an issue, the text usually has a lot of fluff. No one wants to read it. Clean up the text and keep only the relevant stuff. I care more about accuracy and completeness (but not verbosity!).
+* When using an LLM to comment on an issue, you still have to verify that the comment makes sense, contributes something useful, and doesn’t repeat itself unnecessarily. (Yes, irony. If I repeat myself enough in this policy, maybe your LLM will understand)
