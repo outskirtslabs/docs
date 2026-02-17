@@ -1,0 +1,20 @@
+{{#if env.SITE_SEARCH_PROVIDER}}
+<div class="search">
+  <button class="search-trigger" type="button" id="search-trigger">
+    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><circle cx="112" cy="112" r="80" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><line x1="168.57" y1="168.57" x2="224" y2="224" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg>
+    <span class="search-trigger-text">Search</span>
+    <kbd class="search-key">/</kbd>
+  </button>
+</div>
+<div class="search-modal hidden" id="search-modal" data-current-component="{{page.component.name}}" data-current-version="{{page.version}}">
+  <div class="search-modal-dialog">
+    <div class="search-modal-header" id="search-modal-header">
+      <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><circle cx="112" cy="112" r="80" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><line x1="168.57" y1="168.57" x2="224" y2="224" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg>
+      <input id="search-input" type="text" placeholder="Search documentation..." disabled>
+      <kbd class="search-key">ESC</kbd>
+    </div>
+    <div class="search-modal-body" id="search-modal-body">
+    </div>
+  </div>
+</div>
+{{/if}}

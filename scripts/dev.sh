@@ -17,13 +17,13 @@ trap cleanup INT TERM
 rebuild() {
   echo "--- Rebuilding theme + site ---"
   (cd ui && npx gulp bundle) && \
-  npx antora --stacktrace playbook-local-only.yml && \
+  npx antora --stacktrace playbook.yml && \
   echo "--- Rebuild complete ---"
 }
 
 # --- Initial full build ---
 echo "Running initial build..."
-bash scripts/build.sh playbook-local-only.yml
+bash scripts/build.sh playbook.yml
 
 # --- Start live-server (auto-reloads browser when build/site changes) ---
 echo ""
