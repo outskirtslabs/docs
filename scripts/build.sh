@@ -17,4 +17,9 @@ echo "Building UI theme..."
 # -- Build the site --
 echo "Building Antora site..."
 npx antora --stacktrace "$ROOT_DIR/$PLAYBOOK"
+
+# -- Apply static syntax highlighting --
+echo "Applying Arborium syntax highlighting..."
+node "$ROOT_DIR/scripts/highlight-arborium.mjs" --site-dir "$ROOT_DIR/build/site"
+
 echo "Done. Output in $ROOT_DIR/build/site/"

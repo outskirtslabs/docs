@@ -1,0 +1,46 @@
+/* Arborium Gruvbox Light theme variables. */
+
+:root {
+  --arb-bg: hsl(53, 74%, 96%);
+  --arb-fg: #3c3836;
+  --arb-at: #b57614;
+  --arb-c: #928374;
+  --arb-co: #8f3f71;
+  --arb-cr: #b57614;
+  --arb-da: #79740e;
+  --arb-dd: #9d0006;
+  --arb-eb: #3c3836;
+  --arb-em: #3c3836;
+  --arb-em-style: italic;
+  --arb-er: #9d0006;
+  --arb-f: #427b58;
+  --arb-fb: #427b58;
+  --arb-k: #9d0006;
+  --arb-l: #9d0006;
+  --arb-m: #427b58;
+  --arb-n: #8f3f71;
+  --arb-ns: #3c3836;
+  --arb-o: #3c3836;
+  --arb-p: #3c3836;
+  --arb-pr: #076678;
+  --arb-ps: #af3a03;
+  --arb-s: #79740e;
+  --arb-se: #af3a03;
+  --arb-sp: #3c3836;
+  --arb-ss: #af3a03;
+  --arb-st: #3c3836;
+  --arb-st-weight: 700;
+  --arb-t: #b57614;
+  --arb-tg: #9d0006;
+  --arb-tl: #3c3836;
+  --arb-tr: #427b58;
+  --arb-tt: #79740e;
+  --arb-tt-weight: 700;
+  --arb-tu: #076678;
+  --arb-tu-decoration: underline;
+  --arb-tx: #3c3836;
+  --arb-tx-decoration: line-through;
+  --arb-v: #3c3836;
+  --arb-vb: #af3a03;
+  --arb-vp: #076678;
+}

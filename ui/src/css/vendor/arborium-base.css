@@ -1,0 +1,198 @@
+/* Arborium base CSS for Antora code blocks. */
+
+.doc pre.highlight > code {
+  background-color: var(--arb-bg);
+  color: var(--arb-fg);
+}
+
+.doc pre.highlight code a-at,
+.doc pre.highlight code a-c,
+.doc pre.highlight code a-co,
+.doc pre.highlight code a-cr,
+.doc pre.highlight code a-da,
+.doc pre.highlight code a-dd,
+.doc pre.highlight code a-eb,
+.doc pre.highlight code a-em,
+.doc pre.highlight code a-er,
+.doc pre.highlight code a-f,
+.doc pre.highlight code a-fb,
+.doc pre.highlight code a-k,
+.doc pre.highlight code a-l,
+.doc pre.highlight code a-m,
+.doc pre.highlight code a-n,
+.doc pre.highlight code a-ns,
+.doc pre.highlight code a-o,
+.doc pre.highlight code a-p,
+.doc pre.highlight code a-pb,
+.doc pre.highlight code a-pd,
+.doc pre.highlight code a-pr,
+.doc pre.highlight code a-ps,
+.doc pre.highlight code a-s,
+.doc pre.highlight code a-se,
+.doc pre.highlight code a-sp,
+.doc pre.highlight code a-ss,
+.doc pre.highlight code a-st,
+.doc pre.highlight code a-t,
+.doc pre.highlight code a-tb,
+.doc pre.highlight code a-tg,
+.doc pre.highlight code a-tl,
+.doc pre.highlight code a-tr,
+.doc pre.highlight code a-tt,
+.doc pre.highlight code a-tu,
+.doc pre.highlight code a-tx,
+.doc pre.highlight code a-v,
+.doc pre.highlight code a-vb,
+.doc pre.highlight code a-vp {
+  color: inherit;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: none;
+}
+
+.doc pre.highlight code a-at {
+  color: var(--arb-at);
+}
+
+.doc pre.highlight code a-c {
+  color: var(--arb-c);
+}
+
+.doc pre.highlight code a-co {
+  color: var(--arb-co);
+}
+
+.doc pre.highlight code a-cr {
+  color: var(--arb-cr);
+}
+
+.doc pre.highlight code a-da {
+  color: var(--arb-da);
+}
+
+.doc pre.highlight code a-dd {
+  color: var(--arb-dd);
+}
+
+.doc pre.highlight code a-eb {
+  color: var(--arb-eb);
+}
+
+.doc pre.highlight code a-em {
+  color: var(--arb-em, inherit);
+  font-style: var(--arb-em-style, italic);
+}
+
+.doc pre.highlight code a-er {
+  color: var(--arb-er);
+}
+
+.doc pre.highlight code a-f {
+  color: var(--arb-f);
+}
+
+.doc pre.highlight code a-fb {
+  color: var(--arb-fb);
+}
+
+.doc pre.highlight code a-k {
+  color: var(--arb-k);
+}
+
+.doc pre.highlight code a-l {
+  color: var(--arb-l);
+}
+
+.doc pre.highlight code a-m {
+  color: var(--arb-m);
+}
+
+.doc pre.highlight code a-n {
+  color: var(--arb-n);
+}
+
+.doc pre.highlight code a-ns {
+  color: var(--arb-ns);
+}
+
+.doc pre.highlight code a-o {
+  color: var(--arb-o);
+}
+
+.doc pre.highlight code a-p,
+.doc pre.highlight code a-pb,
+.doc pre.highlight code a-pd {
+  color: var(--arb-p);
+}
+
+.doc pre.highlight code a-pr {
+  color: var(--arb-pr);
+}
+
+.doc pre.highlight code a-ps {
+  color: var(--arb-ps);
+}
+
+.doc pre.highlight code a-s {
+  color: var(--arb-s);
+}
+
+.doc pre.highlight code a-se {
+  color: var(--arb-se);
+}
+
+.doc pre.highlight code a-sp {
+  color: var(--arb-sp);
+}
+
+.doc pre.highlight code a-ss {
+  color: var(--arb-ss);
+}
+
+.doc pre.highlight code a-st {
+  color: var(--arb-st, inherit);
+  font-weight: var(--arb-st-weight, 700);
+}
+
+.doc pre.highlight code a-t,
+.doc pre.highlight code a-tb {
+  color: var(--arb-t);
+}
+
+.doc pre.highlight code a-tg {
+  color: var(--arb-tg);
+}
+
+.doc pre.highlight code a-tl {
+  color: var(--arb-tl);
+}
+
+.doc pre.highlight code a-tr {
+  color: var(--arb-tr);
+}
+
+.doc pre.highlight code a-tt {
+  color: var(--arb-tt);
+  font-weight: var(--arb-tt-weight, 700);
+}
+
+.doc pre.highlight code a-tu {
+  color: var(--arb-tu);
+  text-decoration: var(--arb-tu-decoration, underline);
+}
+
+.doc pre.highlight code a-tx {
+  color: var(--arb-tx, inherit);
+  text-decoration: var(--arb-tx-decoration, line-through);
+}
+
+.doc pre.highlight code a-v {
+  color: var(--arb-v);
+}
+
+.doc pre.highlight code a-vb {
+  color: var(--arb-vb);
+}
+
+.doc pre.highlight code a-vp {
+  color: var(--arb-vp);
+}
