@@ -18,6 +18,9 @@
         devshell.overlays.default
         devenv.overlays.default
       ];
+      packages = {
+        arborium = pkgs: pkgs.callPackage (import ./pkgs/arborium.nix) { };
+      };
       devShell =
         pkgs:
         pkgs.devshell.mkShell {
@@ -27,6 +30,7 @@
           # https://numtide.github.io/devshell
           commands = [
             { package = pkgs.antora; }
+            { package = pkgs.arborium; }
           ];
           packages = [
             pkgs.playwright
