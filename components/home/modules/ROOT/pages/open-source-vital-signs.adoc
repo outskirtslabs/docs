@@ -39,6 +39,7 @@ Contribute early and often. Experimental projects are where your input can make 
 | Maybe?
 |===
 
+[#maturing]
 == Maturing
 
 _Actively developed and moving toward stability._
@@ -75,6 +76,7 @@ They might even be suitable for early production use.
 | Yes
 |===
 
+[#stable]
 == Stable
 
 _Production-ready and well behaved._
@@ -145,4 +147,3 @@ _Code with a "do not feed" sign._
 Static projects are like exhibits at the zoo: they're here to be observed and appreciated, not taken home.
 These are snippets of code published alongside research papers or blog posts, demonstration examples, or educational materials.
 Don't expect any updates; I won't be making any, because the purpose of these projects is to serve as a reference, not to build your production system.
-
