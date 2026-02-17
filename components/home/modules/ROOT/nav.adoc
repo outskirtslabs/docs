@@ -1,2 +1,3 @@
 * xref:index.adoc[Home]
+* xref:project-statuses.adoc[Project Statuses]
 * https://casey.link/about[About]
