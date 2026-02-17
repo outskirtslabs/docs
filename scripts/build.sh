@@ -6,6 +6,10 @@ ROOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 
 PLAYBOOK="${1:?Usage: build.sh <playbook.yml>}"
 
+# -- Generate home project catalog partial --
+echo "Generating home project catalog partial..."
+(cd "$ROOT_DIR" && bb gen-home)
+
 # -- Build UI theme --
 echo "Building UI theme..."
 (cd "$ROOT_DIR/ui" && npx gulp bundle)

@@ -1,4 +1,21 @@
-@import "@springio/asciidoctor-extensions/browser/css/source-toolbox";
+@import "vendor/source-toolbox.css";
+
+/* Disable overscroll bounce */
+
+html {
+  overscroll-behavior: none;
+}
+
+/* Body tweaks */
+
+body {
+  text-rendering: optimizeLegibility;
+  background-color: var(--body-background-color);
+}
+
+div.body {
+  font-family: var(--default-font-family);
+}
 
 /* Add Author Styling */
 
@@ -94,20 +111,53 @@ mark {
 }
 
 .doc .source-toolbox .copy-button {
-  background: no-repeat scroll 50% 50% / 20px 20px url(../img/url.svg);
+  position: relative;
+  background: none;
   border: none;
 }
 
-.doc .source-toolbox .copy-button.clicked {
+.doc .source-toolbox .copy-button::before,
+.doc .source-toolbox .copy-button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: 20px 20px;
+  pointer-events: none;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.doc .source-toolbox .copy-button::before {
+  background-image: url(../img/url.svg);
+  opacity: 1;
+  transform: scale(1);
+}
+
+.doc .source-toolbox .copy-button::after {
   background-image: url(../img/check.svg);
+  opacity: 0;
+  transform: scale(0.85);
+}
+
+.doc .source-toolbox .copy-button.clicked::before {
+  opacity: 0;
+  transform: scale(0.85);
+}
+
+.doc .source-toolbox .copy-button.clicked::after {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .doc .source-toolbox .fold-button {
-  background: no-repeat scroll 50% 50% / 16px 16px padding-box border-box url(../img/octicons-16.svg#view-unfold);
+  background:
+    no-repeat scroll 50% 50% / 16px 16px padding-box border-box
+    url(../img/phosphor-caret-down.svg);
 }
 
 .doc code.is-unfolded + .source-toolbox .fold-button {
-  background-image: url(../img/octicons-16.svg#view-fold);
+  background-image: url(../img/phosphor-caret-up.svg);
 }
 
 .doc .source-toolbox .copy-toast {
@@ -120,13 +170,6 @@ mark {
 }
 
 /* Use a better font color for code language and hide if in a table */
-
-.doc pre > code[data-lang]::before {
-  color: var(--pre-annotation-font-color);
-  font-size: 0.6em;
-  padding-top: 0.6em;
-}
-
 .doc table pre.highlight code[data-lang]::before {
   display: none;
 }
@@ -215,7 +258,9 @@ mark {
 }
 
 .doc .admonitionblock td.icon i.icon-caution {
-  background: no-repeat scroll 0.5em 50% / 16px 16px padding-box border-box url(../img/phosphor-fire.svg);
+  background:
+    no-repeat scroll 0.5em 50% / 16px 16px padding-box border-box
+    url(../img/phosphor-fire.svg);
 }
 
 .doc .admonitionblock.important td.icon {
@@ -223,7 +268,9 @@ mark {
 }
 
 .doc .admonitionblock td.icon i.icon-important {
-  background: no-repeat scroll 0.5em 50% / 16px 16px padding-box border-box url(../img/phosphor-warning-circle.svg);
+  background:
+    no-repeat scroll 0.5em 50% / 16px 16px padding-box border-box
+    url(../img/phosphor-warning-circle.svg);
 }
 
 .doc .admonitionblock.note .icon {
@@ -231,7 +278,9 @@ mark {
 }
 
 .doc .admonitionblock td.icon i.icon-note {
-  background: no-repeat scroll 0.5em 50% / 16px 16px padding-box border-box url(../img/phosphor-info.svg);
+  background:
+    no-repeat scroll 0.5em 50% / 16px 16px padding-box border-box
+    url(../img/phosphor-info.svg);
 }
 
 .doc .admonitionblock.tip .icon {
@@ -239,7 +288,9 @@ mark {
 }
 
 .doc .admonitionblock td.icon i.icon-tip {
-  background: no-repeat scroll 0.5em 50% / 16px 16px padding-box border-box url(../img/phosphor-lightbulb.svg);
+  background:
+    no-repeat scroll 0.5em 50% / 16px 16px padding-box border-box
+    url(../img/phosphor-lightbulb.svg);
 }
 
 .doc .admonitionblock.warning .icon {
@@ -247,7 +298,9 @@ mark {
 }
 
 .doc .admonitionblock td.icon i.icon-warning {
-  background: no-repeat scroll 0.5em 50% / 16px 16px padding-box border-box url(../img/phosphor-warning.svg);
+  background:
+    no-repeat scroll 0.5em 50% / 16px 16px padding-box border-box
+    url(../img/phosphor-warning.svg);
 }
 
 /* Use horizontal scrolling for large tables */
@@ -315,4 +368,134 @@ mark {
 
 .breadcrumbs a:hover {
   color: var(--breadcrumb-hover-font-color);
+}
+
+body.status-404 .page-404 {
+  text-align: center;
+  margin: 0 auto;
+  padding: 4rem 0;
+}
+body.status-404 h1.page {
+  color: #6db33f;
+  font-size: 130px;
+  font-weight: 100;
+  line-height: 110px;
+  margin: 0;
+  padding: 0;
+  font-family: var(--default-font-family);
+}
+body.status-404 .strong {
+  font-weight: bold;
+}
+body.status-404 a {
+  color: #086dc3;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  align-self: center;
+  position: relative;
+  background: #d6d3d1;
+  border-radius: 9999px;
+  padding: 3px;
+  margin-right: 1rem;
+  margin-left: 5px;
+  gap: 0;
+}
+
+.theme-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  color: #78716c;
+  position: relative;
+  z-index: 1;
+  transition: color 0.2s;
+}
+
+.theme-toggle-btn:hover {
+  color: #44403c;
+}
+
+.theme-toggle-btn.active {
+  color: #1c1917;
+}
+
+.theme-toggle-btn svg {
+  display: block;
+  pointer-events: none;
+}
+
+.theme-toggle-pill {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #fafaf9;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  transition: transform 0.25s ease;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.theme-toggle-pill[data-pos="0"] {
+  transform: translateX(0);
+}
+
+.theme-toggle-pill[data-pos="1"] {
+  transform: translateX(28px);
+}
+
+.theme-toggle-pill[data-pos="2"] {
+  transform: translateX(56px);
+}
+
+/* Dark theme overrides */
+.dark-theme .theme-toggle {
+  background: #44403c;
+}
+
+.dark-theme .theme-toggle-btn {
+  color: #a8a29e;
+}
+
+.dark-theme .theme-toggle-btn:hover {
+  color: #d6d3d1;
+}
+
+.dark-theme .theme-toggle-btn.active {
+  color: #fafaf9;
+}
+
+.dark-theme .theme-toggle-pill {
+  background: #292524;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+@media screen and (max-width: 1023px) {
+  .navbar .theme-toggle {
+    display: none;
+  }
+
+  .toolbar .theme-toggle {
+    display: inline-flex;
+    margin-left: auto;
+    margin-right: 0.5rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .toolbar .theme-toggle {
+    display: none;
+  }
 }

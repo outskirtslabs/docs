@@ -32,6 +32,8 @@ ui:
 asciidoc:
   attributes:
     idprefix: ""
+  extensions:
+    - "@asciidoctor/tabs"
 antora:
   extensions:
     - require: "./lunr-tokenizer"

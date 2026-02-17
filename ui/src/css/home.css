@@ -116,6 +116,21 @@ article.doc.role-home > h1#page-title::after {
   color: var(--color-ol-orange-800);
 }
 
+.status-maturing {
+  background: var(--color-ol-turquoise-100);
+  color: var(--color-ol-turquoise-800);
+}
+
+.status-retired {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.status-static {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
 .status-deprecated {
   background: #fee2e2;
   color: #991b1b;
@@ -139,6 +154,21 @@ html.dark-theme .status-stable {
 html.dark-theme .status-experimental {
   background: var(--color-ol-orange-900);
   color: var(--color-ol-orange-200);
+}
+
+html.dark-theme .status-maturing {
+  background: var(--color-ol-turquoise-900);
+  color: var(--color-ol-turquoise-200);
+}
+
+html.dark-theme .status-retired {
+  background: #450a0a;
+  color: #fca5a5;
+}
+
+html.dark-theme .status-static {
+  background: #374151;
+  color: #9ca3af;
 }
 
 html.dark-theme .status-deprecated {
