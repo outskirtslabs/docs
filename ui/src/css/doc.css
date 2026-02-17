@@ -888,7 +888,7 @@
   transition: none;
 }
 
-.doc .language-console .hljs-meta {
+.doc .language-console a-o:first-child {
   user-select: none;
 }
 

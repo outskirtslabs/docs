@@ -19,6 +19,7 @@ rebuild() {
   bb gen-home && \
   (cd ui && npx gulp bundle) && \
   npx antora --stacktrace playbook.yml && \
+  node scripts/highlight-arborium.mjs --site-dir build/site && \
   echo "--- Rebuild complete ---"
 }
 

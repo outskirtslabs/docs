@@ -1,0 +1,46 @@
+/* Arborium Gruvbox Dark theme variables. */
+
+html.dark-theme {
+  --arb-bg: #282828;
+  --arb-fg: #ebdbb2;
+  --arb-at: #fabd2f;
+  --arb-c: #928374;
+  --arb-co: #d3869b;
+  --arb-cr: #fabd2f;
+  --arb-da: #b8bb26;
+  --arb-dd: #fb4934;
+  --arb-eb: #ebdbb2;
+  --arb-em: #ebdbb2;
+  --arb-em-style: italic;
+  --arb-er: #fb4934;
+  --arb-f: #8ec07c;
+  --arb-fb: #8ec07c;
+  --arb-k: #fb4934;
+  --arb-l: #fb4934;
+  --arb-m: #8ec07c;
+  --arb-n: #d3869b;
+  --arb-ns: #ebdbb2;
+  --arb-o: #ebdbb2;
+  --arb-p: #ebdbb2;
+  --arb-pr: #83a598;
+  --arb-ps: #fe8019;
+  --arb-s: #b8bb26;
+  --arb-se: #fe8019;
+  --arb-sp: #ebdbb2;
+  --arb-ss: #fe8019;
+  --arb-st: #ebdbb2;
+  --arb-st-weight: 700;
+  --arb-t: #fabd2f;
+  --arb-tg: #fb4934;
+  --arb-tl: #ebdbb2;
+  --arb-tr: #8ec07c;
+  --arb-tt: #b8bb26;
+  --arb-tt-weight: 700;
+  --arb-tu: #83a598;
+  --arb-tu-decoration: underline;
+  --arb-tx: #ebdbb2;
+  --arb-tx-decoration: line-through;
+  --arb-v: #ebdbb2;
+  --arb-vb: #fe8019;
+  --arb-vp: #83a598;
+}
