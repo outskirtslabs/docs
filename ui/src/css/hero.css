@@ -1,0 +1,34 @@
+/* ── Site-wide hero: Shiprock landscape with fade ── */
+body.article {
+  position: relative;
+}
+
+body.article::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 420px;
+  background: url(../img/shiprock-bg.png) no-repeat center bottom / cover;
+  opacity: 0.35;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.8) 40%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+html.dark-theme body.article::before {
+  opacity: 0.4;
+}
+
+/* Glass effect on navbar where hero is visible */
+body.article .navbar {
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(16px) saturate(1.2);
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+
+html.dark-theme body.article .navbar {
+  background: rgba(28, 25, 23, 0.45);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
