@@ -114,6 +114,8 @@ mark {
   position: relative;
   background: none;
   border: none;
+  color: var(--arb-fg);
+  filter: none;
 }
 
 .doc .source-toolbox .copy-button::before,
@@ -121,21 +123,22 @@ mark {
   content: "";
   position: absolute;
   inset: 0;
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  background-size: 20px 20px;
+  background-color: currentColor;
+  mask-repeat: no-repeat;
+  mask-position: 50% 50%;
+  mask-size: 20px 20px;
   pointer-events: none;
   transition: opacity 180ms ease, transform 180ms ease;
 }
 
 .doc .source-toolbox .copy-button::before {
-  background-image: url(../img/url.svg);
+  mask-image: url(../img/url.svg);
   opacity: 1;
   transform: scale(1);
 }
 
 .doc .source-toolbox .copy-button::after {
-  background-image: url(../img/check.svg);
+  mask-image: url(../img/check.svg);
   opacity: 0;
   transform: scale(0.85);
 }
