@@ -1,0 +1,9 @@
+= Contributing Guide
+
+This page is a placeholder for the Outskirts Labs cross-project contributing guide.
+
+It will document:
+
+* development prerequisites
+* coding and documentation expectations
+* contribution workflow (issues, pull requests, reviews)

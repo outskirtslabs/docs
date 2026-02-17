@@ -35,6 +35,8 @@
 Documentation that applies across projects:
 
 * xref:project-statuses.adoc[Project Statuses]
+* xref:security-policy.adoc[Security Policy]
+* xref:contributing-guide.adoc[Contributing Guide]
 
 == Libraries
 
