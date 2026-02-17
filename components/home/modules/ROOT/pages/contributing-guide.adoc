@@ -19,7 +19,7 @@ Nearly all OL projects use nix flake devshells. Getting started is easy, and it 
 
 1. Install Nix. Follow the one pager at https://zero-to-nix.com/start/install/
 2. Clone the project git repository
-3. Run `nix develop`
+3. Run `nix develop` (if you use a different shell:  `nix develop --command zsh`)
 
 Tada, now you have a working dev environment.
 
