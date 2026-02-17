@@ -1,12 +1,5 @@
 {
   "private": true,
-  "scripts": {
-    "build": "bash scripts/build.sh playbook.yml",
-    "build:theme": "cd ui && npx gulp bundle",
-    "serve": "npx live-server build/site --port=8084",
-    "dev": "bash scripts/dev.sh",
-    "test:arborium": "node --test scripts/highlight-arborium.test.mjs"
-  },
   "dependencies": {
     "@antora/lunr-extension": "^1.0.0-alpha.8",
     "@asciidoctor/tabs": "^1.0.0-beta.6",
