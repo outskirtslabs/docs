@@ -9,8 +9,14 @@
 
 .breadcrumbs-container {
   padding: 20px 0;
-  background-color: var(--body-background-color);
-  border-bottom: 1px solid var(--nav-panel-divider-color);
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(16px) saturate(1.2);
+  border-bottom: 1px solid rgba(25, 30, 30, 0.14);
+}
+
+html.dark-theme .breadcrumbs-container {
+  background: rgba(28, 25, 23, 0.3);
+  border-bottom-color: rgba(255, 255, 255, 0.14);
 }
 
 @media screen and (min-width: 1024px) {
