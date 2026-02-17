@@ -695,10 +695,6 @@
   margin-bottom: 0.5rem;
 }
 
-.doc details > summary::-webkit-details-marker {
-  display: none;
-}
-
 .doc details > summary::before {
   content: "";
   border: solid transparent;

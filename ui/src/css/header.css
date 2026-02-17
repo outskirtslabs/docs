@@ -98,7 +98,6 @@ body {
   display: block;
   line-height: var(--doc-line-height);
   padding: 0 1rem;
-  -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: color 0.2s;
   font-size: 15.2px;
