@@ -35,11 +35,6 @@
   scrollbar-width: none;
 }
 
-.toc .toc-menu ul::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-}
-
 @media screen and (min-width: 1024px) {
   .toc .toc-menu h3 {
     font-size: calc(14 / var(--rem-base) * 1rem);
