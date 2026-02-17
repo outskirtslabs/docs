@@ -523,11 +523,16 @@
   box-shadow: 0 4px 10px color-mix(in oklab, var(--color-ol-orange) 30%, transparent);
 }
 
-.doc .support-sponsor-button-gh {
-  border: 0;
+.doc .support-sponsor-button-gh-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+}
+
+.doc .support-sponsor-button-gh-link > img {
+  display: block;
   border-radius: 6px;
-  width: 114px;
-  height: 32px;
 }
 
 #preamble .abstract blockquote {
