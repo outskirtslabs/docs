@@ -21,7 +21,6 @@ html.dark-theme body.article::before {
   opacity: 0.4;
 }
 
-/* Glass effect on navbar where hero is visible */
 body.article .navbar {
   background: rgba(255, 255, 255, 0.45);
   backdrop-filter: blur(16px) saturate(1.2);
@@ -29,6 +28,6 @@ body.article .navbar {
 }
 
 html.dark-theme body.article .navbar {
-  background: rgba(28, 25, 23, 0.45);
+  background: rgba(28, 25, 23, 0.25);
   border-bottom-color: rgba(255, 255, 255, 0.08);
 }
