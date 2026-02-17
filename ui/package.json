@@ -2,7 +2,9 @@
   "engines": {
     "node": ">=20.0.0"
   },
-  "browserslist": ["defaults"],
+  "browserslist": [
+    "defaults"
+  ],
   "devDependencies": {
     "@asciidoctor/tabs": "1.0.0-beta.6",
     "autoprefixer": "~10.4",
@@ -27,8 +29,6 @@
     "gulp-stylelint": "~13.0",
     "gulp-uglify": "~3.0",
     "gulp-vinyl-zip": "~2.5",
-    "handlebars": "~4.7",
-    "highlight.js": "9.18.3",
     "merge-stream": "~2.0",
     "micromodal": "^0.4.10",
     "postcss": "~8.4",

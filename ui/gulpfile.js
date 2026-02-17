@@ -14,6 +14,11 @@ const task = require("./gulp.d/tasks");
 const glob = {
   css: `${srcDir}/css/**/*.css`,
   js: ["gulpfile.js", "gulp.d/**/*.js", `${srcDir}/{helpers,js}/**/*.js`],
+  lintJs: [
+    "gulp.d/**/*.js",
+    `${srcDir}/{helpers,js}/**/*.js`,
+    `!${srcDir}/js/flask.js`,
+  ],
   test: ["test/**/*.js"],
 };
 
@@ -32,7 +37,7 @@ const lintCssTask = createTask({
 const lintJsTask = createTask({
   name: "lint:js",
   desc: "Lint the JavaScript source files using eslint (JavaScript Standard Style)",
-  call: task.lintJs(glob.js),
+  call: task.lintJs(glob.lintJs),
 });
 
 const lintTestJsTask = createTask({
@@ -44,10 +49,7 @@ const lintTestJsTask = createTask({
 const lintTask = createTask({
   name: "lint",
   desc: "Lint the CSS and JavaScript source files",
-  call: parallel(
-    lintCssTask
-    //  lintJsTask, lintTestJsTask
-  ),
+  call: parallel(lintCssTask, lintJsTask),
 });
 
 const formatJsTask = createTask({
