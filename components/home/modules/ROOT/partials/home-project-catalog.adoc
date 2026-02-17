@@ -30,6 +30,12 @@
 </table>
 ++++
 
+== Project Docs
+
+Documentation that applies across projects:
+
+* xref:project-statuses.adoc[Project Statuses]
+
 == Libraries
 
 ++++

@@ -394,18 +394,24 @@ article.doc.role-home > * {
 
   article.doc.role-home > .sect1:has(> h2#hello) {
     grid-column: 1;
-    grid-row: 2;
+    grid-row: 2 / span 2;
   }
 
   article.doc.role-home > .sect1:has(> h2#releases) {
     grid-column: 2;
     grid-row: 2;
   }
+
+  article.doc.role-home > .sect1:has(> h2#project_docs) {
+    grid-column: 2;
+    grid-row: 3;
+  }
 }
 
 /* ── Hello and Releases box styling ── */
 article.doc.role-home > .sect1:has(> h2#hello),
-article.doc.role-home > .sect1:has(> h2#releases) {
+article.doc.role-home > .sect1:has(> h2#releases),
+article.doc.role-home > .sect1:has(> h2#project_docs) {
   background: var(--color-stone-50);
   border: 1px solid var(--color-stone-200);
   border-radius: 0.5rem;
@@ -414,7 +420,8 @@ article.doc.role-home > .sect1:has(> h2#releases) {
 }
 
 html.dark-theme article.doc.role-home > .sect1:has(> h2#hello),
-html.dark-theme article.doc.role-home > .sect1:has(> h2#releases) {
+html.dark-theme article.doc.role-home > .sect1:has(> h2#releases),
+html.dark-theme article.doc.role-home > .sect1:has(> h2#project_docs) {
   background: var(--color-stone-900);
   border-color: var(--color-stone-800);
 }
@@ -452,7 +459,8 @@ article.doc.role-home > .sect1 > h2#hello {
 }
 
 /* Releases h2: override doc.css defaults to match box header style */
-article.doc.role-home > .sect1:has(> h2#releases) > h2 {
+article.doc.role-home > .sect1:has(> h2#releases) > h2,
+article.doc.role-home > .sect1:has(> h2#project_docs) > h2 {
   font-size: 1.1em;
   font-weight: 600;
   color: var(--heading-font-color);
@@ -462,6 +470,7 @@ article.doc.role-home > .sect1:has(> h2#releases) > h2 {
 }
 
 article.doc.role-home > .sect1:has(> h2#hello) > .sectionbody > :first-child,
-article.doc.role-home > .sect1:has(> h2#releases) > .sectionbody > :first-child {
+article.doc.role-home > .sect1:has(> h2#releases) > .sectionbody > :first-child,
+article.doc.role-home > .sect1:has(> h2#project_docs) > .sectionbody > :first-child {
   margin-top: 0;
 }
