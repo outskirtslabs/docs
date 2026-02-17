@@ -1,0 +1,20 @@
+{:tasks
+ {:requires ([babashka.tasks :refer [shell]])
+  build
+  {:doc "Full build: generate home catalog, bundle UI, and build site with Antora."
+   :task (shell "bash scripts/build.sh playbook.yml")}
+  build:theme
+  {:doc "Build just the Antora UI theme bundle."
+   :task (shell "cd ui && npx gulp bundle")}
+  serve
+  {:doc "Serve the built site locally."
+   :task (shell "npx live-server build/site --port=8084")}
+  dev
+  {:doc "Run docs dev mode with watching and live reload."
+   :task (shell "bash scripts/dev.sh")}
+  test:arborium
+  {:doc "Run arborium syntax highlighting tests."
+   :task (shell "node --test scripts/highlight-arborium.test.mjs")}
+  gen-home
+  {:doc "Generate the home page project catalog partial from playbook sources + project manifests."
+   :task (shell "bb scripts/gen_home.clj")}}}
