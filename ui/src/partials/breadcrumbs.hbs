@@ -3,6 +3,23 @@
     {{#if page.breadcrumbs}}
     <ul>
       <li id="copy-url" title="Copy versioned URL"></li>
+      {{#if (ne page.component.name 'ROOT')}}
+      <li><a href="{{{site.url}}}" data-no-external-target>Docs</a></li>
+      {{#with page.componentVersion}}
+      <li><a href="{{{relativize ./url}}}">{{{@root.page.component.name}}}</a></li>
+      {{/with}}
+      {{#each page.breadcrumbs}}
+      {{#unless (and (eq @index 0) (eq ./content 'Home'))}}
+      <li>
+      {{~#if (and ./url (eq ./urlType 'internal'))~}}
+      <a href="{{{relativize ./url}}}">{{{./content}}}</a>
+      {{~else~}}
+      {{{./content}}}
+      {{~/if~}}
+      </li>
+      {{/unless}}
+      {{/each}}
+      {{else}}
       {{#with page.componentVersion}}
       {{#if (and ./title (ne ./title @root.page.breadcrumbs.0.content))}}
       <li><a href="{{{relativize ./url}}}">{{{./title}}}</a></li>
@@ -17,6 +34,7 @@
       {{~/if~}}
       </li>
       {{/each}}
+      {{/if}}
     </ul>
     {{/if}}
   </nav>
