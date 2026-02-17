@@ -1,4 +1,4 @@
-= Outskirts Labs developer documentation
+= Outskirts Labs Developer Docs
 :page-role: home
 
 == Hello
