@@ -371,6 +371,8 @@ mark {
 
 .breadcrumbs a:hover {
   color: var(--breadcrumb-hover-font-color);
+  text-decoration: none;
+  background-color: transparent;
 }
 
 body.status-404 .page-404 {

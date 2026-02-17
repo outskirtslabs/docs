@@ -268,11 +268,6 @@ html.dark-theme button.browse-version:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-html.dark-theme .nav-panel-menu .context,
-html.dark-theme button.browse-version {
-  background-color: rgba(28, 25, 23, 0.45);
-}
-
 .nav-panel-menu .context .version {
   display: inline-block;
   background-color: var(--mark-background-color);
@@ -473,11 +468,10 @@ body.nav-sm .nav-panel-menu {
   }
 
   html.dark-theme body.article .nav {
-    background: rgba(28, 25, 23, 0.44);
+    background: rgba(28, 25, 23, 0.25);
   }
 
   html.dark-theme body.article .nav-collapse,
-  html.dark-theme body.article .nav-panel-menu .context,
   html.dark-theme body.article button.browse-version,
   html.dark-theme body.article.nav-sm .nav-menu > .nav-list {
     background-color: rgba(28, 25, 23, 0.3);
