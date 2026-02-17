@@ -120,7 +120,7 @@
   (let [tagged (collect-tagged-releases repo-root component name)]
     (if (seq tagged)
       tagged
-      (if (and (contains? #{:experimental :maturing} status)
+      (if (and (contains? #{:experimental :maturing :static} status)
                (valid-iso-date? created))
         [{:date created
           :name name
@@ -196,6 +196,12 @@
        "<td class=\"release-version\">" (html-escape version) "</td>\n"
        "</tr>"))
 
+(defn- release-row-adoc
+  [{:keys [date name url version]}]
+  (str "| " date "\n"
+       "| link:" url "[" name "]\n"
+       "| `" version "`"))
+
 (defn- desktop-lib-row-html
   [lib]
   (let [{:keys [url platforms latest latest-url status description]} lib
@@ -262,9 +268,14 @@
         mobile-lib-rows (->> libraries (map mobile-lib-entry-html) (str/join "\n\n"))]
     (str "== Releases\n\n"
          "++++\n"
+         "<div class=\"releases-scroll\">\n"
          "<table class=\"releases-table\">\n"
          release-rows "\n"
          "</table>\n"
+         "</div>\n"
+         "<div class=\"releases-footer\">\n"
+         "<a href=\"recent\">View all releases</a>\n"
+         "</div>\n"
          "++++\n\n"
          "== Project Docs\n\n"
          "An assortment of general intersest documentation for the OSS project collector.\n\n"
@@ -298,6 +309,20 @@
          "</div>\n"
          "</div>\n"
          "++++\n")))
+
+(defn- render-recent-page
+  [releases]
+  (if (seq releases)
+    (str "= Recent Releases\n\n"
+         "Full release feed across all tracked projects.\n\n"
+         "[cols=\"1,2,1\",options=\"header\",stripes=hover]\n"
+         "|===\n"
+         "| Date | Library | Version\n\n"
+         (->> releases
+              (map release-row-adoc)
+              (str/join "\n\n"))
+         "\n\n|===\n")
+    "= Recent Releases\n\nNo releases yet.\n"))
 
 (defn -main
   [& _args]
@@ -359,10 +384,16 @@
                        (sort-by (comp str/lower-case :name))
                        vec)
         partial-content (render-partial releases libraries)
+        recent-content (render-recent-page releases)
         partial-dir (str (fs/path docs-root "components" "home" "modules" "ROOT" "partials"))
-        partial-file (str (fs/path partial-dir "home-project-catalog.adoc"))]
+        partial-file (str (fs/path partial-dir "home-project-catalog.adoc"))
+        pages-dir (str (fs/path docs-root "components" "home" "modules" "ROOT" "pages"))
+        recent-file (str (fs/path pages-dir "recent.adoc"))]
     (fs/create-dirs partial-dir)
+    (fs/create-dirs pages-dir)
     (spit partial-file partial-content)
+    (spit recent-file recent-content)
+    (println "Generated" recent-file "with" (count releases) "release rows.")
     (println "Generated" partial-file "with" (count releases) "releases and" (count libraries) "libraries.")))
 
 (when (= *file* (System/getProperty "babashka.file"))
