@@ -8,6 +8,7 @@ DEV_SOURCEMAPS="${DEV_SOURCEMAPS:-true}"
 WATCH_PATHS=(ui/src components)
 INOTIFY_EXCLUDE_REGEX='home-project-catalog\.adoc$'
 HASH_EXCLUDE_PATH='components/home/modules/ROOT/partials/home-project-catalog.adoc'
+LIVE_SERVER_MIDDLEWARE="$ROOT_DIR/scripts/live-server-extensionless.js"
 
 cleanup() {
   echo ""
@@ -41,7 +42,7 @@ SOURCEMAPS="$DEV_SOURCEMAPS" bash scripts/build.sh playbook.yml --url "$DEV_SITE
 # --- Start live-server (auto-reloads browser when build/site changes) ---
 echo ""
 echo "Starting dev server at http://localhost:8084 ..."
-npx live-server build/site --port=8084 --no-browser &
+npx live-server build/site --port=8084 --no-browser --middleware="$LIVE_SERVER_MIDDLEWARE" &
 SERVER_PID=$!
 
 # --- Watch source paths and rebuild on changes ---

@@ -488,6 +488,48 @@
   vertical-align: middle;
 }
 
+.doc .support-sponsor-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.doc .support-sponsor-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+}
+
+.doc .support-sponsor-button > img {
+  display: block;
+  border-radius: 6px;
+  transform-origin: center;
+  transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1), filter 180ms ease, box-shadow 180ms ease;
+}
+
+.doc .support-sponsor-button:hover > img,
+.doc .support-sponsor-button:focus-visible > img {
+  transform: translateY(-2px) scale(1.06);
+  filter: saturate(1.12) contrast(1.04);
+  box-shadow: 0 10px 22px color-mix(in oklab, var(--color-ol-orange) 42%, transparent);
+}
+
+.doc .support-sponsor-button:active > img {
+  transform: translateY(0) scale(1.02);
+  box-shadow: 0 4px 10px color-mix(in oklab, var(--color-ol-orange) 30%, transparent);
+}
+
+.doc .support-sponsor-button-gh {
+  border: 0;
+  border-radius: 6px;
+  width: 114px;
+  height: 32px;
+}
+
 #preamble .abstract blockquote {
   background: var(--abstract-background);
   border-left: 5px solid var(--abstract-border-color);

@@ -1,0 +1,36 @@
+= Support
+
+If these projects bring you joy or save you time or money, supporting the work helps me keep them healthy and moving forward (it also helps keep me healthy and moving forward). There are two straightforward ways to do that.
+
+== You are human person
+
+If you are an individual developer or hobbyist, your sponsorship helps fund ongoing maintenance and releases.
+
+Liberapay is my preferred option, because it has lower fees, supports my family, and doesn't enable a monstrous mega-corporation hellbent on world domination.
+But I won't judge if you use GitHub Sponsors; it works too.
+
+++++
+<div class="support-sponsor-buttons">
+  <a href="https://liberapay.com/ramblurr/" class="support-sponsor-button" aria-label="Liberapay donation badge">
+    <img src="_images/liberapay.svg" alt="Liberapay donation badge" width="83" height="30">
+  </a>
+  <iframe class="support-sponsor-button-gh" src="https://github.com/sponsors/ramblurr/button" title="Sponsor Casey" height="32" width="114"></iframe>
+</div>
+++++
+
+Even small recurring or one-time sponsorships make a real difference, it signals to the community that there is something of value here.
+
+== You are a legal entity
+
+If your company depends on one or more Outskirts Labs projects, I offer paid consulting engagements.
+
+Typical engagements include:
+
+* architecture and implementation guidance
+* integrations and custom feature/bug development
+* production hardening and reliability work
+* team enablement and long-term maintenance planning
+
+To discuss scope, timeline, and budget, email mailto:casey@outskirtslabs.com[casey@outskirtslabs.com].
+
+(p.s. All engagements come with a EU-friendly VAT invoice that will make your bookeeper happy.)

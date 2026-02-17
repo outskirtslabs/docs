@@ -17,7 +17,7 @@
    (let [{:keys [out err exit]} (p/shell (merge {:out :string :err :string :continue true} opts) cmd)]
      (if (zero? exit)
        out
-       (throw (ex-info (str "Command failed: " cmd) {:cmd cmd :exit exit :err err})))))) 
+       (throw (ex-info (str "Command failed: " cmd) {:cmd cmd :exit exit :err err}))))))
 
 (defn- run-lines!
   ([cmd] (run-lines! {} cmd))
@@ -203,16 +203,16 @@
         status-name (clojure.core/name status)]
     (str "<tr>\n"
          "<td class=\"lib-name\"><a href=\"" (html-escape url) "\">" (html-escape display-name) "</a></td>\n"
-       "<td>" (platform-tags-html platforms) "</td>\n"
-       "<td class=\"lib-version\">"
-       (if latest
-         (if latest-url
-           (str "<a href=\"" (html-escape latest-url) "\">" (html-escape latest) "</a>")
-           (html-escape latest))
-         "&mdash;")
-       "</td>\n"
+         "<td>" (platform-tags-html platforms) "</td>\n"
+         "<td class=\"lib-version\">"
+         (if latest
+           (if latest-url
+             (str "<a href=\"" (html-escape latest-url) "\">" (html-escape latest) "</a>")
+             (html-escape latest))
+           "&mdash;")
+         "</td>\n"
          "<td><span class=\"status-badge status-" (html-escape status-name) "\">" (html-escape status-name) "</span></td>\n"
-       "<td class=\"lib-desc\">" (html-escape description) "</td>\n"
+         "<td class=\"lib-desc\">" (html-escape description) "</td>\n"
          "</tr>")))
 
 (defn- mobile-lib-entry-html
@@ -221,19 +221,19 @@
         display-name (:name lib)
         status-name (clojure.core/name status)]
     (str "<div class=\"project-entry\">\n"
-       "<div class=\"project-header\">\n"
+         "<div class=\"project-header\">\n"
          "<a href=\"" (html-escape url) "\" class=\"project-name\">" (html-escape display-name) "</a>\n"
-       "<span class=\"project-meta\">\n"
-       (platform-tags-html platforms)
-       (if latest
-         (if latest-url
-           (str "\n<span class=\"project-version\"><a href=\"" (html-escape latest-url) "\">" (html-escape latest) "</a></span>")
-           (str "\n<span class=\"project-version\">" (html-escape latest) "</span>"))
-         "")
+         "<span class=\"project-meta\">\n"
+         (platform-tags-html platforms)
+         (if latest
+           (if latest-url
+             (str "\n<span class=\"project-version\"><a href=\"" (html-escape latest-url) "\">" (html-escape latest) "</a></span>")
+             (str "\n<span class=\"project-version\">" (html-escape latest) "</span>"))
+           "")
          "\n<span class=\"status-badge status-" (html-escape status-name) "\">" (html-escape status-name) "</span>\n"
-       "</span>\n"
-       "</div>\n"
-       "<div class=\"project-desc\">" (html-escape description) "</div>\n"
+         "</span>\n"
+         "</div>\n"
+         "<div class=\"project-desc\">" (html-escape description) "</div>\n"
          "</div>")))
 
 (defn- sort-releases
@@ -267,7 +267,8 @@
          "</table>\n"
          "++++\n\n"
          "== Project Docs\n\n"
-         "Documentation that applies across projects:\n\n"
+         "An assortment of general intersest documentation for the OSS project collector.\n\n"
+         "* xref:support.adoc[Support]\n"
          "* xref:open-source-vital-signs.adoc[Open Source Vital Signs]\n"
          "* xref:security-policy.adoc[Security Policy]\n"
          "* xref:contributing-guide.adoc[Contributing Guide]\n\n"
@@ -340,7 +341,7 @@
         releases (->> projects
                       (mapcat collect-releases)
                       sort-releases
-                       vec)
+                      vec)
         libraries (->> projects
                        (map (fn [{:keys [component name description platforms repo-url status]}]
                               (let [latest-release-entry (latest-tagged-release releases component)]
