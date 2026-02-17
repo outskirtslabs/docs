@@ -1,0 +1,9 @@
+= Security Policy
+
+This page is a placeholder for the Outskirts Labs cross-project security policy.
+
+It will document:
+
+* how to report a suspected vulnerability
+* supported versions and response expectations
+* coordinated disclosure process
