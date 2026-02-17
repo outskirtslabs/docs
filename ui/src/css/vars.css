@@ -384,6 +384,7 @@ html.dark-theme {
   /* Doc */
   --doc-font-color: var(--body-font-color);
   --heading-font-color: var(--body-font-dark-color);
+  --quote-font-color: var(--body-font-light-color);
 
   /* Footer */
   --footer-background: var(--body-background-color);
