@@ -1,0 +1,165 @@
+= Outskirts Labs developer documentation
+:page-role: home
+
+== Hello
+
+++++
+<div class="home-box-header">Hi, I'm Casey Link (<a href="https://github.com/Ramblurr">@Ramblurr</a>)</div>
+<div class="home-welcome">
+<p>Welcome to Outskirts Labs, where I organize my active and maintained open source projects.</p>
+
+<p>My personal GitHub is cluttered with experiments, forks, and random contributions. This space is for the projects I actively maintain.</p>
+
+<p>I am an independent software consultant, serving clients at the edge of technical capacity, sustainable funding, and mainstream attention.</p>
+
+<p>My work focuses on building tools that last without requiring an army of developers or regular rewrites.</p>
+
+<p>If you're a small business, non-profit, or social enterprise needing custom software that fits both your mission and budget, check out <a href="https://outskirtslabs.com">outskirtslabs.com</a> or get in touch directly <a href="mailto:casey@outskirtslabs.com">casey@outskirtslabs.com</a></p>
+
+<div class="signoff">
+<p>Cheers,</p>
+<p>Casey Link</p>
+</div>
+
+<div class="ps">
+<p>p.s. For the curious and fellow Clojurians, my personal homepage at <a href="https://casey.link">casey.link</a> may be of interest.</p>
+</div>
+</div>
+++++
+
+== Releases
+
+++++
+<table class="releases-table">
+<tr>
+<td class="release-date">2025-09-08</td>
+<td class="release-lib"><a href="../ol.sfv/0.1/">ol.sfv</a></td>
+<td class="release-version">v0.1.0</td>
+</tr>
+<tr>
+<td class="release-date">2025-08-18</td>
+<td class="release-lib"><a href="../ol.client-ip/0.1/">client-ip</a></td>
+<td class="release-version">v0.1.0</td>
+</tr>
+</table>
+++++
+
+== Libraries
+
+++++
+<div class="libs-desktop">
+<div class="project-table">
+<table>
+<thead>
+<tr>
+<th>Library</th>
+<th>Platform/s</th>
+<th>Latest</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="lib-name"><a href="../ol.client-ip/">client-ip</a></td>
+<td><span class="platform-tag">clj</span></td>
+<td class="lib-version">v0.1.0</td>
+<td><span class="status-badge status-active">active</span></td>
+<td class="lib-desc">Ring middleware for determining client IP from HTTP headers</td>
+</tr>
+<tr>
+<td class="lib-name"><a href="../datahike-sqlite/">datahike-sqlite</a></td>
+<td><span class="platform-tag">clj</span></td>
+<td class="lib-version">&mdash;</td>
+<td><span class="status-badge status-experimental">experimental</span></td>
+<td class="lib-desc">SQLite backend for Datahike</td>
+</tr>
+<tr>
+<td class="lib-name"><a href="../datastar-expressions/">datastar-expressions</a></td>
+<td><span class="platform-tag">clj</span></td>
+<td class="lib-version">&mdash;</td>
+<td><span class="status-badge status-experimental">experimental</span></td>
+<td class="lib-desc">Clojure to Datastar expression transpiler</td>
+</tr>
+<tr>
+<td class="lib-name"><a href="../ol.sfv/">ol.sfv</a></td>
+<td><span class="platform-tag">clj</span></td>
+<td class="lib-version">v0.1.0</td>
+<td><span class="status-badge status-active">active</span></td>
+<td class="lib-desc">Structured Field Values for HTTP (RFC 9651/8941)</td>
+</tr>
+<tr>
+<td class="lib-name"><a href="../ol.sops/">ol.sops</a></td>
+<td><span class="platform-tag">clj</span> <span class="platform-tag">bb</span></td>
+<td class="lib-version">&mdash;</td>
+<td><span class="status-badge status-active">active</span></td>
+<td class="lib-desc">SOPS encryption/decryption wrapper for Clojure and babashka</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="libs-mobile">
+<div class="project-catalog">
+
+<div class="project-entry">
+<div class="project-header">
+<a href="../ol.client-ip/" class="project-name">client-ip</a>
+<span class="project-meta">
+<span class="platform-tag">clj</span>
+<span class="project-version">v0.1.0</span>
+<span class="status-badge status-active">active</span>
+</span>
+</div>
+<div class="project-desc">Ring middleware for determining client IP from HTTP headers</div>
+</div>
+
+<div class="project-entry">
+<div class="project-header">
+<a href="../datahike-sqlite/" class="project-name">datahike-sqlite</a>
+<span class="project-meta">
+<span class="platform-tag">clj</span>
+<span class="status-badge status-experimental">experimental</span>
+</span>
+</div>
+<div class="project-desc">SQLite backend for Datahike</div>
+</div>
+
+<div class="project-entry">
+<div class="project-header">
+<a href="../datastar-expressions/" class="project-name">datastar-expressions</a>
+<span class="project-meta">
+<span class="platform-tag">clj</span>
+<span class="status-badge status-experimental">experimental</span>
+</span>
+</div>
+<div class="project-desc">Clojure to Datastar expression transpiler</div>
+</div>
+
+<div class="project-entry">
+<div class="project-header">
+<a href="../ol.sfv/" class="project-name">ol.sfv</a>
+<span class="project-meta">
+<span class="platform-tag">clj</span>
+<span class="project-version">v0.1.0</span>
+<span class="status-badge status-active">active</span>
+</span>
+</div>
+<div class="project-desc">Structured Field Values for HTTP (RFC 9651/8941)</div>
+</div>
+
+<div class="project-entry">
+<div class="project-header">
+<a href="../ol.sops/" class="project-name">ol.sops</a>
+<span class="project-meta">
+<span class="platform-tag">clj</span>
+<span class="platform-tag">bb</span>
+<span class="status-badge status-active">active</span>
+</span>
+</div>
+<div class="project-desc">SOPS encryption/decryption wrapper for Clojure and babashka</div>
+</div>
+
+</div>
+</div>
+++++

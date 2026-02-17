@@ -1,0 +1,14 @@
+site:
+  title: Outskirts Labs Docs
+  start_page: ROOT::index.adoc
+content:
+  sources:
+    - url: .
+      branches: HEAD
+      start_path: components/home
+ui:
+  bundle:
+    url: ./ui/build/ui-bundle.zip
+asciidoc:
+  attributes:
+    idprefix: ""

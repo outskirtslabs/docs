@@ -28,6 +28,11 @@
           commands = [
             { package = pkgs.antora; }
           ];
+          packages = [
+            pkgs.playwright
+            pkgs.playwright-test
+            pkgs.playwright-mcp
+          ];
         };
     };
 }

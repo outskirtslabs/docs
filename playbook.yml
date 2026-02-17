@@ -1,0 +1,39 @@
+site:
+  title: Outskirts Labs Docs
+  start_page: ROOT::index.adoc
+content:
+  sources:
+    - url: .
+      branches: HEAD
+      start_path: components/home
+
+    - url: /home/ramblurr/src/github.com/outskirtslabs/client-ip
+      branches: [HEAD, "v{0..9}*"]
+      start_path: doc
+
+    - url: /home/ramblurr/src/github.com/outskirtslabs/sfv
+      branches: [HEAD, "v{0..9}*"]
+      start_path: doc
+
+    - url: /home/ramblurr/src/github.com/outskirtslabs/datahike-sqlite
+      branches: [HEAD]
+      start_path: doc
+
+    - url: /home/ramblurr/src/github.com/outskirtslabs/datastar-expressions
+      branches: [HEAD]
+      start_path: doc
+
+    - url: /home/ramblurr/src/github.com/outskirtslabs/ol.sops
+      branches: [HEAD]
+      start_path: doc
+ui:
+  bundle:
+    url: ./ui/build/ui-bundle.zip
+asciidoc:
+  attributes:
+    idprefix: ""
+antora:
+  extensions:
+    - require: "./lunr-tokenizer"
+    - require: "@antora/lunr-extension"
+      index_latest_only: false
