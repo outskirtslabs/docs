@@ -64,6 +64,8 @@ module.exports = (src, dest) => () => {
       .pipe(uglify({ output: { comments: /^! / } }))
       // NOTE concat already uses stat from newest combined file
       .pipe(concat('js/site.js')),
+    // Keep standalone ES modules (such as flask animation) as-is.
+    vfs.src('js/flask.js', opts),
     vfs
       .src('js/vendor/*([^.])?(.bundle).js', { ...opts, read: false })
       .pipe(bundle(opts))
