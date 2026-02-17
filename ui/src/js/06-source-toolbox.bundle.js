@@ -16,8 +16,8 @@
       var block = pre.parentNode.parentNode
       block.classList.remove('literalblock')
       block.classList.add('listingblock')
-      pre.classList.add('highlightjs', 'highlight')
-      code = Object.assign(document.createElement('code'), { className: 'language-console hljs' })
+      pre.classList.add('highlight')
+      code = Object.assign(document.createElement('code'), { className: 'language-console' })
       code.dataset.lang = 'console'
       code.appendChild(pre.firstChild)
       pre.appendChild(code)

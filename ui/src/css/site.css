@@ -13,7 +13,9 @@
 @import "header.css";
 @import "footer.css";
 @import "modal.css";
-@import "highlight.css";
+@import "vendor/arborium-base.css";
+@import "vendor/arborium-gruvbox-light.css";
+@import "vendor/arborium-gruvbox-dark.css";
 @import "print.css";
 @import "home.css";
 @import "site-extra.css";

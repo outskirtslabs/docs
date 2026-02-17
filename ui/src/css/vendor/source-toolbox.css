@@ -4,7 +4,7 @@
 }
 
 .doc pre code[data-lang]::before {
-  color: var(--pre-border-color);
+  color: var(--arb-fg);
   content: attr(data-lang);
   display: block;
   font-size: 0.75em;
@@ -134,6 +134,6 @@
   transition: none;
 }
 
-.doc .language-console .hljs-meta {
+.doc .language-console a-o:first-child {
   user-select: none;
 }
