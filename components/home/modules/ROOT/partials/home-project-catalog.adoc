@@ -34,7 +34,7 @@
 
 Documentation that applies across projects:
 
-* xref:project-statuses.adoc[Project Statuses]
+* xref:open-source-vital-signs.adoc[Open Source Vital Signs]
 * xref:security-policy.adoc[Security Policy]
 * xref:contributing-guide.adoc[Contributing Guide]
 
