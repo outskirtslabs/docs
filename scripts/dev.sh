@@ -24,6 +24,12 @@ rebuild() {
   echo "--- Rebuild complete ---"
 }
 
+rebuild_or_continue() {
+  if ! rebuild; then
+    echo "--- Rebuild failed; watching for further changes ---"
+  fi
+}
+
 # --- Initial full build ---
 echo "Running initial build..."
 bash scripts/build.sh playbook.yml --url "$DEV_SITE_URL"
@@ -42,7 +48,7 @@ if command -v inotifywait &>/dev/null; then
   # inotifywait is efficient and debounces well
   while true; do
     inotifywait -r -q -e modify,create,delete,move ui/src/ 2>/dev/null
-    rebuild
+    rebuild_or_continue
   done &
   WATCH_PID=$!
 else
@@ -52,7 +58,7 @@ else
   while true; do
     HASH=$(find ui/src -type f -exec stat -c '%Y %n' {} + 2>/dev/null | sort | md5sum)
     if [ "$HASH" != "$LAST_HASH" ] && [ -n "$LAST_HASH" ]; then
-      rebuild
+      rebuild_or_continue
     fi
     LAST_HASH="$HASH"
     sleep 2
