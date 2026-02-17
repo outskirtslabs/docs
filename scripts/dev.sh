@@ -16,6 +16,7 @@ trap cleanup INT TERM
 # --- Fast UI-only rebuild (skip api docs + readme sync) ---
 rebuild() {
   echo "--- Rebuilding theme + site ---"
+  bb gen-home && \
   (cd ui && npx gulp bundle) && \
   npx antora --stacktrace playbook.yml && \
   echo "--- Rebuild complete ---"
