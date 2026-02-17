@@ -1,3 +1,172 @@
 = Project Status
 
-== Hello
+This page defines the lifecycle statuses I use across my open source projects.
+Each project clearly states its current status so you know what to expect in
+terms of stability, responsiveness, and long-term support.
+
+As a solo independent maintainer, I prioritize clarity over ceremony. These
+statuses are signals, not guarantees. They communicate intent, not legal
+commitments. If a project's status changes, I will update it here and in the
+repository.
+
+== Experimental
+
+*Expect rapid change and rough edges.*
+
+Experimental projects are early-stage explorations. I am validating ideas,
+APIs, and architecture. Breaking changes are likely. Documentation may be
+incomplete. The goal is learning and iteration, not stability.
+
+Use Experimental projects to explore concepts, prototype ideas, or provide
+feedback. Do not depend on them in production.
+
+[cols="2,1",options="header"]
+|===
+| Activity
+| Supported
+
+| New features
+| Yes
+
+| Feature requests
+| Yes
+
+| Bug and security fixes
+| Yes
+
+| Bug reports
+| Yes
+
+| New releases
+| Yes
+|===
+
+== Maturing
+
+*Actively developed and moving toward stability.*
+
+Maturing projects have proven useful and are under active development. APIs may
+still change, but changes are more deliberate. Documentation is improving.
+Backward compatibility is considered, but not guaranteed.
+
+These projects may be suitable for early production use if you are comfortable
+upgrading as the project evolves.
+
+[cols="2,1",options="header"]
+|===
+| Activity
+| Supported
+
+| New features
+| Yes
+
+| Feature requests
+| Yes
+
+| Bug and security fixes
+| Yes
+
+| Bug reports
+| Yes
+
+| New releases
+| Yes
+|===
+
+== Stable
+
+*Production-ready and maintained.*
+
+Stable projects have a well-defined scope and API. I aim to preserve backward
+compatibility. Changes are incremental and justified. Documentation should be
+complete enough for independent use.
+
+Use Stable projects in production with confidence. Major changes will be rare
+and clearly communicated.
+
+[cols="2,1",options="header"]
+|===
+| Activity
+| Supported
+
+| New features
+| Limited
+
+| Feature requests
+| Selective
+
+| Bug and security fixes
+| Yes
+
+| Bug reports
+| Yes
+
+| New releases
+| Yes
+|===
+
+== Static
+
+*Feature complete and minimally maintained.*
+
+Static projects are considered complete. I do not plan to add new features. The
+code remains available and usable, but development has effectively stopped.
+
+I may address critical bugs or security issues if they are simple and low-risk.
+Releases will be infrequent.
+
+[cols="2,1",options="header"]
+|===
+| Activity
+| Supported
+
+| New features
+| No
+
+| Feature requests
+| No
+
+| Bug and security fixes
+| Critical only
+
+| Bug reports
+| Limited
+
+| New releases
+| Rare
+|===
+
+== Retired
+
+*No longer maintained.*
+
+Retired projects are archived and unmaintained. They may depend on outdated
+technologies, have been replaced, or no longer align with my focus.
+
+You are free to fork and continue development. I do not plan to review issues,
+accept pull requests, or publish new releases.
+
+[cols="2,1",options="header"]
+|===
+| Activity
+| Supported
+
+| New features
+| No
+
+| Feature requests
+| No
+
+| Bug and security fixes
+| No
+
+| Bug reports
+| No
+
+| New releases
+| No
+|===
+
+If you rely on a project for critical use cases, prefer those marked *Stable*.
+If you enjoy shaping software early, look for *Experimental* and *Maturing*
+projects.
