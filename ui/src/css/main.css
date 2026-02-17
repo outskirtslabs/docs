@@ -96,11 +96,6 @@ footer #social-icons svg {
   height: 32px;
 }
 
-footer #spring-links a:hover {
-  color: #086dc3;
-  text-decoration: underline;
-}
-
 .sidebar-links {
   display: none;
   padding: 10px 0;
