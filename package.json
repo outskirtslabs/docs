@@ -2,13 +2,13 @@
   "private": true,
   "scripts": {
     "build": "bash scripts/build.sh playbook.yml",
-    "build:local": "bash scripts/build.sh playbook-local-only.yml",
     "build:theme": "cd ui && npx gulp bundle",
     "serve": "npx live-server build/site --port=8084",
     "dev": "bash scripts/dev.sh"
   },
   "dependencies": {
     "@antora/lunr-extension": "^1.0.0-alpha.8",
+    "@asciidoctor/tabs": "^1.0.0-beta.6",
     "antora": "^3.0.0"
   },
   "devDependencies": {

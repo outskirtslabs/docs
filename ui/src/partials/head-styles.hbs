@@ -1,0 +1,15 @@
+    <script>
+!function (theme, navWidth) {
+  if (theme === 'dark') document.documentElement.classList.add('dark-theme')
+  if (navWidth) document.documentElement.style.setProperty('--nav-width', `${navWidth}px`)
+}(localStorage && localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: dark)')?.matches && 'dark'),
+  localStorage && localStorage.getItem('nav-width'))
+    </script>
+    <link rel="stylesheet" href="{{{uiRootPath}}}/css/site.css">
+    <link rel="stylesheet" href="{{{uiRootPath}}}/css/vendor/onetrust.css">
+    {{#if (asciidocExtensionRegistered '@asciidoctor/tabs')}}
+    <link rel="stylesheet" href="{{{uiRootPath}}}/css/vendor/asciidoctor-tabs.css">
+    {{/if}}
+    {{#if env.SITE_ASCIINEMA_PROVIDER}}
+    {{> asciinema-styles}}
+    {{/if}}

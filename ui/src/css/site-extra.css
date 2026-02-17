@@ -1,0 +1,307 @@
+.navbar-brand .navbar-item + .navbar-item {
+  -ms-flex-positive: 1;
+  -webkit-box-flex: 1;
+  flex-grow: 1;
+  -ms-flex-pack: end;
+  -webkit-box-pack: end;
+  justify-content: flex-end;
+}
+
+@media screen and (max-width: 768px) {
+  .navbar-brand .navbar-item + .navbar-item {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .navbar-brand {
+    -ms-flex-positive: 1;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+  }
+
+  .navbar-menu {
+    -ms-flex-positive: 0;
+    -webkit-box-flex: 0;
+    flex-grow: 0;
+  }
+}
+
+/* ── Search trigger button (sidebar) ── */
+.search-trigger {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  background: var(--body-background-color);
+  border: 1px solid var(--nav-panel-divider-color);
+  border-left-width: 0;
+  border-right-width: 0;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+  color: var(--body-font-color);
+}
+
+.search-trigger:hover {
+  border-color: #aaa;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.search-trigger .search-icon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin-left: 12px;
+  color: var(--body-font-color);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.search-trigger-text {
+  flex: 1;
+  text-align: left;
+  padding: 0 0.5rem;
+  font-size: calc(14 / var(--rem-base) * 1rem);
+  color: var(--body-font-color);
+  opacity: 0.7;
+}
+
+.search-trigger kbd.search-key {
+  flex-shrink: 0;
+  margin-right: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  font-family: inherit;
+  font-size: calc(12 / var(--rem-base) * 1rem);
+  line-height: 1;
+  color: var(--body-font-color);
+  opacity: 0.6;
+  background: var(--nav-panel-divider-color);
+  border: 1px solid var(--nav-panel-divider-color);
+  border-radius: 4px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* Dark theme trigger adjustments */
+html.dark-theme .search-trigger {
+  border-color: var(--nav-panel-divider-color);
+}
+
+html.dark-theme .search-trigger:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+html.dark-theme .search-trigger .search-icon {
+  color: rgba(255, 255, 255, 0.7);
+  opacity: 0.7;
+}
+
+@media screen and (max-width: 1023.5px) {
+  .search-trigger {
+    border-left-width: 1px;
+    border-right-width: 1px;
+  }
+}
+
+/* ── Search modal overlay ── */
+.search-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 80px;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.search-modal.hidden {
+  display: none;
+}
+
+html.is-clipped--search {
+  overflow: hidden;
+}
+
+.search-modal-dialog {
+  display: flex;
+  flex-direction: column;
+  max-width: 680px;
+  width: calc(100vw - 2rem);
+  max-height: calc(100vh - 120px);
+  background: var(--body-background-color);
+  border-radius: 8px;
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.15),
+    0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.search-modal-header {
+  display: flex;
+  align-items: center;
+  height: 52px;
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--nav-panel-divider-color);
+  padding: 0;
+}
+
+.search-modal-header .search-icon {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin-left: 16px;
+  color: var(--body-font-color);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.search-modal-header #search-input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  border: none;
+  background: transparent;
+  font-size: calc(16 / var(--rem-base) * 1rem);
+  padding: 0 0.75rem;
+  color: var(--body-font-color);
+  box-sizing: border-box;
+}
+
+.search-modal-header #search-input:focus {
+  outline: none;
+}
+
+.search-modal-header #search-input::placeholder {
+  color: var(--body-font-color);
+  opacity: 0.5;
+  font-weight: normal;
+}
+
+.search-modal-header kbd.search-key {
+  flex-shrink: 0;
+  margin-right: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  font-family: inherit;
+  font-size: calc(11 / var(--rem-base) * 1rem);
+  line-height: 1;
+  color: var(--body-font-color);
+  opacity: 0.5;
+  background: var(--nav-panel-divider-color);
+  border: 1px solid var(--nav-panel-divider-color);
+  border-radius: 4px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.search-modal-body {
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* Reset Lunr dropdown positioning inside modal body */
+.search-modal-body .search-result-dropdown-menu {
+  position: static !important;
+  transform: none !important;
+  max-width: none !important;
+  width: 100% !important;
+  max-height: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  z-index: auto !important;
+  background: var(--body-background-color);
+}
+
+/* Dark theme modal adjustments */
+html.dark-theme .search-modal {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+html.dark-theme .search-modal-dialog {
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.4),
+    0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+html.dark-theme .search-modal-header .search-icon {
+  color: rgba(255, 255, 255, 0.7);
+  opacity: 0.7;
+}
+
+/* ── Search result content styles (shared) ── */
+.search-result-dataset {
+  border-radius: 0;
+  background: var(--body-background-color);
+  border-color: var(--nav-panel-divider-color);
+}
+
+/* Override extension's gray text -- !important needed because extension CSS loads after UI bundle */
+.search-result-component-header {
+  color: var(--body-font-color) !important;
+}
+
+.search-result-document-title {
+  color: var(--body-font-color) !important;
+}
+
+.search-result-document-hit {
+  color: var(--body-font-color) !important;
+}
+
+.search-result-document-hit > a:hover {
+  background-color: var(--color-ol-orange-50) !important;
+}
+
+/* Light theme highlight color */
+.search-result-document-hit .search-result-highlight {
+  color: var(--color-ol-orange-700) !important;
+  background: var(--color-ol-orange-50) !important;
+}
+
+/* Dark theme overrides */
+html.dark-theme .search-result-dataset {
+  background: var(--body-background-color);
+  border-color: var(--nav-panel-divider-color);
+}
+
+html.dark-theme .search-result-component-header {
+  color: var(--body-font-color) !important;
+  border-color: var(--nav-panel-divider-color) !important;
+}
+
+html.dark-theme .search-result-document-title {
+  color: var(--body-font-color) !important;
+  border-color: var(--nav-panel-divider-color) !important;
+}
+
+html.dark-theme .search-result-document-hit {
+  color: var(--body-font-light-color) !important;
+}
+
+html.dark-theme .search-result-document-hit .search-result-highlight {
+  color: var(--color-ol-orange-400) !important;
+  background: rgba(231, 98, 39, 0.1) !important;
+}
+
+html.dark-theme .search-result-document-hit > a:hover {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}

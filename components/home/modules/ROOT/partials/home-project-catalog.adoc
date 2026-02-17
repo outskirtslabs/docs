@@ -1,0 +1,150 @@
+== Releases
+
+++++
+<table class="releases-table">
+<tr>
+<td class="release-date">2025-10-03</td>
+<td class="release-lib"><a href="../ol.sops/next/">ol.sops</a></td>
+<td class="release-version">maturing</td>
+</tr>
+<tr>
+<td class="release-date">2025-09-08</td>
+<td class="release-lib"><a href="../ol.sfv/0.1/">ol.sfv</a></td>
+<td class="release-version">v0.1.0</td>
+</tr>
+<tr>
+<td class="release-date">2025-08-18</td>
+<td class="release-lib"><a href="../ol.client-ip/0.1/">ol.client-ip</a></td>
+<td class="release-version">v0.1.0</td>
+</tr>
+<tr>
+<td class="release-date">2025-04-22</td>
+<td class="release-lib"><a href="../datahike-sqlite/next/">datahike-sqlite</a></td>
+<td class="release-version">experimental</td>
+</tr>
+<tr>
+<td class="release-date">2025-04-14</td>
+<td class="release-lib"><a href="../datastar-expressions/next/">datastar-expressions</a></td>
+<td class="release-version">experimental</td>
+</tr>
+</table>
+++++
+
+== Libraries
+
+++++
+<div class="libs-desktop">
+<div class="project-table">
+<table>
+<thead>
+<tr>
+<th>Library</th>
+<th>Platform/s</th>
+<th>Latest</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="lib-name"><a href="../datahike-sqlite/next/">datahike-sqlite</a></td>
+<td><span class="platform-tag">clj</span></td>
+<td class="lib-version">&mdash;</td>
+<td><span class="status-badge status-experimental">experimental</span></td>
+<td class="lib-desc">SQLite storage backend for Datahike, the open datalog database</td>
+</tr>
+<tr>
+<td class="lib-name"><a href="../datastar-expressions/next/">datastar-expressions</a></td>
+<td><span class="platform-tag">clj</span></td>
+<td class="lib-version">&mdash;</td>
+<td><span class="status-badge status-experimental">experimental</span></td>
+<td class="lib-desc">Clojure to Datastar expression transpiler</td>
+</tr>
+<tr>
+<td class="lib-name"><a href="../ol.client-ip/0.1/">ol.client-ip</a></td>
+<td><span class="platform-tag">clj</span></td>
+<td class="lib-version"><a href="https://github.com/outskirtslabs/client-ip/releases/tag/v0.1.0">v0.1.0</a></td>
+<td><span class="status-badge status-stable">stable</span></td>
+<td class="lib-desc">A 0-dependency ring middleware for determining a request's real client IP address from HTTP headers</td>
+</tr>
+<tr>
+<td class="lib-name"><a href="../ol.sfv/0.1/">ol.sfv</a></td>
+<td><span class="platform-tag">clj</span></td>
+<td class="lib-version"><a href="https://github.com/outskirtslabs/sfv/releases/tag/v0.1.0">v0.1.0</a></td>
+<td><span class="status-badge status-stable">stable</span></td>
+<td class="lib-desc">A 0-dependency Clojure library for parsing and generating Structured Field Values for HTTP (RFC 9651/8941)</td>
+</tr>
+<tr>
+<td class="lib-name"><a href="../ol.sops/next/">ol.sops</a></td>
+<td><span class="platform-tag">clj</span> <span class="platform-tag">bb</span></td>
+<td class="lib-version">&mdash;</td>
+<td><span class="status-badge status-maturing">maturing</span></td>
+<td class="lib-desc">An extremely tiny and simple wrapper around the awesome sops (previously known as mozilla/sops)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="libs-mobile">
+<div class="project-catalog">
+
+<div class="project-entry">
+<div class="project-header">
+<a href="../datahike-sqlite/next/" class="project-name">datahike-sqlite</a>
+<span class="project-meta">
+<span class="platform-tag">clj</span>
+<span class="status-badge status-experimental">experimental</span>
+</span>
+</div>
+<div class="project-desc">SQLite storage backend for Datahike, the open datalog database</div>
+</div>
+
+<div class="project-entry">
+<div class="project-header">
+<a href="../datastar-expressions/next/" class="project-name">datastar-expressions</a>
+<span class="project-meta">
+<span class="platform-tag">clj</span>
+<span class="status-badge status-experimental">experimental</span>
+</span>
+</div>
+<div class="project-desc">Clojure to Datastar expression transpiler</div>
+</div>
+
+<div class="project-entry">
+<div class="project-header">
+<a href="../ol.client-ip/0.1/" class="project-name">ol.client-ip</a>
+<span class="project-meta">
+<span class="platform-tag">clj</span>
+<span class="project-version"><a href="https://github.com/outskirtslabs/client-ip/releases/tag/v0.1.0">v0.1.0</a></span>
+<span class="status-badge status-stable">stable</span>
+</span>
+</div>
+<div class="project-desc">A 0-dependency ring middleware for determining a request's real client IP address from HTTP headers</div>
+</div>
+
+<div class="project-entry">
+<div class="project-header">
+<a href="../ol.sfv/0.1/" class="project-name">ol.sfv</a>
+<span class="project-meta">
+<span class="platform-tag">clj</span>
+<span class="project-version"><a href="https://github.com/outskirtslabs/sfv/releases/tag/v0.1.0">v0.1.0</a></span>
+<span class="status-badge status-stable">stable</span>
+</span>
+</div>
+<div class="project-desc">A 0-dependency Clojure library for parsing and generating Structured Field Values for HTTP (RFC 9651/8941)</div>
+</div>
+
+<div class="project-entry">
+<div class="project-header">
+<a href="../ol.sops/next/" class="project-name">ol.sops</a>
+<span class="project-meta">
+<span class="platform-tag">clj</span> <span class="platform-tag">bb</span>
+<span class="status-badge status-maturing">maturing</span>
+</span>
+</div>
+<div class="project-desc">An extremely tiny and simple wrapper around the awesome sops (previously known as mozilla/sops)</div>
+</div>
+
+</div>
+</div>
+++++

@@ -1,0 +1,7 @@
+<div class="body">
+{{#unless (eq (or page.attributes.role page.role) 'home')}}
+{{> nav}}
+{{/unless}}
+{{> main}}
+{{> version}}
+</div>

@@ -1,0 +1,31 @@
+/* stylelint-disable */
+
+@font-face {
+  font-family: "Verb";
+  src: url("../font/verblight-webfont.woff2") format("woff2"),
+    url("../font/verblight-webfont.woff") format("woff"),
+    url("../font/verblight-webfont.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Verb";
+  src: url("../font/verbregular-webfont.woff2") format("woff2"),
+    url("../font/verbregular-webfont.woff") format("woff"),
+    url("../font/verbregular-webfont.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Verb";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../font/verbbold-webfont.woff2") format("woff2"),
+    url("../font/verbbold-webfont.woff") format("woff"),
+    url("../font/verbbold-webfont.ttf") format("truetype");
+  font-display: swap;
+}

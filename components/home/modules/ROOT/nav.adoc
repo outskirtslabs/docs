@@ -1,4 +1,2 @@
 * xref:index.adoc[Home]
 * https://casey.link/about[About]
-* https://casey.link/blog[Blog]
-* https://casey.link/atom/articles[RSS Feed]
