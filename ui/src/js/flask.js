@@ -756,6 +756,34 @@ function stopAnimation(flask, mode = "freeze") {
   });
 }
 
+function materializeFlaskSymbol(flask) {
+  if (flask.querySelector(".bubbles")) {
+    return;
+  }
+
+  const use = flask.querySelector("use");
+  if (!use) {
+    return;
+  }
+
+  const href = use.getAttribute("href") || use.getAttribute("xlink:href");
+  if (!href || !href.startsWith("#")) {
+    return;
+  }
+
+  const symbol = document.querySelector(href);
+  if (!symbol) {
+    return;
+  }
+
+  const fragment = document.createDocumentFragment();
+  symbol.childNodes.forEach((node) => {
+    fragment.appendChild(node.cloneNode(true));
+  });
+
+  use.replaceWith(fragment);
+}
+
 /**
  * Initializes all flask SVGs with the class "ol-logo-flask"
  * This function is idempotent - it can be called multiple times safely
@@ -769,17 +797,23 @@ function initFlaskAnimations() {
       return;
     }
 
+    materializeFlaskSymbol(flask);
+
     if (flask.getAttribute("data-flask-autostart") === "true") {
       startFlaskAnimation(flask);
     }
 
+    const hoverTargetSelector = flask.getAttribute("data-flask-hover-target");
+    const hoverTarget =
+      (hoverTargetSelector && flask.closest(hoverTargetSelector)) || flask;
+
     flask.setAttribute("data-flask-initialized", "true");
 
-    flask.addEventListener("mouseenter", () => {
+    hoverTarget.addEventListener("mouseenter", () => {
       startFlaskAnimation(flask);
     });
 
-    flask.addEventListener("mouseleave", () => {
+    hoverTarget.addEventListener("mouseleave", () => {
       // Don't stop animation if auto-start is enabled
       if (flask.getAttribute("data-flask-autostart") !== "true") {
         stopAnimation(flask, "freeze");
