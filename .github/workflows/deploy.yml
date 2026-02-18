@@ -15,9 +15,19 @@ jobs:
       contents: read
       packages: write
     if: |
-      (github.ref == 'refs/heads/main'
-      && github.event.check_suite.conclusion == 'success'
-      && !contains(github.event.head_commit.message , 'no-deploy'))
+      (
+        github.ref == 'refs/heads/main'
+        && !contains(
+          github.event.head_commit.message
+          || github.event.check_suite.head_commit.message
+          || '',
+          'no-deploy'
+        )
+        && (
+          github.event_name == 'workflow_dispatch'
+          || github.event.check_suite.conclusion == 'success'
+        )
+      )
     steps:
       - uses: actions/checkout@v6
       - uses: DeterminateSystems/determinate-nix-action@v3
@@ -34,10 +44,10 @@ jobs:
           tags: tag:site-ol-docs
       - name: Deploy
         run: |
-          printf '%s' '${{ secrets.LOCAL_KEY }}' > $PWD/sign-key.sec
-          export LOCAL_KEY=$PWD/sign-key.sec
+          printf '%s' '${{ secrets.LOCAL_KEY }}' > "$PWD/sign-key.sec"
+          export LOCAL_KEY="$PWD/sign-key.sec"
           nix develop --command -- deploy --debug-logs .#main
       - name: Cleanup
         if: always()
         run: |
-          rm -f $PWD/sign-key.sec
+          rm -f "$PWD/sign-key.sec"
