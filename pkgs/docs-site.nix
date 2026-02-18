@@ -31,6 +31,13 @@ let
         cd "$out"
         ${gitMinimal}/bin/git remote add origin ${url}
         ${gitMinimal}/bin/git fetch origin '+refs/heads/*:refs/heads/*'
+        # Normalize volatile .git metadata so fixed-output hashes stay deterministic.
+        rm -f .git/FETCH_HEAD
+        ${gitMinimal}/bin/git reflog expire --expire=all --all || true
+        ${gitMinimal}/bin/git repack -a -d -f --depth=50 --window=250
+        ${gitMinimal}/bin/git prune-packed
+        find .git/objects -type f -name '*.keep' -delete
+        find .git/objects -type f -name '*.bitmap' -delete
       '';
     }
   ) projects;

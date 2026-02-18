@@ -9,3 +9,6 @@ ui/public/_/
 !.clj-kondo/config.edn
 .lsp/
 archive/
+*.md
+prompts/
+.codex/
