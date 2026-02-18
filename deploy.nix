@@ -141,8 +141,4 @@ in
     };
 
   checks = pkgs: deploy-rs.lib.${pkgs.stdenv.hostPlatform.system}.deployChecks self.deploy;
-
-  devShellCommands = [
-    { package = deploy-rs.packages.${system}.deploy-rs; }
-  ];
 }
