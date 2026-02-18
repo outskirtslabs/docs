@@ -14,6 +14,10 @@ Full release feed across all tracked projects.
 | link:../nixos-hetzner-demo/next/[nixos-hetzner-demo]
 | `static`
 
+| 2025-10-20
+| link:../h2o-zig/next/[h2o-zig]
+| `maturing`
+
 | 2025-10-03
 | link:../ol.sops/next/[ol.sops]
 | `maturing`
