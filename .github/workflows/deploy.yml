@@ -42,6 +42,11 @@ jobs:
           oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
           oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
           tags: tag:site-ol-docs
+      - name: Build
+        run: |
+          printf '%s' '${{ secrets.LOCAL_KEY }}' > "$PWD/sign-key.sec"
+          export LOCAL_KEY="$PWD/sign-key.sec"
+          nix develop --command -- deploy --dry-activate --debug-logs .#main
       - name: Deploy
         run: |
           printf '%s' '${{ secrets.LOCAL_KEY }}' > "$PWD/sign-key.sec"
