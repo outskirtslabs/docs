@@ -1,8 +1,10 @@
 #!/usr/bin/env bb
 
 (ns gen-home
+  (:refer-clojure :exclude [run!])
   (:require [babashka.fs :as fs]
             [babashka.process :as p]
+            [clj-yaml.core :as yaml]
             [clojure.edn :as edn]
             [clojure.string :as str]))
 
@@ -37,12 +39,14 @@
 (defn- parse-playbook-sources
   [docs-root]
   (let [playbook-file (str (fs/path docs-root "playbook.yml"))
-        rows (run-lines! (str "yq -r '.content.sources[] | [.url, (.start_path // \"doc\")] | @tsv' " playbook-file))]
-    (->> rows
-         (map (fn [line]
-                (let [[url start-path] (str/split line #"\t" 2)]
+        playbook (yaml/parse-string (slurp playbook-file))
+        sources (or (get-in playbook [:content :sources]) [])]
+    (->> sources
+         (map (fn [source]
+                (let [url (:url source)
+                      start-path (or (:start_path source) "doc")]
                   {:url url
-                   :start-path (or start-path "doc")})))
+                   :start-path start-path})))
          (remove #(= "." (:url %))))))
 
 (defn- resolve-local-repo
