@@ -54,7 +54,10 @@ let
       url = "https://docs.outskirtslabs.com";
       start_page = "ROOT::index.adoc";
     };
-    urls.html_extension_style = "drop";
+    urls = {
+      html_extension_style = "drop";
+      redirect_facility = "nginx";
+    };
     content.sources = [
       {
         url = ".";
@@ -73,6 +76,15 @@ let
     antora.extensions = [
       { require = "./lunr-tokenizer"; }
       {
+        require = "./extensions/antora-llm-generator";
+        skippaths = [
+          "**/api"
+          "**/api/index"
+          "**/api.html"
+          "**/api/index.html"
+        ];
+      }
+      {
         require = "@antora/lunr-extension";
         index_latest_only = false;
       }
@@ -84,7 +96,7 @@ buildNpmPackage {
   pname = "docs-site";
   inherit version;
   src = ../.;
-  npmDepsHash = "sha256-75I9iVRLVKvAT3PxUBBmRD72ZPF0DWSQFK8D3ZlhmyM=";
+  npmDepsHash = "sha256-Jpqz6UgNogMKtgLP21mtO3KIwIx1Yb3/2RftVEeLZls=";
   dontNpmBuild = true;
 
   nativeBuildInputs = [
@@ -115,6 +127,12 @@ JSON
 
     bb scripts/gen_home.clj
     npx antora --stacktrace --to-dir build/site playbook.generated.yml
+    mkdir -p build/site/.etc/nginx
+    if [ ! -f build/site/.etc/nginx/rewrite.conf ]; then
+      cat > build/site/.etc/nginx/rewrite.conf <<'EOF'
+# No Antora redirects generated for this build.
+EOF
+    fi
     chmod -R u+w build/site
     node scripts/highlight-arborium.mjs --site-dir build/site
 

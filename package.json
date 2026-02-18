@@ -3,7 +3,9 @@
   "dependencies": {
     "@antora/lunr-extension": "^1.0.0-alpha.8",
     "@asciidoctor/tabs": "^1.0.0-beta.6",
-    "antora": "^3.0.0"
+    "antora": "^3.0.0",
+    "downdoc": "1.0.2-stable",
+    "minimatch": "7"
   },
   "devDependencies": {
     "live-server": "^1.2.1"
