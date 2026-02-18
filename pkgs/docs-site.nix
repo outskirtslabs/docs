@@ -4,7 +4,6 @@
   fetchgit,
   babashka,
   gitMinimal,
-  yq-go,
   curl,
   arborium,
   docsUi,
@@ -91,7 +90,6 @@ buildNpmPackage {
   nativeBuildInputs = [
     babashka
     gitMinimal
-    yq-go
     curl
     arborium
   ];
