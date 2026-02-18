@@ -4,6 +4,7 @@
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1"; # tracks nixpkgs unstable branch
     devshell.url = "github:numtide/devshell";
     devenv.url = "https://flakehub.com/f/ramblurr/nix-devenv/*";
+    devenv.inputs.nixpkgs.follows = "nixpkgs";
     deploy-rs.url = "github:serokell/deploy-rs";
     deploy-rs.inputs.nixpkgs.follows = "nixpkgs";
   };
@@ -45,7 +46,7 @@
         let
           corePackages = pkgs: [
             deploy-rs.packages.${system}.deploy-rs
-            pkgs.babashka
+            pkgs.babashka-unwrapped
           ];
         in
         {
@@ -65,7 +66,7 @@
               commands = [
                 { package = pkgs.antora; }
                 { package = pkgs.arborium; }
-                { package = pkgs.babashka; }
+                { package = pkgs.babashka-unwrapped; }
               ];
               env = [
                 {

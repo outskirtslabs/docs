@@ -126,7 +126,9 @@
         "llm-agents": "llm-agents",
         "nix": "nix_2",
         "nix2container": "nix2container",
-        "nixpkgs": "nixpkgs_6",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
         "spdx-util": "spdx-util",
         "treefmt-nix": "treefmt-nix_2"
       },
@@ -145,7 +147,7 @@
     },
     "devshell": {
       "inputs": {
-        "nixpkgs": "nixpkgs_8"
+        "nixpkgs": "nixpkgs_7"
       },
       "locked": {
         "lastModified": 1768818222,
@@ -330,7 +332,7 @@
     },
     "flakelight_2": {
       "inputs": {
-        "nixpkgs": "nixpkgs_7"
+        "nixpkgs": "nixpkgs_6"
       },
       "locked": {
         "lastModified": 1753102454,
@@ -642,23 +644,6 @@
     },
     "nixpkgs_6": {
       "locked": {
-        "lastModified": 1771397339,
-        "narHash": "sha256-FPCf6Gll8YcIYhVe6DBTd1jyU4xFQts9ea9ISC1yBcQ=",
-        "ref": "consolidated",
-        "rev": "064f52b4719be8072a93203d1f6806411314156d",
-        "shallow": true,
-        "type": "git",
-        "url": "https://github.com/ramblurr/nixpkgs"
-      },
-      "original": {
-        "ref": "consolidated",
-        "shallow": true,
-        "type": "git",
-        "url": "https://github.com/ramblurr/nixpkgs"
-      }
-    },
-    "nixpkgs_7": {
-      "locked": {
         "lastModified": 1752950548,
         "narHash": "sha256-NS6BLD0lxOrnCiEOcvQCDVPXafX1/ek1dfJHX1nUIzc=",
         "owner": "NixOS",
@@ -673,7 +658,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_8": {
+    "nixpkgs_7": {
       "locked": {
         "lastModified": 1762156382,
         "narHash": "sha256-Yg7Ag7ov5+36jEFC1DaZh/12SEXo6OO3/8rqADRxiqs=",
@@ -689,7 +674,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_9": {
+    "nixpkgs_8": {
       "locked": {
         "lastModified": 1771008912,
         "narHash": "sha256-gf2AmWVTs8lEq7z/3ZAsgnZDhWIckkb+ZnAo5RzSxJg=",
@@ -708,7 +693,7 @@
         "deploy-rs": "deploy-rs",
         "devenv": "devenv",
         "devshell": "devshell",
-        "nixpkgs": "nixpkgs_9"
+        "nixpkgs": "nixpkgs_8"
       }
     },
     "rust-analyzer-src": {
