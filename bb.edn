@@ -1,6 +1,7 @@
 {:paths ["scripts"] :tasks
  {:requires ([babashka.tasks :refer [shell]]
-             [tasks :as tasks])
+             [tasks :as tasks]
+             [setup-webhook :as setup-webhook])
 
   build
   {:doc "Full build: generate home catalog, bundle UI, and build site with Antora."
@@ -15,8 +16,14 @@
   {:doc "Run docs dev mode with watching and live reload."
    :task (shell "bash scripts/dev.sh")}
   projects.nix
-  {:doc "Update pkgs/projects.nix from local playbook sources."
+  {:doc "Update pkgs/projects.nix from configured project URLs."
    :task (tasks/update-projects)}
+  webhook:setup
+  {:doc "Create or update docs webhook. Usage: bb webhook:setup [owner/repo]"
+   :task (apply setup-webhook/setup *command-line-args*)}
+  webhook:remove
+  {:doc "Delete docs webhook(s). Usage: bb webhook:remove [owner/repo]"
+   :task (apply setup-webhook/remove-webhook *command-line-args*)}
   test
   {:doc "Run flake checks."
    :task (shell "nix flake check")}
