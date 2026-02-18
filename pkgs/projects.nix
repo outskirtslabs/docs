@@ -25,24 +25,24 @@
 
   "h2o-zig" = {
     url = "https://github.com/outskirtslabs/h2o-zig.git";
-    rev = "3751810ad2e131a18f2bc204cda5b1b17e042b50";
-    hash = "sha256-7HKHWqEoNHI4+El0RIauT7Jjd2ZHVamiTn+pS5jB+98=";
+    rev = "cc1b5c7b9410856a9f9377508e6137145dd5f90c";
+    hash = "sha256-jWN8oj+7ljfbaWxh2hP5erFPv1gxzOuNNWpJNd9Biec=";
     branches = [ "HEAD" ];
     start_path = "doc";
   };
 
   "nixos-hetzner" = {
     url = "https://github.com/outskirtslabs/nixos-hetzner.git";
-    rev = "b394e7d88acf930c8ed64eb56c10b2aa521a6cf8";
-    hash = "sha256-SuTUlD4AQvwjwDL4tpRvc8cLTCtO34WB6V3pNa3429A=";
+    rev = "0366e38b9e44068bbb0f87952e6a6fcb6b227dd7";
+    hash = "sha256-FB4g3d3PxJQPRFJMe+T4ryMGe87ymg81htLOlJAbQBA=";
     branches = [ "HEAD" ];
     start_path = "doc";
   };
 
   "nixos-hetzner-demo" = {
     url = "https://github.com/outskirtslabs/nixos-hetzner-demo.git";
-    rev = "21303ff0305e2dcf1fd17fd54d57b51068d105a8";
-    hash = "sha256-/W8idlFolq0g/YypLx6qM9ycbgRgWDThfMuwGyQkHDE=";
+    rev = "e21478725676eaf81012dc668259e4f501b6345a";
+    hash = "sha256-1qi8FcI9cIeYTAOeyaqyC60SoRSPaIN26s8hPCDKz8Q=";
     branches = [ "HEAD" ];
     start_path = "doc";
   };
