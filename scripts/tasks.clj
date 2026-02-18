@@ -3,17 +3,7 @@
 (ns tasks
   (:require [babashka.fs :as fs]
             [babashka.process :as p]
-            [clj-yaml.core :as yaml]
             [clojure.string :as str]))
-
-(defn- warn!
-  [msg]
-  (binding [*out* *err*]
-    (println (str "WARN: " msg))))
-
-(defn- map-get
-  [m k]
-  (or (get m k) (get m (name k))))
 
 (defn- normalize-branches
   [branches]
@@ -22,30 +12,6 @@
     (string? branches) [branches]
     (sequential? branches) (mapv str branches)
     :else ["HEAD"]))
-
-(defn- parse-playbook-sources
-  [docs-root]
-  (let [playbook-file (str (fs/path docs-root "playbook.yml"))
-        playbook (yaml/parse-string (slurp playbook-file))
-        sources (or (get-in playbook [:content :sources]) [])]
-    (->> sources
-         (map (fn [source]
-                {:url (map-get source :url)
-                 :start-path (or (map-get source :start_path) "doc")
-                 :branches (normalize-branches (map-get source :branches))}))
-         (remove #(= "." (:url %))))))
-
-(defn- local-source->repo-root
-  [docs-root url]
-  (cond
-    (str/includes? url "://")
-    nil
-
-    (str/starts-with? url "/")
-    (str (fs/absolutize url))
-
-    :else
-    (str (fs/absolutize (fs/path docs-root url)))))
 
 (defn- normalize-git-url
   [url]
@@ -65,37 +31,19 @@
       :else
       url)))
 
-(defn- repo-remote-url
-  [repo-root]
-  (let [{:keys [out exit]} (p/shell {:out :string :err :string :continue true}
-                                    "git" "-C" repo-root "remote" "get-url" "upstream")
-        upstream (when (zero? exit) (not-empty (str/trim out)))
-        {:keys [out exit]} (p/shell {:out :string :err :string :continue true}
-                                    "git" "-C" repo-root "remote" "get-url" "origin")
-        origin (when (zero? exit) (not-empty (str/trim out)))]
-    (normalize-git-url (or upstream origin ""))))
-
-(defn- repo-rev
-  [repo-root]
+(defn- remote-head-rev
+  [url]
   (let [{:keys [out err exit]} (p/shell {:out :string :err :string :continue true}
-                                        "git" "-C" repo-root "rev-parse" "HEAD")]
-    (if (zero? exit)
-      (str/trim out)
-      (throw (ex-info "Command failed: git rev-parse HEAD" {:repo-root repo-root :exit exit :err err})))))
-
-(defn- antora-component-name
-  [repo-root start-path]
-  (let [antora-file (str (fs/path repo-root start-path "antora.yml"))]
-    (when (fs/exists? antora-file)
-      (some-> (yaml/parse-string (slurp antora-file))
-              (map-get :name)
-              str
-              str/trim
-              not-empty))))
-
-(defn- repo-fallback-name
-  [repo-root]
-  (str (fs/file-name repo-root)))
+                                        "git" "ls-remote" url "HEAD")
+        line (some-> out str/trim str/split-lines first)
+        rev (some-> line (str/split #"\s+") first str/trim)]
+    (when-not (zero? exit)
+      (throw (ex-info "Command failed: git ls-remote <url> HEAD"
+                      {:url url :exit exit :err err})))
+    (when-not (and rev (re-matches #"[0-9a-f]{40}" rev))
+      (throw (ex-info "Could not parse HEAD revision from git ls-remote output"
+                      {:url url :output out})))
+    rev))
 
 (defn- hash-mismatch-got
   [text]
@@ -178,7 +126,14 @@
   (some-> (re-find (re-pattern (str "(?m)^\\s*" field "\\s*=\\s*\"([^\"]+)\";")) body)
           second))
 
-(defn- existing-projects-by-url
+(defn- body-string-list
+  [body field]
+  (when-let [list-body (some-> (re-find (re-pattern (str "(?ms)^\\s*" field "\\s*=\\s*\\[(.*?)\\];")) body)
+                               second)]
+    (->> (re-seq #"\"([^\"]+)\"" list-body)
+         (mapv second))))
+
+(defn- parse-projects
   [docs-root]
   (let [projects-file (str (fs/path docs-root "pkgs" "projects.nix"))]
     (if-not (fs/exists? projects-file)
@@ -186,15 +141,13 @@
       (let [content (slurp projects-file)
             project-re #"(?ms)^\s*\"([^\"]+)\"\s*=\s*\{(.*?)^\s*\};"]
         (->> (re-seq project-re content)
-             (keep (fn [[_ key body]]
-                     (let [url (body-field body "url")
-                           rev (body-field body "rev")
-                           hash (body-field body "hash")]
-                       (when (and url rev hash)
-                         [(normalize-git-url url)
-                          {:key key
-                           :rev rev
-                           :hash hash}]))))
+             (map (fn [[_ key body]]
+                    [key
+                     {:url (some-> (body-field body "url") normalize-git-url)
+                      :rev (body-field body "rev")
+                      :hash (body-field body "hash")
+                      :branches (normalize-branches (body-string-list body "branches"))
+                      :start-path (or (body-field body "start_path") "doc")}]))
              (into {}))))))
 
 (defn- nix-escape
@@ -230,7 +183,7 @@
        "\n}\n"))
 
 (defn update-projects
-  "Update `pkgs/projects.nix` from local playbook sources.
+  "Update `pkgs/projects.nix` by polling each configured project URL's remote HEAD.
 
   Hashes are computed via the same `fetchgit` + `postFetch` pipeline used by
   `pkgs/docs-site.nix` (inside `prefetch-hash`), not plain `nix-prefetch-git`.
@@ -239,50 +192,33 @@
   `leaveDotGit = true` makes `.git` part of the fixed-output hash and those
   files can otherwise vary across runs/machines.
 
-  Performance: when a project's `rev` is unchanged, we reuse the existing hash
-  from `pkgs/projects.nix` instead of recomputing it."
+  Performance: when a project's remote HEAD `rev` is unchanged, we reuse the
+  existing hash from `pkgs/projects.nix` instead of recomputing it."
   []
   (let [docs-root (str (fs/absolutize "."))
-        existing-by-url (existing-projects-by-url docs-root)
-        sources (parse-playbook-sources docs-root)
-        projects (->> sources
-                      (map (fn [{:keys [url start-path branches]}]
-                             (let [repo-root (local-source->repo-root docs-root url)]
-                               (cond
-                                 (nil? repo-root)
-                                 (do
-                                   (warn! (format "Skipping remote source %s" url))
-                                   nil)
-
-                                 (not (fs/exists? repo-root))
-                                 (do
-                                   (warn! (format "Skipping missing source directory %s" repo-root))
-                                   nil)
-
-                                 :else
-                                 (let [remote-url (repo-remote-url repo-root)]
-                                   (when (str/blank? remote-url)
-                                     (throw (ex-info "Could not determine git remote URL"
-                                                     {:repo-root repo-root :source-url url})))
-                                   (let [existing (get existing-by-url remote-url)
-                                         rev (repo-rev repo-root)
-                                         hash (if (and (= rev (:rev existing))
-                                                       (not (str/blank? (:hash existing))))
-                                                (:hash existing)
-                                                (prefetch-hash remote-url rev))
-                                         component-name (antora-component-name repo-root start-path)
-                                         project-name (or (:key existing)
-                                                          component-name
-                                                          (repo-fallback-name repo-root))]
-                                     [project-name
-                                      {:url remote-url
-                                       :rev rev
-                                       :hash hash
-                                       :branches branches
-                                       :start-path start-path}]))))))
-                      (remove nil?)
+        existing-projects (parse-projects docs-root)
+        projects (->> existing-projects
+                      (map (fn [[project-name {:keys [url rev hash branches start-path]}]]
+                             (when (str/blank? url)
+                               (throw (ex-info "Project entry is missing required url"
+                                               {:project project-name})))
+                             (let [remote-url (normalize-git-url url)
+                                   latest-rev (remote-head-rev remote-url)
+                                   latest-hash (if (and (= latest-rev rev)
+                                                        (not (str/blank? hash)))
+                                                 hash
+                                                 (prefetch-hash remote-url latest-rev))]
+                               [project-name
+                                {:url remote-url
+                                 :rev latest-rev
+                                 :hash latest-hash
+                                 :branches branches
+                                 :start-path start-path}])))
                       (into {}))
         out-file (str (fs/path docs-root "pkgs" "projects.nix"))]
+    (when (empty? existing-projects)
+      (throw (ex-info "Refusing to update: no projects were parsed from pkgs/projects.nix"
+                      {:file out-file})))
     (spit out-file (render-projects-nix projects))
     (println "Updated" out-file "with" (count projects) "projects.")))
 
