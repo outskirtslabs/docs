@@ -6,14 +6,15 @@ const concat = require('gulp-concat')
 const cssnano = require('cssnano')
 const fs = require('fs')
 const { promises: fsp } = fs
-const imagemin = require('gulp-imagemin')
 const merge = require('merge-stream')
 const ospath = require('path')
 const path = ospath.posix
+const sharp = require('sharp')
 const postcss = require('gulp-postcss')
 const postcssImport = require('postcss-import')
 const postcssUrl = require('postcss-url')
 const postcssVar = require('postcss-custom-properties')
+const { optimize: optimizeSvg } = require('svgo')
 const { Transform } = require('stream')
 const map = (transform) => new Transform({ objectMode: true, transform })
 const replace = require('gulp-replace')
@@ -79,22 +80,7 @@ module.exports = (src, dest) => () => {
       .src(['css/site.css', 'css/vendor/*.css'], { ...opts, sourcemaps })
       .pipe(postcss((file) => ({ plugins: postcssPlugins, options: { file } }))),
     vfs.src('font/*.{ttf,woff*(2)}', opts),
-    vfs.src('img/**/*.{gif,ico,jpg,png,svg}', opts).pipe(
-      imagemin(
-        [
-          imagemin.gifsicle(),
-          imagemin.jpegtran(),
-          imagemin.optipng(),
-          imagemin.svgo({
-            plugins: [
-              { cleanupIDs: { preservePrefixes: ['icon-', 'view-'] } },
-              { removeViewBox: false },
-              { removeDesc: false },
-            ],
-          }),
-        ].reduce((accum, it) => (it ? accum.concat(it) : accum), [])
-      )
-    ),
+    vfs.src('img/**/*.{gif,ico,jpg,png,svg}', opts).pipe(optimizeImages()),
     vfs.src('helpers/*.js', opts),
     vfs.src('layouts/*.hbs', opts),
     vfs.src('partials/*.hbs', opts).pipe(replace('@@antora-ui-version', git.isTagDirty() ? git.long() : git.tag()))
@@ -130,5 +116,64 @@ function bundle ({ base: basedir, ext: bundleExt = '.bundle.js' }) {
 function postcssPseudoElementFixer (css, result) {
   css.walkRules(/(?:^|[^:]):(?:before|after)/, (rule) => {
     rule.selector = rule.selectors.map((it) => it.replace(/(^|[^:]):(before|after)$/, '$1::$2')).join(',')
+  })
+}
+
+function optimizeImages () {
+  return map((file, enc, next) => {
+    if (!file.contents || file.isNull()) {
+      next(null, file)
+      return
+    }
+
+    const ext = ospath.extname(file.path).toLowerCase()
+
+    const finish = (err, contents) => {
+      if (err) {
+        next(err)
+        return
+      }
+      file.contents = contents
+      next(null, file)
+    }
+
+    if (ext === '.png') {
+      sharp(file.contents, { failOn: 'none' })
+        .png({
+          adaptiveFiltering: true,
+          compressionLevel: 9,
+          effort: 10,
+        })
+        .toBuffer()
+        .then((buffer) => finish(null, buffer))
+        .catch((err) => finish(err))
+      return
+    }
+
+    if (ext === '.svg') {
+      try {
+        const optimized = optimizeSvg(file.contents.toString('utf8'), {
+          multipass: true,
+          plugins: [
+            { name: 'cleanupIds', params: { preservePrefixes: ['icon-', 'view-'] } },
+            { name: 'removeViewBox', active: false },
+            { name: 'removeDesc', active: false },
+          ],
+        })
+
+        if (optimized.error) {
+          finish(new Error(optimized.error))
+          return
+        }
+
+        finish(null, Buffer.from(optimized.data))
+      } catch (err) {
+        finish(err)
+      }
+      return
+    }
+
+    // GIF/ICO/JPG pass through unchanged.
+    finish(null, file.contents)
   })
 }
