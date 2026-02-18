@@ -1,4 +1,6 @@
-{:paths ["scripts"] :tasks
+{:paths ["scripts"]
+ :deps {borkdude/rewrite-edn {:mvn/version "0.4.9"}}
+ :tasks
  {:requires ([babashka.tasks :refer [shell]]
              [tasks :as tasks]
              [setup-webhook :as setup-webhook])
@@ -18,6 +20,9 @@
   projects.nix
   {:doc "Update pkgs/projects.nix from configured project URLs."
    :task (tasks/update-projects)}
+  bb-tasks:sha
+  {:doc "Update outskirtslabs/bb-tasks git sha in project bb.edn files."
+   :task (apply tasks/update-bb-tasks-sha *command-line-args*)}
   webhook:setup
   {:doc "Create or update docs webhook. Usage: bb webhook:setup [owner/repo]"
    :task (apply setup-webhook/setup *command-line-args*)}
