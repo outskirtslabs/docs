@@ -47,6 +47,7 @@
             }
           ];
           packages = [
+            pkgs.asciidoctor
             pkgs.nodejs_24
             pkgs.playwright
             pkgs.playwright-test

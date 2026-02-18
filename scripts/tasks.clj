@@ -119,6 +119,34 @@
       (throw (ex-info "Could not parse hash from nix-prefetch-git output" {:url url :rev rev :output out})))
     hash))
 
+(defn- prefetch-npm-deps-hash
+  [lock-file]
+  (let [{:keys [out err exit]} (p/shell {:out :string :err :string :continue true}
+                                        "nix" "run" "nixpkgs#prefetch-npm-deps" "--" lock-file)
+        hash (some-> out str/trim not-empty)]
+    (when-not (zero? exit)
+      (throw (ex-info "Command failed: prefetch-npm-deps" {:lock-file lock-file :exit exit :err err})))
+    (when-not (and hash (str/starts-with? hash "sha256-"))
+      (throw (ex-info "Unexpected prefetch-npm-deps output" {:lock-file lock-file :output out})))
+    hash))
+
+(defn- set-npm-deps-hash
+  [nix-file npm-deps-hash]
+  (let [content (slurp nix-file)
+        pattern #"(?m)^(\s*npmDepsHash\s*=\s*\")([^\"]+)(\";\s*)$"
+        matches (re-seq pattern content)]
+    (when (empty? matches)
+      (throw (ex-info "Could not find npmDepsHash in nix file" {:nix-file nix-file})))
+    (when (> (count matches) 1)
+      (throw (ex-info "Found multiple npmDepsHash entries in nix file" {:nix-file nix-file :count (count matches)})))
+    (let [current-hash (nth (first matches) 2)
+          updated-content (str/replace-first content pattern (str "$1" npm-deps-hash "$3"))]
+      (when (not= content updated-content)
+        (spit nix-file updated-content))
+      {:updated? (not= current-hash npm-deps-hash)
+       :current-hash current-hash
+       :new-hash npm-deps-hash})))
+
 (defn- body-field
   [body field]
   (some-> (re-find (re-pattern (str "(?m)^\\s*" field "\\s*=\\s*\"([^\"]+)\";")) body)
@@ -224,3 +252,18 @@
 (defn update-projects
   []
   (update-projects!))
+
+(defn dist-prepare
+  []
+  (let [docs-root (str (fs/absolutize "."))
+        lock-file (str (fs/path docs-root "package-lock.json"))
+        nix-file (str (fs/path docs-root "pkgs" "docs-site.nix"))]
+    (when-not (fs/exists? lock-file)
+      (throw (ex-info "Missing package-lock.json" {:file lock-file})))
+    (when-not (fs/exists? nix-file)
+      (throw (ex-info "Missing pkgs/docs-site.nix" {:file nix-file})))
+    (let [npm-deps-hash (prefetch-npm-deps-hash lock-file)
+          {:keys [updated? current-hash new-hash]} (set-npm-deps-hash nix-file npm-deps-hash)]
+      (if updated?
+        (println "Updated" nix-file "npmDepsHash from" current-hash "to" new-hash)
+        (println "npmDepsHash already up to date in" nix-file "=>" new-hash)))))
