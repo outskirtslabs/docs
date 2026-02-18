@@ -279,7 +279,7 @@
          "++++\n\n"
          "== Project Docs\n\n"
          "An assortment of general intersest documentation for the OSS project collector.\n\n"
-         "* xref:support.adoc[Support]\n"
+         "// * xref:support.adoc[Support]\n"
          "* xref:open-source-vital-signs.adoc[Open Source Vital Signs]\n"
          "* xref:security-policy.adoc[Security Policy]\n"
          "* xref:contributing-guide.adoc[Contributing Guide]\n\n"
