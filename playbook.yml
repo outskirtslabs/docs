@@ -56,5 +56,11 @@ asciidoc:
 antora:
   extensions:
     - require: "./lunr-tokenizer"
+    - require: "./extensions/antora-llm-generator"
+      skippaths:
+        - "**/api"
+        - "**/api/index"
+        - "**/api.html"
+        - "**/api/index.html"
     - require: "@antora/lunr-extension"
       index_latest_only: false
