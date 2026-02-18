@@ -17,9 +17,12 @@
   projects.nix
   {:doc "Update pkgs/projects.nix from local playbook sources."
    :task (tasks/update-projects)}
+  test
+  {:doc "Run flake checks."
+   :task (shell "nix flake check")}
   dist
   {:doc "Build the docs site package via Nix."
-   :depends [projects.nix]
+   :depends [projects.nix test]
    :task (shell "nix build .#docs-site")}
   test:arborium
   {:doc "Run arborium syntax highlighting tests."

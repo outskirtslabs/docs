@@ -50,7 +50,7 @@ If you use LLMs for your contribution (issue, comment, PR), it's now your job to
 
 Using AI to write code is fine.
 What's not fine is submitting agent-generated slop without understanding it.
-You must be able to explain what your changes do and how they interact with the rest of the system. If you can't, your PR will be closed. 
+You must be able to explain what your changes do and how they interact with the rest of the system. If you can't, your PR will be closed.
 
 In particular:
 
