@@ -33,6 +33,11 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          if ! rg -q '^\s*"[^"]+"\s*=\s*\{' pkgs/projects.nix; then
+            echo "Refusing to continue: pkgs/projects.nix has no project entries"
+            exit 1
+          fi
+
           if git diff --quiet -- pkgs/projects.nix; then
             echo "No changes to pkgs/projects.nix"
             exit 0
@@ -62,4 +67,13 @@ jobs:
               --body "Automated update of pkgs/projects.nix via bb projects.nix." \
               --base main \
               --head "$BRANCH"
+            PR_NUMBER="$(gh pr list --head "$BRANCH" --state open --json number --jq '.[0].number')"
+          fi
+
+          REVIEWER="Ramblurr"
+          if gh pr view "$PR_NUMBER" --json reviewRequests --jq '.reviewRequests[].login' | grep -qx "$REVIEWER"; then
+            echo "Reviewer already requested: $REVIEWER"
+          else
+            gh pr edit "$PR_NUMBER" --add-reviewer "$REVIEWER"
+            echo "Requested reviewer: $REVIEWER"
           fi
