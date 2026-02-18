@@ -14,6 +14,11 @@
 <td class="release-version">static</td>
 </tr>
 <tr>
+<td class="release-date">2025-10-20</td>
+<td class="release-lib"><a href="../h2o-zig/next/">h2o-zig</a></td>
+<td class="release-version">maturing</td>
+</tr>
+<tr>
 <td class="release-date">2025-10-03</td>
 <td class="release-lib"><a href="../ol.sops/next/">ol.sops</a></td>
 <td class="release-version">maturing</td>
@@ -85,6 +90,13 @@ An assortment of general intersest documentation for the OSS project collector.
 <td class="lib-desc">Clojure to Datastar expression transpiler</td>
 </tr>
 <tr>
+<td class="lib-name"><a href="../h2o-zig/next/">h2o-zig</a></td>
+<td><span class="platform-tag">linux</span> <span class="platform-tag">macos</span></td>
+<td class="lib-version">&mdash;</td>
+<td><span class="status-badge status-maturing">maturing</span></td>
+<td class="lib-desc">libh2o packaged for Zig with cross-compilation support for Linux and macOS</td>
+</tr>
+<tr>
 <td class="lib-name"><a href="../nixos-hetzner/next/">nixos-hetzner</a></td>
 <td><span class="platform-tag">nix</span> <span class="platform-tag">linux</span></td>
 <td class="lib-version">&mdash;</td>
@@ -146,6 +158,17 @@ An assortment of general intersest documentation for the OSS project collector.
 </span>
 </div>
 <div class="project-desc">Clojure to Datastar expression transpiler</div>
+</div>
+
+<div class="project-entry">
+<div class="project-header">
+<a href="../h2o-zig/next/" class="project-name">h2o-zig</a>
+<span class="project-meta">
+<span class="platform-tag">linux</span> <span class="platform-tag">macos</span>
+<span class="status-badge status-maturing">maturing</span>
+</span>
+</div>
+<div class="project-desc">libh2o packaged for Zig with cross-compilation support for Linux and macOS</div>
 </div>
 
 <div class="project-entry">
