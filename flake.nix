@@ -20,6 +20,14 @@
       ];
       packages = {
         arborium = pkgs: pkgs.callPackage (import ./pkgs/arborium.nix) { };
+        docs-ui = pkgs: pkgs.callPackage (import ./pkgs/docs-ui.nix) { };
+        docs-site =
+          pkgs:
+          pkgs.callPackage (import ./pkgs/docs-site.nix) {
+            docsUi = pkgs.callPackage (import ./pkgs/docs-ui.nix) { };
+            versionDate =
+              if self ? lastModifiedDate then self.lastModifiedDate else "19700101000000";
+          };
       };
       devShell =
         pkgs:
