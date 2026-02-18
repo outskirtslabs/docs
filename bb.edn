@@ -27,6 +27,9 @@
   {:doc "Build the docs site package via Nix."
    :depends [projects.nix dist:prepare test]
    :task (shell "nix build .#docs-site")}
+  deploy
+  {:doc "Deploy docs-site to james via deploy-rs."
+   :task (shell "deploy --debug-logs --ssh-user root .#main")}
   test:arborium
   {:doc "Run arborium syntax highlighting tests."
    :task (shell "node --test scripts/highlight-arborium.test.mjs")}

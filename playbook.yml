@@ -7,6 +7,7 @@ site:
     Crawl-delay: 1
 urls:
   html_extension_style: drop
+  redirect_facility: nginx
 content:
   sources:
     - url: .
