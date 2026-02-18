@@ -36,7 +36,7 @@ jobs:
         run: |
           printf '%s' '${{ secrets.LOCAL_KEY }}' > $PWD/sign-key.sec
           export LOCAL_KEY=$PWD/sign-key.sec
-          nix develop .#devShells.x86_64-linux.ci --command -- deploy --debug-logs --skip-checks .#main
+          nix develop --command -- deploy --debug-logs .#main
       - name: Cleanup
         if: always()
         run: |
