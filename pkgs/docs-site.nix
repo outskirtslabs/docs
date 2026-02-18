@@ -74,7 +74,7 @@ let
       extensions = [ "@asciidoctor/tabs" ];
     };
     antora.extensions = [
-      { require = "./lunr-tokenizer"; }
+      { require = "./extensions/lunr-tokenizer"; }
       {
         require = "./extensions/antora-llm-generator";
         skippaths = [
