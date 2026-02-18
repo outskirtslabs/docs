@@ -47,12 +47,12 @@ module.exports.register = function register(context, vars) {
       if (!page.out) continue;
 
       if (shouldSkipPath(page.out.path)) {
-        logger.warn(`Skipping page matching skip pattern: ${page.out.path}`);
+        logger.debug(`Skipping page matching skip pattern: ${page.out.path}`);
         continue;
       }
 
       if (page.asciidoc.attributes["page-llms-ignore"]) {
-        logger.warn(
+        logger.debug(
           `Skipping page with 'page-llms-ignore' attribute: ${page.src.path}`,
         );
         continue;
@@ -61,13 +61,13 @@ module.exports.register = function register(context, vars) {
       const pageTitle = page.title || "Untitled";
       const source = page.src?.contents;
       if (!source) {
-        logger.warn(`Skipping page with unavailable source: ${page.src.path}`);
+        logger.debug(`Skipping page with unavailable source: ${page.src.path}`);
         continue;
       }
 
       const markdown = downdoc(toString(source)).trim();
       if (!markdown) {
-        logger.warn(`Skipping page with empty markdown output: ${page.src.path}`);
+        logger.debug(`Skipping page with empty markdown output: ${page.src.path}`);
         continue;
       }
 
@@ -80,14 +80,14 @@ module.exports.register = function register(context, vars) {
         });
         emittedMarkdownPaths.add(markdownPath);
       } else {
-        logger.warn(`Skipping duplicate markdown output path: ${markdownPath}`);
+        logger.debug(`Skipping duplicate markdown output path: ${markdownPath}`);
       }
 
       const pageUrl = siteUrl ? `${siteUrl}/${markdownPath}` : `/${markdownPath}`;
       indexContent += `\n- [${pageTitle}](${pageUrl})`;
 
       if (page.asciidoc.attributes["page-llms-full-ignore"]) {
-        logger.warn(
+        logger.debug(
           `Skipping page with 'page-llms-full-ignore' attribute: ${page.src.path}`,
         );
         continue;
