@@ -2,6 +2,9 @@ site:
   title: Outskirts Labs Docs
   url: https://docs.outskirtslabs.com
   start_page: ROOT::index.adoc
+  robots: |
+    User-agent: *
+    Crawl-delay: 1
 urls:
   html_extension_style: drop
 content:
