@@ -132,7 +132,8 @@ ${playbookJson}
 JSON
     cp playbook.generated.yml playbook.yml
 
-    bb scripts/gen_home.clj
+    # Avoid loading repo bb.edn in the sandbox; it may include networked Maven deps.
+    bb --config /dev/null scripts/gen_home.clj
     npx antora --stacktrace --to-dir build/site playbook.generated.yml
     mkdir -p build/site/.etc/nginx
     if [ ! -f build/site/.etc/nginx/rewrite.conf ]; then
