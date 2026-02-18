@@ -125,6 +125,7 @@ in
           inherit hostname;
           sshUser = deployUser;
           user = deployUser;
+          remoteBuild = true;
           sshOpts = [
             "-o"
             "StrictHostKeyChecking=no"
