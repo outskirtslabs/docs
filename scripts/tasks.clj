@@ -3,7 +3,10 @@
 (ns tasks
   (:require [babashka.fs :as fs]
             [babashka.process :as p]
+            [borkdude.rewrite-edn :as r]
             [clojure.string :as str]))
+
+(def bb-tasks-dep 'outskirtslabs/bb-tasks)
 
 (defn- normalize-branches
   [branches]
@@ -221,6 +224,60 @@
                       {:file out-file})))
     (spit out-file (render-projects-nix projects))
     (println "Updated" out-file "with" (count projects) "projects.")))
+
+(defn- local-head-rev
+  [repo-dir]
+  (let [repo-dir (str (fs/absolutize repo-dir))
+        {:keys [out err exit]} (p/shell {:out :string :err :string :continue true}
+                                        "git" "-C" repo-dir "rev-parse" "HEAD")
+        rev (some-> out str/trim)]
+    (when-not (zero? exit)
+      (throw (ex-info "Command failed: git rev-parse HEAD"
+                      {:repo-dir repo-dir :exit exit :err err})))
+    (when-not (and rev (re-matches #"[0-9a-f]{40}" rev))
+      (throw (ex-info "Could not parse local HEAD revision"
+                      {:repo-dir repo-dir :output out})))
+    rev))
+
+(defn- update-bb-edn-bb-tasks-sha
+  [bb-edn-file target-sha]
+  (let [bb-edn-file (str (fs/absolutize bb-edn-file))]
+    (when-not (fs/exists? bb-edn-file)
+      (throw (ex-info "bb.edn file does not exist" {:file bb-edn-file})))
+    (let [content (slurp bb-edn-file)
+          root (r/parse-string content)
+          data (r/sexpr root)
+          dep (get-in data [:deps bb-tasks-dep])]
+      (when-not (map? dep)
+        (throw (ex-info "Could not find outskirtslabs/bb-tasks dep in bb.edn"
+                        {:file bb-edn-file :dep bb-tasks-dep})))
+      (let [current-sha (:git/sha dep)
+            updated? (not= current-sha target-sha)]
+        (when updated?
+          (spit bb-edn-file
+                (str (r/assoc-in root [:deps bb-tasks-dep :git/sha] target-sha))))
+        {:file bb-edn-file
+         :updated? updated?
+         :old-sha current-sha
+         :new-sha target-sha}))))
+
+(defn update-bb-tasks-sha
+  "Update `:git/sha` for the `outskirtslabs/bb-tasks` dep in one or more
+  project `bb.edn` files to match local `../bb-tasks` HEAD.
+
+  Usage: bb bb-tasks:sha ../client-ip/bb.edn ../h2o-zig/bb.edn"
+  [& bb-edn-files]
+  (when (empty? bb-edn-files)
+    (throw (ex-info "Expected at least one bb.edn path. Usage: bb bb-tasks:sha <path/to/bb.edn> ..."
+                    {})))
+  (let [target-sha (local-head-rev "../bb-tasks")
+        results (mapv #(update-bb-edn-bb-tasks-sha % target-sha) bb-edn-files)
+        updated-count (count (filter :updated? results))]
+    (doseq [{:keys [file updated? old-sha new-sha]} results]
+      (if updated?
+        (println "Updated" file "from" (or old-sha "<none>") "to" new-sha)
+        (println "Already up to date:" file "=>" new-sha)))
+    (println "Updated" updated-count "of" (count results) "file(s).")))
 
 (defn dist-prepare
   []
