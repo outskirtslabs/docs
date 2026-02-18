@@ -1,0 +1,65 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+---
+name: update projects
+
+on:
+  schedule:
+    - cron: "0 06 ? * MON"
+  workflow_dispatch:
+
+jobs:
+  update-projects-nix:
+    name: Update projects.nix
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+      issues: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v6
+      - uses: DeterminateSystems/determinate-nix-action@v3
+        with:
+          extra-conf: |
+            extra-substituters = https://cache.garnix.io
+            extra-trusted-public-keys = cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g=
+      - uses: DeterminateSystems/flakehub-cache-action@v3
+      - uses: DeterminateSystems/flake-checker-action@v12
+
+      - name: Update projects.nix
+        run: nix develop .#ci --command -- bb projects.nix
+
+      - name: Commit and open PR if projects.nix changed
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet -- pkgs/projects.nix; then
+            echo "No changes to pkgs/projects.nix"
+            exit 0
+          fi
+
+          git config --global user.name "Casey Link"
+          git config --global user.email "14830+Ramblurr@users.noreply.github.com"
+
+          BRANCH="auto-update/projects-nix-$(date +%Y-%m-%d)"
+
+          git checkout -B "$BRANCH"
+          git add pkgs/projects.nix
+          git commit -m "update projects.nix"
+
+          if git ls-remote --exit-code --heads origin "$BRANCH" > /dev/null 2>&1; then
+            git push --force origin "$BRANCH"
+          else
+            git push -u origin "$BRANCH"
+          fi
+
+          PR_NUMBER="$(gh pr list --head "$BRANCH" --state open --json number --jq '.[0].number' || true)"
+          if [ -n "$PR_NUMBER" ] && [ "$PR_NUMBER" != "null" ]; then
+            echo "Open PR already exists: #$PR_NUMBER"
+          else
+            gh pr create \
+              --title "chore: update projects.nix" \
+              --body "Automated update of pkgs/projects.nix via bb projects.nix." \
+              --base main \
+              --head "$BRANCH"
+          fi
