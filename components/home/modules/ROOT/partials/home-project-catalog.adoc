@@ -49,7 +49,7 @@
 
 An assortment of general intersest documentation for the OSS project collector.
 
-* xref:support.adoc[Support]
+// * xref:support.adoc[Support]
 * xref:open-source-vital-signs.adoc[Open Source Vital Signs]
 * xref:security-policy.adoc[Security Policy]
 * xref:contributing-guide.adoc[Contributing Guide]
