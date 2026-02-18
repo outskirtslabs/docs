@@ -25,8 +25,7 @@
           pkgs:
           pkgs.callPackage (import ./pkgs/docs-site.nix) {
             docsUi = pkgs.callPackage (import ./pkgs/docs-ui.nix) { };
-            versionDate =
-              if self ? lastModifiedDate then self.lastModifiedDate else "19700101000000";
+            versionDate = if self ? lastModifiedDate then self.lastModifiedDate else "19700101000000";
           };
       };
       devShell =
@@ -40,6 +39,12 @@
             { package = pkgs.antora; }
             { package = pkgs.arborium; }
             { package = pkgs.babashka; }
+          ];
+          env = [
+            {
+              name = "SHARP_IGNORE_GLOBAL_LIBVIPS";
+              value = "1";
+            }
           ];
           packages = [
             pkgs.nodejs_24

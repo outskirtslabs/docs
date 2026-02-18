@@ -3,7 +3,7 @@
   buildNpmPackage,
   fetchgit,
   babashka,
-  git,
+  gitMinimal,
   yq-go,
   curl,
   arborium,
@@ -30,8 +30,8 @@ let
       fetchTags = true;
       postFetch = ''
         cd "$out"
-        git remote add origin ${url}
-        git fetch origin '+refs/heads/*:refs/heads/*'
+        ${gitMinimal}/bin/git remote add origin ${url}
+        ${gitMinimal}/bin/git fetch origin '+refs/heads/*:refs/heads/*'
       '';
     }
   ) projects;
@@ -90,7 +90,7 @@ buildNpmPackage {
 
   nativeBuildInputs = [
     babashka
-    git
+    gitMinimal
     yq-go
     curl
     arborium
@@ -101,14 +101,14 @@ buildNpmPackage {
 
     export HOME="$TMPDIR/home"
     mkdir -p "$HOME"
-    git config --global user.email "nix-builder@example.invalid"
-    git config --global user.name "nix builder"
-    git config --global --add safe.directory "*"
+    ${gitMinimal}/bin/git config --global user.email "nix-builder@example.invalid"
+    ${gitMinimal}/bin/git config --global user.name "nix builder"
+    ${gitMinimal}/bin/git config --global --add safe.directory "*"
 
     # Antora local sources must be git repositories.
-    git init -q
-    git add components/home
-    git commit -q -m "home component"
+    ${gitMinimal}/bin/git init -q
+    ${gitMinimal}/bin/git add components/home
+    ${gitMinimal}/bin/git commit -q -m "home component"
 
     cat > playbook.generated.yml <<'JSON'
 ${playbookJson}

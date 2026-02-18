@@ -23,7 +23,6 @@
     "gulp": "~4.0",
     "gulp-concat": "~2.6",
     "gulp-eslint": "~6.0",
-    "gulp-imagemin": "~6.2",
     "gulp-postcss": "~9.0",
     "gulp-replace": "~1.1",
     "gulp-stylelint": "~13.0",
@@ -37,8 +36,10 @@
     "postcss-url": "~10.1",
     "prettier-eslint": "~12.0",
     "require-directory": "~2.1",
+    "sharp": "~0.34.5",
     "stylelint": "~13.13",
     "stylelint-config-standard": "~22.0",
+    "svgo": "~3.3",
     "vinyl-fs": "~3.0"
   }
 }

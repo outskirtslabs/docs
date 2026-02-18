@@ -1,6 +1,6 @@
 {
   buildNpmPackage,
-  git,
+  gitMinimal,
 }:
 let
   version = "0.0.1-prototype";
@@ -9,11 +9,12 @@ buildNpmPackage {
   pname = "docs-ui";
   inherit version;
   src = ../ui;
-  npmDepsHash = "sha256-wH8nGvg4SWV0uXxtkgz7I2vPygdylraJxEx2tJtvj3M=";
-  npmRebuildFlags = [ "--ignore-scripts" ];
+  npmDepsHash = "sha256-Q8v31QVJqU00TnnKvyudX3z/D8JofCkAphkpggxQDZo=";
   dontNpmBuild = true;
 
-  nativeBuildInputs = [ git ];
+  nativeBuildInputs = [ gitMinimal ];
+
+  SHARP_IGNORE_GLOBAL_LIBVIPS = "1";
 
   buildPhase = ''
     runHook preBuild
@@ -21,15 +22,11 @@ buildNpmPackage {
     # git-rev-sync requires a repository to exist during gulp bundle.
     export HOME="$TMPDIR/home"
     mkdir -p "$HOME"
-    git config --global user.email "nix-builder@example.invalid"
-    git config --global user.name "nix builder"
-    git init -q
-    git add .
-    git commit -q -m "ui bundle build"
-
-    # Avoid imagemin's binary toolchain in the Nix build sandbox.
-    sed -i "/const imagemin = require/d" gulp.d/tasks/build.js
-    sed -i "/vfs.src('img\\/\\*\\*\\/\\*\\.{gif,ico,jpg,png,svg}', opts).pipe(/,/^    ),$/c\\    vfs.src('img/**/*.{gif,ico,jpg,png,svg}', opts)," gulp.d/tasks/build.js
+    ${gitMinimal}/bin/git config --global user.email "nix-builder@example.invalid"
+    ${gitMinimal}/bin/git config --global user.name "nix builder"
+    ${gitMinimal}/bin/git init -q
+    ${gitMinimal}/bin/git add .
+    ${gitMinimal}/bin/git commit -q -m "ui bundle build"
 
     npx gulp bundle
 
