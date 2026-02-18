@@ -33,7 +33,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          if ! rg -q '^\s*"[^"]+"\s*=\s*\{' pkgs/projects.nix; then
+          if ! grep -Eq '^[[:space:]]*"[^"]+"[[:space:]]*=[[:space:]]*{' pkgs/projects.nix; then
             echo "Refusing to continue: pkgs/projects.nix has no project entries"
             exit 1
           fi
