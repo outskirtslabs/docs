@@ -1,13 +1,12 @@
 ---
-name: Update flake inputs
+name: update-flake-lock
 on:
+  workflow_dispatch: # allows manual triggering
   schedule:
     - cron: "0 06 ? * MON"
-  workflow_dispatch:
 
 jobs:
   update-inputs:
-    name: Update inputs
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -17,10 +16,17 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - uses: DeterminateSystems/determinate-nix-action@v3
-      - uses: DeterminateSystems/flakehub-cache-action@v3
-      - uses: DeterminateSystems/update-flake-lock@main
         with:
-          pr-title: "Update Nix flake inputs"
+          extra-conf: |
+            extra-substituters = https://cache.garnix.io
+            extra-trusted-public-keys = cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g=
+      - uses: DeterminateSystems/flakehub-cache-action@main
+      - name: Update flake.lock
+        uses: DeterminateSystems/update-flake-lock@v28
+        with:
+          nix-options: --accept-flake-config
+          inputs: nixpkgs
+          pr-title: "flake.lock: update nixpkgs"
           pr-labels: |
             dependencies
             automated

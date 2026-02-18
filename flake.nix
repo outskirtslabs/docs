@@ -41,32 +41,46 @@
       nixosModules.default = deploy.nixosModule;
       outputs = deploy.outputs;
       checks = deploy.checks;
-      devShell =
-        pkgs:
-        pkgs.devshell.mkShell {
-          imports = [
-            devenv.capsules.base
-          ];
-          # https://numtide.github.io/devshell
-          commands = [
-            { package = pkgs.antora; }
-            { package = pkgs.arborium; }
-            { package = pkgs.babashka; }
-          ];
-          env = [
-            {
-              name = "SHARP_IGNORE_GLOBAL_LIBVIPS";
-              value = "1";
-            }
-          ];
-          packages = [
+      devShells =
+        let
+          corePackages = pkgs: [
             deploy-rs.packages.${system}.deploy-rs
-            pkgs.asciidoctor
-            pkgs.nodejs_24
-            pkgs.playwright
-            pkgs.playwright-test
-            pkgs.playwright-mcp
+            pkgs.babashka
           ];
+        in
+        {
+          ci =
+            pkgs:
+            pkgs.devshell.mkShell {
+              packages = corePackages pkgs;
+            };
+
+          default =
+            pkgs:
+            pkgs.devshell.mkShell {
+              imports = [
+                devenv.capsules.base
+              ];
+              # https://numtide.github.io/devshell
+              commands = [
+                { package = pkgs.antora; }
+                { package = pkgs.arborium; }
+                { package = pkgs.babashka; }
+              ];
+              env = [
+                {
+                  name = "SHARP_IGNORE_GLOBAL_LIBVIPS";
+                  value = "1";
+                }
+              ];
+              packages = (corePackages pkgs) ++ [
+                pkgs.asciidoctor
+                pkgs.nodejs_24
+                pkgs.playwright
+                pkgs.playwright-test
+                pkgs.playwright-mcp
+              ];
+            };
         };
     };
 }
