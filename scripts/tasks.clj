@@ -97,27 +97,53 @@
   [repo-root]
   (str (fs/file-name repo-root)))
 
-(defn- json-field
-  [json k]
-  (some-> (re-find (re-pattern (str "\"" (java.util.regex.Pattern/quote k) "\"\\s*:\\s*\"([^\"]+)\"")) json)
-          second))
+(defn- hash-mismatch-got
+  [text]
+  (let [re #"got:\s*(sha256-[A-Za-z0-9+/=]+)"]
+    (some-> (re-find re text) second)))
+
+(declare nix-string)
+
+(defn- nix-source-hash-expr
+  [url rev]
+  (str "let\n"
+       "  pkgs = import (builtins.getFlake \"nixpkgs\").outPath {};\n"
+       "  repoUrl = " (nix-string url) ";\n"
+       "in pkgs.fetchgit {\n"
+       "  url = repoUrl;\n"
+       "  rev = " (nix-string rev) ";\n"
+       "  hash = " (nix-string "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=") ";\n"
+       "  leaveDotGit = true;\n"
+       "  deepClone = true;\n"
+       "  fetchTags = true;\n"
+       "  postFetch = ''\n"
+       "    cd \"$out\"\n"
+       "    ${pkgs.gitMinimal}/bin/git remote add origin ${repoUrl}\n"
+       "    ${pkgs.gitMinimal}/bin/git fetch origin '+refs/heads/*:refs/heads/*'\n"
+       "    rm -f .git/FETCH_HEAD\n"
+       "    ${pkgs.gitMinimal}/bin/git reflog expire --expire=all --all || true\n"
+       "    ${pkgs.gitMinimal}/bin/git repack -a -d -f --depth=50 --window=250\n"
+       "    ${pkgs.gitMinimal}/bin/git prune-packed\n"
+       "    find .git/objects -type f -name '*.keep' -delete\n"
+       "    find .git/objects -type f -name '*.bitmap' -delete\n"
+       "  '';\n"
+       "}\n"))
 
 (defn- prefetch-hash
   [url rev]
-  (let [{:keys [out err exit]} (p/shell {:out :string :err :string :continue true}
-                                        "nix" "run" "nixpkgs#nix-prefetch-git" "--"
-                                        "--url" url
-                                        "--rev" rev
-                                        "--deepClone"
-                                        "--leave-dotGit"
-                                        "--fetch-tags"
-                                        "--quiet")
-        hash (json-field out "hash")]
-    (when-not (zero? exit)
-      (throw (ex-info "Command failed: nix-prefetch-git" {:url url :rev rev :exit exit :err err})))
-    (when-not hash
-      (throw (ex-info "Could not parse hash from nix-prefetch-git output" {:url url :rev rev :output out})))
-    hash))
+  (let [expr (nix-source-hash-expr url rev)
+        {:keys [out err exit]} (p/shell {:out :string :err :string :continue true}
+                                        "nix" "build" "--impure" "--no-link" "--expr" expr)
+        combined (str out "\n" err)
+        got-hash (hash-mismatch-got combined)]
+    (if got-hash
+      got-hash
+      (throw (ex-info "Could not determine fetchgit hash"
+                      {:url url
+                       :rev rev
+                       :exit exit
+                       :out out
+                       :err err})))))
 
 (defn- prefetch-npm-deps-hash
   [lock-file]
@@ -203,7 +229,18 @@
                       (sort-by first projects)))
        "\n}\n"))
 
-(defn update-projects!
+(defn update-projects
+  "Update `pkgs/projects.nix` from local playbook sources.
+
+  Hashes are computed via the same `fetchgit` + `postFetch` pipeline used by
+  `pkgs/docs-site.nix` (inside `prefetch-hash`), not plain `nix-prefetch-git`.
+  We intentionally normalize `.git` internals there (`rm .git/FETCH_HEAD`,
+  expire reflogs, repack/prune, remove volatile `*.bitmap`/`*.keep`) because
+  `leaveDotGit = true` makes `.git` part of the fixed-output hash and those
+  files can otherwise vary across runs/machines.
+
+  Performance: when a project's `rev` is unchanged, we reuse the existing hash
+  from `pkgs/projects.nix` instead of recomputing it."
   []
   (let [docs-root (str (fs/absolutize "."))
         existing-by-url (existing-projects-by-url docs-root)
@@ -248,10 +285,6 @@
         out-file (str (fs/path docs-root "pkgs" "projects.nix"))]
     (spit out-file (render-projects-nix projects))
     (println "Updated" out-file "with" (count projects) "projects.")))
-
-(defn update-projects
-  []
-  (update-projects!))
 
 (defn dist-prepare
   []
