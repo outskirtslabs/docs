@@ -1,0 +1,14 @@
+Outskirts Labs Docs UI includes third-party software licensed under the Apache License, Version 2.0:
+
+- ui/src/js/08-copy-versioned-url.js
+  Copyright 2021 the original author or authors.
+
+- ui/src/css/vendor/source-toolbox.css
+  Spring.io Asciidoctor Source Toolbox.
+
+- ui/src/js/06-source-toolbox.bundle.js
+  Spring.io Asciidoctor Source Toolbox.
+
+The above files are licensed under the Apache License, Version 2.0.
+You may obtain a copy of the License at:
+https://www.apache.org/licenses/LICENSE-2.0
