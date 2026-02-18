@@ -1,8 +1,18 @@
 <article class="page-404">
-  <h1 class="page">404</h1>
+  <div class="page-404-hero">
+    <a href="{{{or site.homeUrl '/'}}}">
+      <img
+        class="page-404-image"
+        src="{{{uiRootPath}}}/img/404.png"
+        alt="404"
+      /></a>
+  </div>
   <div class="paragraph">
-    <p class="strong">Oops! The page can’t be found.</p>
-    <p>{{#with site.homeUrl}}Go to
-        <a href="{{{this}}}">homepage</a>{{/with}}</p>
+    <p class="strong">
+      Looks like you took a wrong turn in Albuquerque.
+    </p>
+    <p>There’s nothing here.</p>
+    <p>Go to
+      <a href="{{{or site.homeUrl '/'}}}">homepage</a></p>
   </div>
 </article>

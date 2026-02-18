@@ -380,20 +380,68 @@ body.status-404 .page-404 {
   margin: 0 auto;
   padding: 4rem 0;
 }
-body.status-404 h1.page {
-  color: #6db33f;
-  font-size: 130px;
-  font-weight: 100;
-  line-height: 110px;
+body.status-404 .page-404-hero {
+  display: inline-block;
   margin: 0;
   padding: 0;
-  font-family: var(--default-font-family);
+  position: relative;
 }
+
+body.status-404 .page-404-image {
+  display: block;
+  width: min(22rem, 75vw);
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto 1rem;
+  border: 2px solid color-mix(in oklab, var(--color-ol-orange) 45%, transparent);
+  border-radius: 1.1rem;
+  clip-path:
+    polygon(
+      1rem 0,
+      calc(100% - 1rem) 0,
+      100% 1rem,
+      100% calc(100% - 1rem),
+      calc(100% - 1rem) 100%,
+      1rem 100%,
+      0 calc(100% - 1rem),
+      0 1rem
+    );
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--color-ol-orange) 18%, transparent),
+    0 10px 28px color-mix(in oklab, var(--color-ol-orange) 28%, transparent),
+    0 6px 12px rgb(0 0 0 / 16%);
+}
+
+body.status-404 .page-404-hero::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 10%;
+  right: 10%;
+  bottom: 0.35rem;
+  height: 1rem;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--color-ol-orange) 55%, transparent);
+  filter: blur(12px);
+  opacity: 0.45;
+}
+
+@media screen and (max-width: 768px) {
+  body.status-404 .page-404-image {
+    width: 92vw;
+  }
+}
+
 body.status-404 .strong {
   font-weight: bold;
 }
 body.status-404 a {
-  color: #086dc3;
+  color: var(--link-font-color);
+}
+
+body.status-404 a:hover {
+  color: var(--link_hover-font-color);
+  background-color: var(--link_hover-background-color);
 }
 
 .theme-toggle {
