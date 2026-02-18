@@ -5,6 +5,13 @@
     hash = "sha256-ZZ6BTOfEuvgp0N7HGYs1pPIMO09KLFpSfRoBjuQpRC8=";
   };
 
+  "h2o-zig" = {
+    url = "https://github.com/outskirtslabs/h2o-zig.git";
+    rev = "546f257657af30131d2ddf51ae83dba520420519";
+    hash = "sha256-3/NkwvyHb3M4LPb5OoopWjK1udpp9PIgB/iV4/pj2ko=";
+    branches = [ "HEAD" ];
+  };
+
   "ol.sfv" = {
     url = "https://github.com/outskirtslabs/sfv.git";
     rev = "42c6f70e2a78c5ad5dff29b3067a91f97d16fbbe";
