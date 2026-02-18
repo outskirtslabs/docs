@@ -1,0 +1,9 @@
+= Outskirts Labs Docs
+
+Visit live at https://docs.outskirtslabs.com[docs.outskirtslabs.com]
+
+❤️ Built with https://antora.org[Antora] and https://babashka.org[Babashka]
+
+Copyright © 2026 Casey Link <casey@outskirtslabs.com>
+
+Distributed under the https://spdx.org/licenses/EUPL-1.2.html[EUPL-1.2].
