@@ -12,10 +12,10 @@
   {:doc "Build just the Antora UI theme bundle."
    :task (shell "cd ui && npx gulp bundle")}
   serve
-  {:doc "Serve the built site locally."
-   :task (shell "npx live-server build/site --port=8084")}
+  {:doc "Serve the built site locally with nginx."
+   :task (shell "bash scripts/nginx-dev.sh foreground")}
   dev
-  {:doc "Run docs dev mode with watching and live reload."
+  {:doc "Run docs dev mode with watching, auto rebuild, and live reload."
    :task (shell "bash scripts/dev.sh")}
   projects.nix
   {:doc "Update pkgs/projects.nix from configured project URLs."

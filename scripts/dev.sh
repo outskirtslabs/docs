@@ -3,18 +3,31 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT_DIR"
-DEV_SITE_URL="http://localhost:8084"
+DEV_PORT="${DEV_PORT:-8084}"
+DEV_SITE_URL="http://localhost:${DEV_PORT}"
 DEV_SOURCEMAPS="${DEV_SOURCEMAPS:-true}"
 WATCH_PATHS=(ui/src components)
 INOTIFY_EXCLUDE_REGEX='home-project-catalog\.adoc$'
 HASH_EXCLUDE_PATH='components/home/modules/ROOT/partials/home-project-catalog.adoc'
-LIVE_SERVER_MIDDLEWARE="$ROOT_DIR/scripts/live-server-extensionless.js"
+NGINX_HELPER="$ROOT_DIR/scripts/nginx-dev.sh"
+LIVE_RELOAD_TOKEN_PATH="$ROOT_DIR/build/site/_dev/reload.txt"
+
+prepare_live_reload() {
+  mkdir -p "$ROOT_DIR/build/site/_dev"
+  node "$ROOT_DIR/scripts/inject-dev-live-reload.mjs" "$ROOT_DIR/build/site"
+}
+
+signal_live_reload() {
+  date +%s%N > "$LIVE_RELOAD_TOKEN_PATH"
+}
 
 cleanup() {
   echo ""
   echo "Shutting down..."
-  kill $SERVER_PID 2>/dev/null || true
-  kill $WATCH_PID 2>/dev/null || true
+  "$NGINX_HELPER" stop "$DEV_PORT" >/dev/null 2>&1 || true
+  if [ -n "${WATCH_PID:-}" ]; then
+    kill "$WATCH_PID" 2>/dev/null || true
+  fi
   exit
 }
 trap cleanup INT TERM
@@ -26,6 +39,9 @@ rebuild() {
   (cd ui && SOURCEMAPS="$DEV_SOURCEMAPS" npx gulp bundle) && \
   npx antora --stacktrace --url "$DEV_SITE_URL" playbook.yml && \
   node scripts/highlight-arborium.mjs --site-dir build/site && \
+  prepare_live_reload && \
+  "$NGINX_HELPER" reload "$DEV_PORT" && \
+  signal_live_reload && \
   echo "--- Rebuild complete ---"
 }
 
@@ -38,12 +54,13 @@ rebuild_or_continue() {
 # --- Initial full build ---
 echo "Running initial build..."
 SOURCEMAPS="$DEV_SOURCEMAPS" bash scripts/build.sh playbook.yml --url "$DEV_SITE_URL"
+prepare_live_reload
 
-# --- Start live-server (auto-reloads browser when build/site changes) ---
+# --- Start local nginx server ---
 echo ""
-echo "Starting dev server at http://localhost:8084 ..."
-npx live-server build/site --port=8084 --no-browser --middleware="$LIVE_SERVER_MIDDLEWARE" &
-SERVER_PID=$!
+echo "Starting dev server at $DEV_SITE_URL ..."
+"$NGINX_HELPER" start "$DEV_PORT"
+signal_live_reload
 
 # --- Watch source paths and rebuild on changes ---
 echo "Watching ${WATCH_PATHS[*]} for changes..."

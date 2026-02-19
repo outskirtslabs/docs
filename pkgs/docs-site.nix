@@ -64,6 +64,8 @@ let
     urls = {
       html_extension_style = "drop";
       redirect_facility = "nginx";
+      latest_version_segment = "latest";
+      latest_version_segment_strategy = "redirect:from";
     };
     content.sources = [
       {
@@ -82,6 +84,7 @@ let
     };
     antora.extensions = [
       { require = "./extensions/lunr-tokenizer"; }
+      { require = "./extensions/alias-component-to-latest-version"; }
       {
         require = "./extensions/antora-llm-generator";
         skippaths = [

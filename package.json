@@ -6,8 +6,5 @@
     "antora": "3.1.14",
     "downdoc": "1.0.2-stable",
     "minimatch": "7.4.6"
-  },
-  "devDependencies": {
-    "live-server": "1.2.2"
   }
 }
