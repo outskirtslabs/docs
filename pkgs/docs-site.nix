@@ -6,6 +6,7 @@
   gitMinimal,
   curl,
   arborium,
+  pagefind,
   docsUi,
   versionDate ? "19700101000000",
 }:
@@ -141,7 +142,7 @@ EOF
     fi
     chmod -R u+w build/site
     node scripts/highlight-arborium.mjs --site-dir build/site
-    npx pagefind --site build/site
+    ${pagefind}/bin/pagefind --site build/site
 
     runHook postBuild
   '';

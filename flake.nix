@@ -73,6 +73,7 @@
                 pkgs.esbuild
                 pkgs.lightningcss
                 pkgs.nodejs_24
+                pkgs.pagefind
                 pkgs.playwright
                 pkgs.playwright-test
                 pkgs.playwright-mcp
