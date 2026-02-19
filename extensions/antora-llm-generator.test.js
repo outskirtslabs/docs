@@ -9,6 +9,7 @@ test("generates hierarchical llms indexes for root and component scopes", () => 
   const artifacts = _test.generateLlmsArtifacts({
     siteTitle: "Outskirts Labs Docs",
     siteUrl: "http://localhost:8084",
+    componentDescriptions: new Map([["ol.client-ip", "Read client IPs from requests."]]),
     componentInfos: [
       {
         name: "ol.client-ip",
@@ -85,18 +86,33 @@ test("generates hierarchical llms indexes for root and component scopes", () => 
 
   const componentIndex = artifacts.get("ol.client-ip/llms.txt");
   assert.ok(componentIndex);
+  assert.match(componentIndex, /# client-ip\n\nRead client IPs from requests\.\n\n/);
   assert.match(componentIndex, /- \[0\.1\]\(http:\/\/localhost:8084\/ol\.client-ip\/0\.1\/llms\.txt\)/);
   assert.match(componentIndex, /  - \[client-ip\]\(http:\/\/localhost:8084\/ol\.client-ip\/0\.1\/index\.md\)/);
 
   const versionIndex = artifacts.get("ol.client-ip/0.1/llms.txt");
   assert.ok(versionIndex);
+  assert.match(versionIndex, /# client-ip 0\.1\n\nRead client IPs from requests\.\n\n/);
   assert.match(versionIndex, /- \[client-ip\]\(http:\/\/localhost:8084\/ol\.client-ip\/0\.1\/index\.md\)/);
+});
+
+test("extracts project description from manifest.edn", () => {
+  const manifest = `{:manifest/version 1
+ :project {:id "h2o-zig"
+           :description "libh2o packaged for Zig with cross-compilation support for Linux and macOS"}
+ :docs {:component "h2o-zig"}}`;
+
+  assert.equal(
+    _test.extractManifestDescription(manifest),
+    "libh2o packaged for Zig with cross-compilation support for Linux and macOS",
+  );
 });
 
 test("generates llms-full per scope and honors includeInFull", () => {
   const artifacts = _test.generateLlmsArtifacts({
     siteTitle: "Docs",
     siteUrl: "",
+    componentDescriptions: new Map([["ol.client-ip", "short desc"]]),
     componentInfos: [
       {
         name: "ol.client-ip",
@@ -134,8 +150,10 @@ test("generates llms-full per scope and honors includeInFull", () => {
 
   assert.match(rootFull, /visible body/);
   assert.doesNotMatch(rootFull, /hidden body/);
+  assert.match(componentFull, /# client-ip\n\nshort desc\n\n/);
   assert.match(componentFull, /visible body/);
   assert.doesNotMatch(componentFull, /hidden body/);
+  assert.match(versionFull, /# client-ip 0\.1\n\nshort desc\n\n/);
   assert.match(versionFull, /visible body/);
   assert.doesNotMatch(versionFull, /hidden body/);
 });

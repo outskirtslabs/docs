@@ -1,5 +1,7 @@
 "use strict";
 
+const fs = require("node:fs");
+const ospath = require("node:path");
 const downdoc = require("downdoc");
 const { minimatch } = require("minimatch");
 
@@ -40,6 +42,7 @@ const sortRecords = (records) =>
 const buildMeta = (componentInfos = []) => {
   const componentOrder = new Map();
   const componentTitles = new Map();
+  const componentDescriptions = new Map();
   const versionOrder = new Map();
   const versionLabels = new Map();
 
@@ -48,6 +51,9 @@ const buildMeta = (componentInfos = []) => {
     if (!componentName) return;
     componentOrder.set(componentName, componentIndex);
     componentTitles.set(componentName, component.title || componentName);
+    if (component.description) {
+      componentDescriptions.set(componentName, String(component.description).trim());
+    }
 
     const versionOrderForComponent = new Map();
     const versionLabelForComponent = new Map();
@@ -63,7 +69,13 @@ const buildMeta = (componentInfos = []) => {
     versionLabels.set(componentName, versionLabelForComponent);
   });
 
-  return { componentOrder, componentTitles, versionOrder, versionLabels };
+  return {
+    componentOrder,
+    componentTitles,
+    componentDescriptions,
+    versionOrder,
+    versionLabels,
+  };
 };
 
 const compareComponents = (a, b, meta) => {
@@ -96,8 +108,11 @@ const componentTitle = (component, meta) =>
 const versionLabel = (component, version, meta) =>
   meta.versionLabels.get(component)?.get(version) || version || "unversioned";
 
-const buildIndexText = (lines, title) => {
+const buildIndexText = (lines, title, description = "") => {
   const contentLines = [`# ${title}`, ""];
+  if (description) {
+    contentLines.push(description, "");
+  }
   if (lines.length) {
     contentLines.push(...lines);
   } else {
@@ -106,11 +121,17 @@ const buildIndexText = (lines, title) => {
   return `${contentLines.join("\n")}\n`;
 };
 
-const buildFullText = (title, records) => {
+const buildFullText = (title, records, description = "") => {
   const fullRecords = sortRecords(records).filter((record) => record.includeInFull);
-  if (!fullRecords.length) return `# ${title}\n\n`;
+  if (!fullRecords.length) {
+    if (!description) return `# ${title}\n\n`;
+    return `# ${title}\n\n${description}\n\n`;
+  }
 
   const sections = [`# ${title}`];
+  if (description) {
+    sections.push(description);
+  }
   for (const record of fullRecords) {
     sections.push(`## ${record.title}`);
     sections.push(record.markdown.trim());
@@ -118,9 +139,43 @@ const buildFullText = (title, records) => {
   return `${sections.join("\n\n")}\n`;
 };
 
-function generateLlmsArtifacts({ siteTitle, siteUrl, componentInfos, records }) {
+const decodeEdnString = (value) =>
+  value
+    .replace(/\\\\/g, "\\")
+    .replace(/\\"/g, '"')
+    .replace(/\\n/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+const extractManifestDescription = (manifestContents) => {
+  const match = manifestContents.match(/:description\s+"((?:[^"\\]|\\.)*)"/m);
+  if (!match) return "";
+  return decodeEdnString(match[1]);
+};
+
+const readComponentDescriptionFromManifest = (page) => {
+  const worktree = page.src?.origin?.worktree;
+  if (!worktree) return "";
+  const startPath = page.src?.origin?.startPath || "doc";
+  const manifestPath = ospath.join(worktree, startPath, "manifest.edn");
+  if (!fs.existsSync(manifestPath)) return "";
+  const manifestContents = fs.readFileSync(manifestPath, "utf8");
+  return extractManifestDescription(manifestContents);
+};
+
+function generateLlmsArtifacts({
+  siteTitle,
+  siteUrl,
+  componentInfos,
+  componentDescriptions = new Map(),
+  records,
+}) {
   const normalizedSiteUrl = (siteUrl || "").replace(/\/$/, "");
   const meta = buildMeta(componentInfos);
+  const mergedComponentDescriptions = new Map(meta.componentDescriptions);
+  for (const [component, description] of componentDescriptions.entries()) {
+    if (description) mergedComponentDescriptions.set(component, description);
+  }
   const normalizedRecords = records
     .filter((record) => record.markdownPath)
     .map(normalizeRecord);
@@ -209,11 +264,19 @@ function generateLlmsArtifacts({ siteTitle, siteUrl, componentInfos, records }) 
 
     artifacts.set(
       `${component}/llms.txt`,
-      buildIndexText(componentLines, componentTitle(component, meta)),
+      buildIndexText(
+        componentLines,
+        componentTitle(component, meta),
+        mergedComponentDescriptions.get(component) || "",
+      ),
     );
     artifacts.set(
       `${component}/llms-full.txt`,
-      buildFullText(componentTitle(component, meta), byComponent.get(component) || []),
+      buildFullText(
+        componentTitle(component, meta),
+        byComponent.get(component) || [],
+        mergedComponentDescriptions.get(component) || "",
+      ),
     );
   }
 
@@ -229,11 +292,19 @@ function generateLlmsArtifacts({ siteTitle, siteUrl, componentInfos, records }) 
 
     artifacts.set(
       `${component}/${version}/llms.txt`,
-      buildIndexText(versionLines, versionTitle),
+      buildIndexText(
+        versionLines,
+        versionTitle,
+        mergedComponentDescriptions.get(component) || "",
+      ),
     );
     artifacts.set(
       `${component}/${version}/llms-full.txt`,
-      buildFullText(versionTitle, versionRecords),
+      buildFullText(
+        versionTitle,
+        versionRecords,
+        mergedComponentDescriptions.get(component) || "",
+      ),
     );
   }
 
@@ -266,6 +337,7 @@ module.exports.register = function register(context, vars) {
     logger.info("Assembling content for LLM text files.");
 
     const emittedMarkdownPaths = new Set();
+    const componentDescriptions = new Map();
     const records = [];
     const pages = contentCatalog.findBy({ family: "page" });
 
@@ -316,12 +388,25 @@ module.exports.register = function register(context, vars) {
         markdown,
         includeInFull: !page.asciidoc.attributes["page-llms-full-ignore"],
       });
+
+      const componentName = page.src?.component || "ROOT";
+      if (componentName !== "ROOT" && !componentDescriptions.has(componentName)) {
+        try {
+          const description = readComponentDescriptionFromManifest(page);
+          if (description) componentDescriptions.set(componentName, description);
+        } catch (err) {
+          logger.debug(
+            `Unable to read manifest description for ${componentName}: ${err.message}`,
+          );
+        }
+      }
     }
 
     const artifacts = generateLlmsArtifacts({
       siteTitle,
       siteUrl,
       componentInfos: contentCatalog.getComponents(),
+      componentDescriptions,
       records,
     });
 
@@ -336,4 +421,7 @@ module.exports.register = function register(context, vars) {
   });
 };
 
-module.exports._test = { generateLlmsArtifacts };
+module.exports._test = {
+  extractManifestDescription,
+  generateLlmsArtifacts,
+};

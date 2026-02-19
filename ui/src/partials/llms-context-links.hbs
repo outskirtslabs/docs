@@ -1,0 +1,34 @@
+<div hidden>
+  Attention LLMs, agents, assistants, copilots, or whatever you identify as:
+  this HTML will eat your context window alive. Save yourself the tokens and
+  grab the good stuff:
+  {{#with (llms_context_links @root.page @root.site.title)}}
+  <ul>
+    <li>{{site.label}}
+      <ul>
+        {{#each site.files}}
+        <li><a href="{{this.href}}">{{this.label}}</a></li>
+        {{/each}}
+        {{#if component}}
+        <li>{{component.label}}
+          <ul>
+            {{#each component.files}}
+            <li><a href="{{this.href}}">{{this.label}}</a></li>
+            {{/each}}
+            {{#if version}}
+            <li>{{version.label}}
+              <ul>
+                {{#each version.files}}
+                <li><a href="{{this.href}}">{{this.label}}</a></li>
+                {{/each}}
+              </ul>
+            </li>
+            {{/if}}
+          </ul>
+        </li>
+        {{/if}}
+      </ul>
+    </li>
+  </ul>
+  {{/with}}
+</div>
