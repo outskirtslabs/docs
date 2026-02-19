@@ -5,3 +5,6 @@
 {{#if (asciidocExtensionRegistered '@asciidoctor/tabs')}}
 <script async src="{{{uiRootPath}}}/js/vendor/asciidoctor-tabs.js" data-sync-storage-key="docs:preferred-tab"></script>
 {{/if}}
+{{#unless (isLocalSiteUrl site.url)}}
+<script data-goatcounter="https://count.docs.outskirtslabs.com/count" async src="//count.docs.outskirtslabs.com/count.js"></script>
+{{/unless}}
