@@ -3,12 +3,12 @@
   'use strict'
 
   var modal = document.getElementById('search-modal')
-  var trigger = document.getElementById('search-trigger')
+  var triggers = [].slice.call(document.querySelectorAll('.search-trigger'))
   var modalHeader = document.getElementById('search-modal-header')
   var modalBody = document.getElementById('search-modal-body')
   var searchInput = document.getElementById('search-input')
 
-  if (!modal || !trigger || !searchInput) return
+  if (!modal || !searchInput || !triggers.length) return
 
   // Move modal to document.body to escape sidebar stacking context
   document.body.appendChild(modal)
@@ -31,18 +31,21 @@
   }
 
   // Trigger button opens modal
-  trigger.addEventListener('click', function () {
-    openModal()
+  triggers.forEach(function (trigger) {
+    trigger.addEventListener('click', function () {
+      openModal()
+    })
   })
 
   // "/" hotkey opens modal (not when in an input/textarea)
   document.addEventListener('keydown', function (e) {
-    if (e.key === '/' && !e.ctrlKey && !e.metaKey && !e.altKey) {
-      var tag = (e.target.tagName || '').toLowerCase()
-      if (tag === 'input' || tag === 'textarea' || tag === 'select' || e.target.isContentEditable) return
-      e.preventDefault()
-      openModal()
-    }
+    if (!(e.key === '/' && !e.ctrlKey && !e.metaKey && !e.altKey)) return
+
+    var tag = (e.target.tagName || '').toLowerCase()
+    if (tag === 'input' || tag === 'textarea' || tag === 'select' || e.target.isContentEditable) return
+
+    e.preventDefault()
+    openModal()
   })
 
   // Escape closes modal

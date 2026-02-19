@@ -19,6 +19,70 @@
   color: inherit;
 }
 
+.toolbar-search {
+  flex: 1;
+  min-width: 0;
+  border-left: 1px solid var(--toolbar-border-color);
+  border-right: 1px solid var(--toolbar-border-color);
+}
+
+.toolbar .toolbar-search .search-trigger {
+  width: 100%;
+  height: var(--toolbar-height);
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.toolbar .toolbar-search .search-trigger:hover {
+  border: none;
+  box-shadow: none;
+}
+
+.toolbar .toolbar-search .search-icon {
+  margin-left: 0.75rem;
+}
+
+.toolbar .toolbar-search .search-trigger-text {
+  opacity: 0.9;
+}
+
+.toolbar .toolbar-search kbd.search-key {
+  margin-right: 0.75rem;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  opacity: 0.6;
+}
+
+.toolbar-actions {
+  display: inline-flex;
+  align-items: center;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.toolbar-markdown-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--toolbar-height);
+  height: var(--toolbar-height);
+  border-left: 1px solid var(--toolbar-border-color);
+  margin-right: 0.35rem;
+}
+
+.toolbar-markdown-link:hover {
+  color: var(--link-font-color);
+  text-decoration: none;
+}
+
+.toolbar-markdown-link svg {
+  width: 20px;
+  height: 20px;
+}
+
 .nav-toggle {
   background: url(../img/menu.svg) no-repeat 50% 47.5%;
   background-size: 49%;
@@ -57,6 +121,12 @@ html.dark-theme .nav-toggle {
 @media screen and (min-width: 1024px) {
   .nav-toggle,
   .toolbar {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .toolbar .toolbar-search kbd.search-key {
     display: none;
   }
 }

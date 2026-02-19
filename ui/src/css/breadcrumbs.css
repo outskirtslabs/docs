@@ -53,7 +53,7 @@ button + .breadcrumbs {
 #copy-url {
   content: "";
   filter: var(--codetools-button-filter);
-  background-image: url(../img/url.svg);
+  background-image: url(../img/phosphor-link-simple.svg);
   background-repeat: no-repeat;
   background-size: contain;
   width: 20px;

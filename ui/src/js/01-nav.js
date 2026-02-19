@@ -199,7 +199,7 @@
       () => {
         document.removeEventListener('mousemove', resize, false)
       },
-      false
+      false,
     )
   })
   function resize (e) {

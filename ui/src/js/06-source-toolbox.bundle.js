@@ -108,10 +108,10 @@
           function () {
             this.classList.remove('clicked')
           }.bind(this),
-          900
+          900,
         )
       }.bind(this),
-      function () {}
+      function () {},
     )
   }
 })()
