@@ -32,6 +32,10 @@ content:
       branches: [HEAD]
       start_path: doc
 
+    - url: /home/ramblurr/src/github.com/outskirtslabs/datomic-pro-flake
+      branches: [HEAD, "v{0..9}*"]
+      start_path: doc
+
     - url: /home/ramblurr/src/github.com/outskirtslabs/h2o-zig
       branches: [HEAD]
       start_path: doc

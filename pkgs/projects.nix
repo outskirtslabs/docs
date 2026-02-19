@@ -23,6 +23,14 @@
     start_path = "doc";
   };
 
+  "datomic-pro-flake" = {
+    url = "https://github.com/outskirtslabs/datomic-pro-flake.git";
+    rev = "2eaee4e5aa19eb3759f5c2974ff623fed4d775d4";
+    hash = "sha256-7Mfl2ClTtPLh8hYQVS9jnGCYRgGAcVZPx3IyT931m/Y=";
+    branches = [ "HEAD" "v{0..9}*" ];
+    start_path = "doc";
+  };
+
   "h2o-zig" = {
     url = "https://github.com/outskirtslabs/h2o-zig.git";
     rev = "5571ee3eddb8066d3582d36be30242d4d08c0d91";

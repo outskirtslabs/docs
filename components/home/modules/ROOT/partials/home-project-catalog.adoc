@@ -4,6 +4,21 @@
 <div class="releases-scroll">
 <table class="releases-table">
 <tr>
+<td class="release-date">2026-02-03</td>
+<td class="release-lib"><a href="../datomic-pro-flake/0.12/">datomic-pro-flake</a></td>
+<td class="release-version">v0.12.0</td>
+</tr>
+<tr>
+<td class="release-date">2026-02-03</td>
+<td class="release-lib"><a href="../datomic-pro-flake/0.11/">datomic-pro-flake</a></td>
+<td class="release-version">v0.11.0</td>
+</tr>
+<tr>
+<td class="release-date">2026-02-03</td>
+<td class="release-lib"><a href="../datomic-pro-flake/0.10/">datomic-pro-flake</a></td>
+<td class="release-version">v0.10.0</td>
+</tr>
+<tr>
 <td class="release-date">2025-12-18</td>
 <td class="release-lib"><a href="../nixos-hetzner/next/">nixos-hetzner</a></td>
 <td class="release-version">static</td>
@@ -14,6 +29,11 @@
 <td class="release-version">static</td>
 </tr>
 <tr>
+<td class="release-date">2025-12-14</td>
+<td class="release-lib"><a href="../datomic-pro-flake/0.9/">datomic-pro-flake</a></td>
+<td class="release-version">v0.9.0</td>
+</tr>
+<tr>
 <td class="release-date">2025-10-20</td>
 <td class="release-lib"><a href="../h2o-zig/next/">h2o-zig</a></td>
 <td class="release-version">maturing</td>
@@ -22,6 +42,11 @@
 <td class="release-date">2025-10-03</td>
 <td class="release-lib"><a href="../ol.sops/next/">ol.sops</a></td>
 <td class="release-version">maturing</td>
+</tr>
+<tr>
+<td class="release-date">2025-09-08</td>
+<td class="release-lib"><a href="../datomic-pro-flake/0.8/">datomic-pro-flake</a></td>
+<td class="release-version">v0.8.0</td>
 </tr>
 <tr>
 <td class="release-date">2025-09-08</td>
@@ -88,6 +113,13 @@ An assortment of general intersest documentation for the OSS project collector.
 <td class="lib-version">&mdash;</td>
 <td><span class="status-badge status-experimental">experimental</span></td>
 <td class="lib-desc">Clojure to Datastar expression transpiler</td>
+</tr>
+<tr>
+<td class="lib-name"><a href="../datomic-pro-flake/0.12/">datomic-pro-flake</a></td>
+<td><span class="platform-tag">nix</span> <span class="platform-tag">linux</span> <span class="platform-tag">docker</span></td>
+<td class="lib-version"><a href="https://github.com/outskirtslabs/datomic-pro-flake/releases/tag/v0.12.0">v0.12.0</a></td>
+<td><span class="status-badge status-stable">stable</span></td>
+<td class="lib-desc">Nix flake packaging Datomic Pro with NixOS modules and OCI images</td>
 </tr>
 <tr>
 <td class="lib-name"><a href="../h2o-zig/next/">h2o-zig</a></td>
@@ -158,6 +190,18 @@ An assortment of general intersest documentation for the OSS project collector.
 </span>
 </div>
 <div class="project-desc">Clojure to Datastar expression transpiler</div>
+</div>
+
+<div class="project-entry">
+<div class="project-header">
+<a href="../datomic-pro-flake/0.12/" class="project-name">datomic-pro-flake</a>
+<span class="project-meta">
+<span class="platform-tag">nix</span> <span class="platform-tag">linux</span> <span class="platform-tag">docker</span>
+<span class="project-version"><a href="https://github.com/outskirtslabs/datomic-pro-flake/releases/tag/v0.12.0">v0.12.0</a></span>
+<span class="status-badge status-stable">stable</span>
+</span>
+</div>
+<div class="project-desc">Nix flake packaging Datomic Pro with NixOS modules and OCI images</div>
 </div>
 
 <div class="project-entry">

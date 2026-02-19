@@ -6,6 +6,18 @@ Full release feed across all tracked projects.
 |===
 | Date | Library | Version
 
+| 2026-02-03
+| link:../datomic-pro-flake/0.12/[datomic-pro-flake]
+| `v0.12.0`
+
+| 2026-02-03
+| link:../datomic-pro-flake/0.11/[datomic-pro-flake]
+| `v0.11.0`
+
+| 2026-02-03
+| link:../datomic-pro-flake/0.10/[datomic-pro-flake]
+| `v0.10.0`
+
 | 2025-12-18
 | link:../nixos-hetzner/next/[nixos-hetzner]
 | `static`
@@ -14,6 +26,10 @@ Full release feed across all tracked projects.
 | link:../nixos-hetzner-demo/next/[nixos-hetzner-demo]
 | `static`
 
+| 2025-12-14
+| link:../datomic-pro-flake/0.9/[datomic-pro-flake]
+| `v0.9.0`
+
 | 2025-10-20
 | link:../h2o-zig/next/[h2o-zig]
 | `maturing`
@@ -21,6 +37,10 @@ Full release feed across all tracked projects.
 | 2025-10-03
 | link:../ol.sops/next/[ol.sops]
 | `maturing`
+
+| 2025-09-08
+| link:../datomic-pro-flake/0.8/[datomic-pro-flake]
+| `v0.8.0`
 
 | 2025-09-08
 | link:../ol.sfv/0.1/[ol.sfv]
