@@ -17,7 +17,7 @@ echo "Building UI theme..."
 
 # -- Build the site --
 echo "Building Antora site..."
-npx antora --stacktrace "$@" "$ROOT_DIR/$PLAYBOOK"
+antora --stacktrace "$@" "$ROOT_DIR/$PLAYBOOK"
 
 # -- Apply static syntax highlighting --
 echo "Applying Arborium syntax highlighting..."

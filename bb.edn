@@ -7,16 +7,16 @@
 
   build
   {:doc "Full build: generate home catalog, bundle UI, and build site with Antora."
-   :task (shell "bash scripts/build.sh playbook.yml")}
+   :task (shell "nix develop --command bash scripts/build.sh playbook.yml")}
   build:theme
   {:doc "Build just the Antora UI theme bundle."
-   :task (shell "bash -lc \"cd ui && node scripts/build-ui.mjs bundle\"")}
+   :task (shell "nix develop --command bash -lc \"cd ui && node scripts/build-ui.mjs bundle\"")}
   serve
   {:doc "Serve the built site locally with nginx."
-   :task (shell "bash scripts/nginx-dev.sh foreground")}
+   :task (shell "nix develop --command bash scripts/nginx-dev.sh foreground")}
   dev
   {:doc "Run docs dev mode with watching, auto rebuild, and live reload."
-   :task (shell "bash scripts/dev.sh")}
+   :task (shell "nix develop --command bash scripts/dev.sh")}
   projects.nix
   {:doc "Update pkgs/projects.nix from configured project URLs."
    :task (tasks/update-projects)}

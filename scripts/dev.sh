@@ -38,7 +38,7 @@ rebuild() {
   echo "--- Rebuilding theme + site ---"
   bb gen-home && \
   (cd ui && SOURCEMAPS="$DEV_SOURCEMAPS" node scripts/build-ui.mjs build) && \
-  npx antora --stacktrace --url "$DEV_SITE_URL" "$DEV_PLAYBOOK" && \
+  antora --stacktrace --url "$DEV_SITE_URL" "$DEV_PLAYBOOK" && \
   node scripts/highlight-arborium.mjs --site-dir build/site && \
   prepare_live_reload && \
   "$NGINX_HELPER" reload "$DEV_PORT" && \

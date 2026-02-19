@@ -1,5 +1,7 @@
 {
   buildNpmPackage,
+  esbuild,
+  lightningcss,
   zip,
 }:
 let
@@ -9,10 +11,14 @@ buildNpmPackage {
   pname = "docs-ui";
   inherit version;
   src = ../ui;
-  npmDepsHash = "sha256-M2Yt3O3qcLoQ1Q7uc8muEngOKIgALnLadx1R2PFkRcE=";
+  npmDepsHash = "sha256-kwGrFIKjEdsk5HhasB5jOfE3fqL5s4w+03xlRlIf9xg=";
   dontNpmBuild = true;
 
-  nativeBuildInputs = [ zip ];
+  nativeBuildInputs = [
+    esbuild
+    lightningcss
+    zip
+  ];
 
   buildPhase = ''
     runHook preBuild

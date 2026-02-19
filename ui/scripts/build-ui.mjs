@@ -7,12 +7,6 @@ import path from 'node:path'
 import process from 'node:process'
 import { fileURLToPath } from 'node:url'
 
-import autoprefixer from 'autoprefixer'
-import * as esbuild from 'esbuild'
-import postcss from 'postcss'
-import postcssCustomProperties from 'postcss-custom-properties'
-import postcssImport from 'postcss-import'
-
 const require = createRequire(import.meta.url)
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -21,20 +15,9 @@ const srcDir = path.join(uiRoot, 'src')
 const stageDir = path.join(uiRoot, 'public', '_')
 const buildDir = path.join(uiRoot, 'build')
 const sourcemaps = process.env.SOURCEMAPS === 'true'
-const fontAssetPathRx = /^~[^/]*(?:font|face)[^/]*\/.*\/files\/.+\.(?:ttf|woff2?)$/
 
-const pseudoElementFixerPlugin = {
-  postcssPlugin: 'pseudo-element-fixer',
-  Rule(rule) {
-    if (!rule.selector || !/(?:^|[^:]):(?:before|after)/.test(rule.selector)) {
-      return
-    }
-    if (!Array.isArray(rule.selectors)) {
-      return
-    }
-    rule.selectors = rule.selectors.map((selector) => selector.replace(/(^|[^:]):(before|after)$/g, '$1::$2'))
-  },
-}
+const tabsCssEntryName = '.asciidoctor-tabs.lightningcss-build.css'
+const siteJsEntryName = '.site.esbuild-entry.js'
 
 async function main() {
   const command = process.argv[2] ?? 'bundle'
@@ -101,6 +84,7 @@ async function format() {
 
 async function build() {
   console.log('Building UI assets...')
+  await ensureBuildToolsAvailable()
   await fs.rm(stageDir, { recursive: true, force: true })
   await fs.mkdir(stageDir, { recursive: true })
 
@@ -156,40 +140,29 @@ async function buildCss() {
   const vendorCssDir = path.join(cssDir, 'vendor')
   const vendorCssFiles = await readSortedFiles(vendorCssDir, '.css')
   const cssEntries = [path.join(cssDir, 'site.css'), ...vendorCssFiles.map((name) => path.join(vendorCssDir, name))]
+  const tabsCssPath = require.resolve('@asciidoctor/tabs/dist/css/tabs.css')
+  const tabsCssImportPath = normalizePathForCssImport(tabsCssPath)
+  const tabsCssEntryPath = path.join(cssDir, tabsCssEntryName)
 
-  for (const sourcePath of cssEntries) {
-    const rel = path.relative(cssDir, sourcePath)
-    const outputPath = path.join(stageDir, 'css', rel)
-    await fs.mkdir(path.dirname(outputPath), { recursive: true })
+  try {
+    await fs.writeFile(tabsCssEntryPath, `@import "${tabsCssImportPath}";\n`)
 
-    const source = await fs.readFile(sourcePath, 'utf8')
-    const result = await postcss([
-      postcssImport(),
-      createFontAssetCopyPlugin(path.join(stageDir, 'font')),
-      postcssCustomProperties({
-        disableDeprecationNotice: true,
-        importFrom: path.join(cssDir, 'vars.css'),
-        preserve: true,
-      }),
-      autoprefixer(),
-      pseudoElementFixerPlugin,
-    ]).process(source, { from: sourcePath, to: outputPath })
+    for (const sourcePath of cssEntries) {
+      const relPath = path.relative(cssDir, sourcePath).split(path.sep).join('/')
+      const outputPath = path.join(stageDir, 'css', relPath)
+      await fs.mkdir(path.dirname(outputPath), { recursive: true })
 
-    const minified = await esbuild.transform(result.css, {
-      loader: 'css',
-      minify: true,
-      sourcemap: sourcemaps ? 'external' : false,
-      sourcefile: rel,
-    })
+      const entryPath = relPath === 'vendor/asciidoctor-tabs.css' ? tabsCssEntryPath : sourcePath
 
-    let css = minified.code
-    if (sourcemaps && minified.map) {
-      const mapFileName = `${path.basename(outputPath)}.map`
-      css += `\n/*# sourceMappingURL=${mapFileName} */\n`
-      await fs.writeFile(`${outputPath}.map`, minified.map)
+      const args = [entryPath, '--bundle', '--minify', '--browserslist', '--output-file', outputPath]
+      if (sourcemaps) {
+        args.push('--sourcemap')
+      }
+
+      await runCommand('lightningcss', args, { cwd: cssDir })
     }
-
-    await fs.writeFile(outputPath, css)
+  } finally {
+    await fs.rm(tabsCssEntryPath, { force: true })
   }
 }
 
@@ -202,95 +175,83 @@ async function buildJs() {
   await fs.mkdir(stageVendorDir, { recursive: true })
 
   const siteEntryNames = (await readSortedFiles(jsDir, '.js')).filter((name) => /^\d+-.*\.js$/.test(name))
-  const siteEntrySource = siteEntryNames.map((name) => `import './${name}';`).join('\n')
+  const siteEntryPath = path.join(jsDir, siteJsEntryName)
 
-  await esbuild.build({
-    stdin: {
-      contents: siteEntrySource,
-      resolveDir: jsDir,
-      sourcefile: 'site-entry.js',
-      loader: 'js',
-    },
-    bundle: true,
-    minify: true,
-    format: 'iife',
-    target: ['es2018'],
-    sourcemap: sourcemaps ? 'external' : false,
-    legalComments: 'inline',
-    outfile: path.join(stageJsDir, 'site.js'),
-  })
+  try {
+    const siteEntrySource = `${siteEntryNames.map((name) => `import './${name}'`).join('\n')}\n`
+    await fs.writeFile(siteEntryPath, siteEntrySource)
 
-  await fs.copyFile(path.join(jsDir, 'flask.js'), path.join(stageJsDir, 'flask.js'))
-
-  const vendorNames = await readSortedFiles(vendorDir, '.js')
-  for (const name of vendorNames) {
-    const srcPath = path.join(vendorDir, name)
-
-    if (name.endsWith('.bundle.js')) {
-      const outName = name.replace(/\.bundle\.js$/, '.js')
-      await esbuild.build({
-        entryPoints: [srcPath],
-        bundle: true,
-        minify: true,
-        format: 'iife',
-        target: ['es2018'],
-        sourcemap: sourcemaps ? 'external' : false,
-        legalComments: 'inline',
-        outfile: path.join(stageVendorDir, outName),
-      })
-      continue
+    const siteArgs = [
+      siteEntryPath,
+      '--bundle',
+      '--minify',
+      '--format=iife',
+      '--target=es2018',
+      '--legal-comments=inline',
+      `--outfile=${path.join(stageJsDir, 'site.js')}`,
+    ]
+    if (sourcemaps) {
+      siteArgs.push('--sourcemap=external')
     }
+    await runCommand('esbuild', siteArgs, { cwd: jsDir })
 
-    if (name.endsWith('.min.js')) {
-      const outName = name.replace(/\.min\.js$/, '.js')
-      await fs.copyFile(srcPath, path.join(stageVendorDir, outName))
-      continue
-    }
+    await fs.copyFile(path.join(jsDir, 'flask.js'), path.join(stageJsDir, 'flask.js'))
 
-    const source = await fs.readFile(srcPath, 'utf8')
-    const minified = await esbuild.transform(source, {
-      loader: 'js',
-      minify: true,
-      sourcemap: sourcemaps ? 'external' : false,
-      sourcefile: name,
-      legalComments: 'inline',
-    })
-    await fs.writeFile(path.join(stageVendorDir, name), minified.code)
-    if (sourcemaps && minified.map) {
-      await fs.writeFile(path.join(stageVendorDir, `${name}.map`), minified.map)
+    const vendorNames = await readSortedFiles(vendorDir, '.js')
+    for (const name of vendorNames) {
+      const srcPath = path.join(vendorDir, name)
+
+      if (name.endsWith('.bundle.js')) {
+        const outName = name.replace(/\.bundle\.js$/, '.js')
+        const args = [
+          srcPath,
+          '--bundle',
+          '--minify',
+          '--format=iife',
+          '--target=es2018',
+          '--legal-comments=inline',
+          `--outfile=${path.join(stageVendorDir, outName)}`,
+        ]
+        if (sourcemaps) {
+          args.push('--sourcemap=external')
+        }
+        await runCommand('esbuild', args, { cwd: vendorDir })
+        continue
+      }
+
+      if (name.endsWith('.min.js')) {
+        const outName = name.replace(/\.min\.js$/, '.js')
+        await fs.copyFile(srcPath, path.join(stageVendorDir, outName))
+        continue
+      }
+
+      const args = [
+        srcPath,
+        '--minify',
+        '--target=es2018',
+        '--legal-comments=inline',
+        `--outfile=${path.join(stageVendorDir, name)}`,
+      ]
+      if (sourcemaps) {
+        args.push('--sourcemap=external')
+      }
+      await runCommand('esbuild', args, { cwd: vendorDir })
     }
+  } finally {
+    await fs.rm(siteEntryPath, { force: true })
   }
 }
 
-function createFontAssetCopyPlugin(fontDestDir) {
-  return {
-    postcssPlugin: 'font-asset-copy',
-    async Declaration(decl) {
-      if (!decl.value || !decl.value.includes('url(')) {
-        return
-      }
+async function ensureBuildToolsAvailable() {
+  await assertCommandAvailable('lightningcss', ['--version'])
+  await assertCommandAvailable('esbuild', ['--version'])
+}
 
-      const matches = [...decl.value.matchAll(/url\((['"]?)(~[^'")]+)\1\)/g)]
-      for (const match of matches) {
-        const requestWithSigil = match[2]
-        if (!fontAssetPathRx.test(requestWithSigil)) {
-          continue
-        }
-
-        const request = requestWithSigil.slice(1)
-        let resolvedPath
-        try {
-          resolvedPath = require.resolve(request)
-        } catch (_error) {
-          continue
-        }
-
-        const basename = path.basename(resolvedPath)
-        await fs.mkdir(fontDestDir, { recursive: true })
-        await fs.copyFile(resolvedPath, path.join(fontDestDir, basename))
-        decl.value = decl.value.replace(match[0], `url("../font/${basename}")`)
-      }
-    },
+async function assertCommandAvailable(command, args) {
+  try {
+    await runCommandCapture(command, args, { cwd: uiRoot })
+  } catch (_error) {
+    throw new Error(`Required binary "${command}" is not on PATH. Run via \`nix develop --command ...\`.`)
   }
 }
 
@@ -308,6 +269,10 @@ async function resolveUiVersion() {
     // fallback handled below
   }
   return 'unknown'
+}
+
+function normalizePathForCssImport(filePath) {
+  return filePath.split(path.sep).join('/')
 }
 
 async function copyDirectory(from, to) {

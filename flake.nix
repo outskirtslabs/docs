@@ -70,6 +70,8 @@
               ];
               packages = (corePackages pkgs) ++ [
                 pkgs.asciidoctor
+                pkgs.esbuild
+                pkgs.lightningcss
                 pkgs.nodejs_24
                 pkgs.playwright
                 pkgs.playwright-test
