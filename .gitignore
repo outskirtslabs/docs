@@ -2,6 +2,7 @@
 .worktrees/
 extra/
 build/
+.antora-playbook.worktree.yml
 node_modules/
 ui/node_modules/
 ui/build/

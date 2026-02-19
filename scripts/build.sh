@@ -6,6 +6,7 @@ ROOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 
 PLAYBOOK="${1:?Usage: build.sh <playbook.yml>}"
 shift
+ANTORA_PLAYBOOK="$(bash "$SCRIPT_DIR/prepare-antora-playbook.sh" "$PLAYBOOK")"
 
 # -- Generate home project catalog partial --
 echo "Generating home project catalog partial..."
@@ -17,7 +18,7 @@ echo "Building UI theme..."
 
 # -- Build the site --
 echo "Building Antora site..."
-antora --stacktrace "$@" "$ROOT_DIR/$PLAYBOOK"
+npx antora --stacktrace "$@" "$ANTORA_PLAYBOOK"
 
 # -- Apply static syntax highlighting --
 echo "Applying Arborium syntax highlighting..."

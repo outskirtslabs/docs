@@ -22,6 +22,10 @@ signal_live_reload() {
   date +%s%N > "$LIVE_RELOAD_TOKEN_PATH"
 }
 
+resolve_antora_playbook() {
+  bash "$ROOT_DIR/scripts/prepare-antora-playbook.sh" "$DEV_PLAYBOOK"
+}
+
 cleanup() {
   echo ""
   echo "Shutting down..."
@@ -35,10 +39,13 @@ trap cleanup INT TERM
 
 # --- Fast local rebuild (skip api docs + readme sync) ---
 rebuild() {
+  local antora_playbook
+  antora_playbook="$(resolve_antora_playbook)"
+
   echo "--- Rebuilding theme + site ---"
   bb gen-home && \
   (cd ui && SOURCEMAPS="$DEV_SOURCEMAPS" node scripts/build-ui.mjs build) && \
-  antora --stacktrace --url "$DEV_SITE_URL" "$DEV_PLAYBOOK" && \
+  npx antora --stacktrace --url "$DEV_SITE_URL" "$antora_playbook" && \
   node scripts/highlight-arborium.mjs --site-dir build/site && \
   prepare_live_reload && \
   "$NGINX_HELPER" reload "$DEV_PORT" && \
