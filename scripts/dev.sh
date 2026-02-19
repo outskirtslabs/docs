@@ -47,6 +47,7 @@ rebuild() {
   (cd ui && SOURCEMAPS="$DEV_SOURCEMAPS" node scripts/build-ui.mjs build) && \
   npx antora --stacktrace --url "$DEV_SITE_URL" "$antora_playbook" && \
   node scripts/highlight-arborium.mjs --site-dir build/site && \
+  npx pagefind --site build/site && \
   prepare_live_reload && \
   "$NGINX_HELPER" reload "$DEV_PORT" && \
   signal_live_reload && \

@@ -325,7 +325,7 @@ html.is-clipped--search {
   opacity: 0.68;
 }
 
-/* Reset Lunr dropdown positioning inside modal body */
+/* Reset search dropdown positioning inside modal body */
 .search-modal-body .search-result-dropdown-menu {
   position: static !important;
   transform: none !important;
@@ -416,25 +416,60 @@ html.dark-theme .search-modal-keymap kbd {
 
 /* ── Search result content styles (shared) ── */
 .search-result-dataset {
+  position: relative;
+  border: 1px solid var(--nav-panel-divider-color);
+  overflow: auto;
+  padding: 8px;
+  max-height: none;
+  line-height: 1.5;
   border-radius: 0;
   background: var(--body-background-color);
   border-color: var(--nav-panel-divider-color);
 }
 
-/* Override extension's gray text -- !important needed because extension CSS loads after UI bundle */
+.search-result-item {
+  display: flex;
+  margin-top: 0.5rem;
+}
+
 .search-result-component-header {
+  border-bottom: 1px solid var(--nav-panel-divider-color);
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
   color: var(--body-font-color) !important;
 }
 
 .search-result-document-title {
+  width: 33%;
+  border-right: 1px solid var(--nav-panel-divider-color);
+  font-weight: 500;
+  font-size: calc(13 / var(--rem-base) * 1rem);
+  padding: 0.5rem 0.5rem 0.5rem 0;
+  text-align: right;
+  position: relative;
+  word-wrap: break-word;
   color: var(--body-font-color) !important;
 }
 
 .search-result-document-hit {
+  flex: 1;
+  font-size: calc(12 / var(--rem-base) * 1rem);
   color: var(--body-font-color) !important;
 }
 
+.search-result-document-hit > a {
+  color: inherit;
+  display: block;
+  padding: 0.55rem 0.25rem 0.55rem 0.75rem;
+  text-decoration: none;
+}
+
 .search-result-document-hit .search-result-section-title {
+  font-weight: 500;
+  font-size: 1.05em;
+  margin-bottom: 0.25em;
   color: var(--body-font-color) !important;
 }
 
@@ -447,6 +482,8 @@ html.dark-theme .search-modal-keymap kbd {
 .search-result-document-hit .search-result-highlight {
   color: var(--color-ol-orange-700) !important;
   background: var(--color-ol-orange-50) !important;
+  padding: 0.1em 0.05em;
+  font-weight: 500;
 }
 
 /* Dark theme overrides */

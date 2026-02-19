@@ -1,1 +1,1 @@
-require('@asciidoctor/tabs')
+require('@asciidoctor/tabs/script')

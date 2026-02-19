@@ -83,7 +83,6 @@ let
       extensions = [ "@asciidoctor/tabs" ];
     };
     antora.extensions = [
-      { require = "./extensions/lunr-tokenizer"; }
       { require = "./extensions/alias-component-to-latest-version"; }
       {
         require = "./extensions/antora-llm-generator";
@@ -94,10 +93,6 @@ let
           "**/api/index.html"
         ];
       }
-      {
-        require = "@antora/lunr-extension";
-        index_latest_only = false;
-      }
     ];
   };
 in
@@ -106,7 +101,7 @@ buildNpmPackage {
   pname = "docs-site";
   inherit version;
   src = ../.;
-  npmDepsHash = "sha256-MeDCT3+M5vu+oZaaJBSjD8kRVW7FLfaNohlf+6suubw=";
+  npmDepsHash = "sha256-3/gydd/Rr9GwtEro4QOYCgVCGgb/v3/mMibWBNoPUBk=";
   dontNpmBuild = true;
 
   nativeBuildInputs = [
@@ -146,6 +141,7 @@ EOF
     fi
     chmod -R u+w build/site
     node scripts/highlight-arborium.mjs --site-dir build/site
+    npx pagefind --site build/site
 
     runHook postBuild
   '';

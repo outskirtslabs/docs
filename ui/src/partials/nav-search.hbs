@@ -1,5 +1,4 @@
-{{#if env.SITE_SEARCH_PROVIDER}}
-  <div class="search">
+  <div class="search" data-pagefind-ignore="all">
     <button class="search-trigger" type="button" id="search-trigger">
       <svg
         class="search-icon"
@@ -32,6 +31,7 @@
   <div
     class="search-modal hidden"
     id="search-modal"
+    data-pagefind-ignore="all"
     data-current-component="{{page.component.name}}"
     data-current-version="{{page.version}}"
   >
@@ -135,4 +135,3 @@
       </div>
     </div>
   </div>
-{{/if}}

@@ -24,4 +24,8 @@ npx antora --stacktrace "$@" "$ANTORA_PLAYBOOK"
 echo "Applying Arborium syntax highlighting..."
 node "$ROOT_DIR/scripts/highlight-arborium.mjs" --site-dir "$ROOT_DIR/build/site"
 
+# -- Build Pagefind search index --
+echo "Building Pagefind search index..."
+npx pagefind --site "$ROOT_DIR/build/site"
+
 echo "Done. Output in $ROOT_DIR/build/site/"

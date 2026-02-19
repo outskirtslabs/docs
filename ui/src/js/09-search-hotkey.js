@@ -160,6 +160,7 @@ function initSearchHotkey(options) {
     if (searchInput) {
       searchInput.value = ''
       if (EventCtor) {
+        searchInput.dispatchEvent(new EventCtor('input'))
         searchInput.dispatchEvent(new EventCtor('keydown'))
       }
       searchInput.blur()
@@ -234,8 +235,7 @@ function initSearchHotkey(options) {
     }
   })
 
-  // Prevent clicks inside the dialog from propagating to document.documentElement
-  // (Lunr's extension adds a click handler there to clear results)
+  // Prevent clicks inside the dialog from propagating to document.documentElement.
   var dialog = modal.querySelector('.search-modal-dialog')
   if (dialog) {
     dialog.addEventListener('click', function (e) {
@@ -243,8 +243,8 @@ function initSearchHotkey(options) {
     })
   }
 
-  // MutationObserver: when Lunr appends .search-result-dropdown-menu to
-  // modal-header (the parentNode of #search-input), move it to modal-body
+  // Keep result counts/placeholder in sync when search results are rendered.
+  // If a backend appends .search-result-dropdown-menu to modal-header, move it.
   if (modalHeader && MutationObserverCtor) {
     var headerObserver = new MutationObserverCtor(function () {
       var dropdown = modalHeader.querySelector('.search-result-dropdown-menu')

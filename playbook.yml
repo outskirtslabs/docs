@@ -58,7 +58,6 @@ asciidoc:
     - "@asciidoctor/tabs"
 antora:
   extensions:
-    - require: "./extensions/lunr-tokenizer"
     - require: "./extensions/alias-component-to-latest-version"
     - require: "./extensions/antora-llm-generator"
       skippaths:
@@ -66,5 +65,3 @@ antora:
         - "**/api/index"
         - "**/api.html"
         - "**/api/index.html"
-    - require: "@antora/lunr-extension"
-      index_latest_only: false
