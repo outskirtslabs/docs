@@ -1,6 +1,6 @@
 {
   buildNpmPackage,
-  gitMinimal,
+  zip,
 }:
 let
   version = "0.0.1-prototype";
@@ -9,26 +9,18 @@ buildNpmPackage {
   pname = "docs-ui";
   inherit version;
   src = ../ui;
-  npmDepsHash = "sha256-Q8v31QVJqU00TnnKvyudX3z/D8JofCkAphkpggxQDZo=";
+  npmDepsHash = "sha256-M2Yt3O3qcLoQ1Q7uc8muEngOKIgALnLadx1R2PFkRcE=";
   dontNpmBuild = true;
 
-  nativeBuildInputs = [ gitMinimal ];
-
-  SHARP_IGNORE_GLOBAL_LIBVIPS = "1";
+  nativeBuildInputs = [ zip ];
 
   buildPhase = ''
     runHook preBuild
 
-    # git-rev-sync requires a repository to exist during gulp bundle.
-    export HOME="$TMPDIR/home"
-    mkdir -p "$HOME"
-    ${gitMinimal}/bin/git config --global user.email "nix-builder@example.invalid"
-    ${gitMinimal}/bin/git config --global user.name "nix builder"
-    ${gitMinimal}/bin/git init -q
-    ${gitMinimal}/bin/git add .
-    ${gitMinimal}/bin/git commit -q -m "ui bundle build"
+    export ANTORA_UI_VERSION="${version}"
+    export SKIP_LINT=1
 
-    npx gulp bundle
+    node scripts/build-ui.mjs bundle
 
     runHook postBuild
   '';

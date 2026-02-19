@@ -68,12 +68,6 @@
                 { package = pkgs.arborium; }
                 { package = pkgs.babashka-unwrapped; }
               ];
-              env = [
-                {
-                  name = "SHARP_IGNORE_GLOBAL_LIBVIPS";
-                  value = "1";
-                }
-              ];
               packages = (corePackages pkgs) ++ [
                 pkgs.asciidoctor
                 pkgs.nodejs_24

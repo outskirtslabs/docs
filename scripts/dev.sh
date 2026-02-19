@@ -6,6 +6,7 @@ cd "$ROOT_DIR"
 DEV_PORT="${DEV_PORT:-8084}"
 DEV_SITE_URL="http://localhost:${DEV_PORT}"
 DEV_SOURCEMAPS="${DEV_SOURCEMAPS:-true}"
+DEV_PLAYBOOK="${DEV_PLAYBOOK:-playbook.yml}"
 WATCH_PATHS=(ui/src components)
 INOTIFY_EXCLUDE_REGEX='home-project-catalog\.adoc$'
 HASH_EXCLUDE_PATH='components/home/modules/ROOT/partials/home-project-catalog.adoc'
@@ -36,8 +37,8 @@ trap cleanup INT TERM
 rebuild() {
   echo "--- Rebuilding theme + site ---"
   bb gen-home && \
-  (cd ui && SOURCEMAPS="$DEV_SOURCEMAPS" npx gulp bundle) && \
-  npx antora --stacktrace --url "$DEV_SITE_URL" playbook.yml && \
+  (cd ui && SOURCEMAPS="$DEV_SOURCEMAPS" node scripts/build-ui.mjs build) && \
+  npx antora --stacktrace --url "$DEV_SITE_URL" "$DEV_PLAYBOOK" && \
   node scripts/highlight-arborium.mjs --site-dir build/site && \
   prepare_live_reload && \
   "$NGINX_HELPER" reload "$DEV_PORT" && \
@@ -53,7 +54,7 @@ rebuild_or_continue() {
 
 # --- Initial full build ---
 echo "Running initial build..."
-SOURCEMAPS="$DEV_SOURCEMAPS" bash scripts/build.sh playbook.yml --url "$DEV_SITE_URL"
+SOURCEMAPS="$DEV_SOURCEMAPS" bash scripts/build.sh "$DEV_PLAYBOOK" --url "$DEV_SITE_URL"
 prepare_live_reload
 
 # --- Start local nginx server ---

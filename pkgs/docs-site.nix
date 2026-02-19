@@ -106,7 +106,7 @@ buildNpmPackage {
   pname = "docs-site";
   inherit version;
   src = ../.;
-  npmDepsHash = "sha256-Jpqz6UgNogMKtgLP21mtO3KIwIx1Yb3/2RftVEeLZls=";
+  npmDepsHash = "sha256-F/6YxkHaFoMgbzjGae9LH2x/tQb68stwuIe9DoN+K4U=";
   dontNpmBuild = true;
 
   nativeBuildInputs = [

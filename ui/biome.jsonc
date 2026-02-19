@@ -8,8 +8,7 @@
   "files": {
     "ignoreUnknown": true,
     "includes": [
-      "gulpfile.js",
-      "gulp.d/**/*.js",
+      "scripts/**/*.mjs",
       "src/helpers/**/*.js",
       "src/js/**/*.js",
       "src/css/**/*.css",

@@ -13,7 +13,7 @@ echo "Generating home project catalog partial..."
 
 # -- Build UI theme --
 echo "Building UI theme..."
-(cd "$ROOT_DIR/ui" && npx gulp bundle)
+(cd "$ROOT_DIR/ui" && node scripts/build-ui.mjs bundle)
 
 # -- Build the site --
 echo "Building Antora site..."
