@@ -25,7 +25,7 @@ module.exports = () => {
     }
   })
 
-  function format (file, enc, next) {
+  function format(file, _enc, next) {
     if (file.isNull()) return next()
     if (file.isStream()) return next(new PluginError('gulp-prettier-eslint', 'Streaming not supported'))
 

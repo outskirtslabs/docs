@@ -27,7 +27,7 @@ module.exports = (src, dest) => () => {
   const sourcemaps = process.env.SOURCEMAPS === 'true'
   const postcssPlugins = [
     postcssImport,
-    (css, { messages, opts: { file } }) =>
+    (_css, { messages, opts: { file } }) =>
       Promise.all(
         messages
           .reduce((accum, { file: depPath, type }) => (type === 'dependency' ? accum.concat(depPath) : accum), [])
@@ -73,7 +73,7 @@ module.exports = (src, dest) => () => {
       .pipe(uglify({ output: { comments: /^! / } })),
     vfs
       .src('js/vendor/*.min.js', opts)
-      .pipe(map((file, enc, next) => next(null, Object.assign(file, { extname: '' }, { extname: '.js' })))),
+      .pipe(map((file, _enc, next) => next(null, Object.assign(file, { extname: '' }, { extname: '.js' })))),
     // NOTE use the next line to bundle a JavaScript library that cannot be browserified, like jQuery
     //vfs.src(require.resolve('<package-name-or-require-path>'), opts).pipe(concat('js/vendor/<library-name>.js')),
     vfs
@@ -87,8 +87,8 @@ module.exports = (src, dest) => () => {
   ).pipe(vfs.dest(dest, { sourcemaps: sourcemaps && '.' }))
 }
 
-function bundle ({ base: basedir, ext: bundleExt = '.bundle.js' }) {
-  return map((file, enc, next) => {
+function bundle({ base: basedir, ext: bundleExt = '.bundle.js' }) {
+  return map((file, _enc, next) => {
     if (bundleExt && file.relative.endsWith(bundleExt)) {
       const mtimePromises = []
       const bundlePath = file.path
@@ -113,14 +113,14 @@ function bundle ({ base: basedir, ext: bundleExt = '.bundle.js' }) {
   })
 }
 
-function postcssPseudoElementFixer (css, result) {
+function postcssPseudoElementFixer(css, _result) {
   css.walkRules(/(?:^|[^:]):(?:before|after)/, (rule) => {
     rule.selector = rule.selectors.map((it) => it.replace(/(^|[^:]):(before|after)$/, '$1::$2')).join(',')
   })
 }
 
-function optimizeImages () {
-  return map((file, enc, next) => {
+function optimizeImages() {
+  return map((file, _enc, next) => {
     if (!file.contents || file.isNull()) {
       next(null, file)
       return

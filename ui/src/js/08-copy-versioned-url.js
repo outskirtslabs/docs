@@ -18,10 +18,10 @@
 
   activateCopyUrl(document.getElementById('copy-url'))
 
-  function activateCopyUrl (copyUrl) {
+  function activateCopyUrl(copyUrl) {
     if (!copyUrl) return
 
-    copyUrl.addEventListener('click', function (event) {
+    copyUrl.addEventListener('click', function (_event) {
       const hash = _hash(window)
       const versionedUrl = document.querySelector('meta[name="versioned-url"]')?.content + hash
       window.navigator.clipboard.writeText(versionedUrl)
@@ -32,13 +32,13 @@
     })
   }
 
-  function _hash (window) {
+  function _hash(window) {
     const hash = window.location.hash
     return isValidHash(hash) ? hash : ''
   }
 
   // ensure malicious user cannot inject code via URL hash
-  function isValidHash (hash) {
+  function isValidHash(hash) {
     if (!hash || typeof hash !== 'string') return false
     const isHashRegex = /^#[-.\w]+$/
     return isHashRegex.test(hash)

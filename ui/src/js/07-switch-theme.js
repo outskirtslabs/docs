@@ -7,21 +7,21 @@
   var mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
   var currentSetting
 
-  function getStoredTheme () {
+  function getStoredTheme() {
     var stored = window.localStorage && window.localStorage.getItem(THEME_KEY)
     return VALID.indexOf(stored) !== -1 ? stored : 'system'
   }
 
-  function saveTheme (value) {
+  function saveTheme(value) {
     window.localStorage && window.localStorage.setItem(THEME_KEY, value)
   }
 
-  function applyEffectiveTheme (dark) {
+  function applyEffectiveTheme(dark) {
     document.documentElement.classList.toggle('dark-theme', dark)
     document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light')
   }
 
-  function updateToggleUI (setting) {
+  function updateToggleUI(setting) {
     var containers = document.querySelectorAll('.theme-toggle')
     for (var c = 0; c < containers.length; c++) {
       var buttons = containers[c].querySelectorAll('.theme-toggle-btn')
@@ -39,13 +39,13 @@
     }
   }
 
-  function onSystemChange (e) {
+  function onSystemChange(e) {
     if (currentSetting === 'system') {
       applyEffectiveTheme(e.matches)
     }
   }
 
-  function applyTheme (setting) {
+  function applyTheme(setting) {
     currentSetting = setting
     if (setting === 'system') {
       applyEffectiveTheme(mediaQuery.matches)

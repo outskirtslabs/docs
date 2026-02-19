@@ -128,7 +128,9 @@ mark {
   mask-position: 50% 50%;
   mask-size: 20px 20px;
   pointer-events: none;
-  transition: opacity 180ms ease, transform 180ms ease;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
 }
 
 .doc .source-toolbox .copy-button::before {
@@ -154,8 +156,7 @@ mark {
 }
 
 .doc .source-toolbox .fold-button {
-  background:
-    no-repeat scroll 50% 50% / 16px 16px padding-box border-box
+  background: no-repeat scroll 50% 50% / 16px 16px padding-box border-box
     url(../img/phosphor-caret-down.svg);
 }
 
@@ -261,8 +262,7 @@ mark {
 }
 
 .doc .admonitionblock td.icon i.icon-caution {
-  background:
-    no-repeat scroll 0.5em 50% / 16px 16px padding-box border-box
+  background: no-repeat scroll 0.5em 50% / 16px 16px padding-box border-box
     url(../img/phosphor-fire.svg);
 }
 
@@ -271,8 +271,7 @@ mark {
 }
 
 .doc .admonitionblock td.icon i.icon-important {
-  background:
-    no-repeat scroll 0.5em 50% / 16px 16px padding-box border-box
+  background: no-repeat scroll 0.5em 50% / 16px 16px padding-box border-box
     url(../img/phosphor-warning-circle.svg);
 }
 
@@ -281,8 +280,7 @@ mark {
 }
 
 .doc .admonitionblock td.icon i.icon-note {
-  background:
-    no-repeat scroll 0.5em 50% / 16px 16px padding-box border-box
+  background: no-repeat scroll 0.5em 50% / 16px 16px padding-box border-box
     url(../img/phosphor-info.svg);
 }
 
@@ -291,8 +289,7 @@ mark {
 }
 
 .doc .admonitionblock td.icon i.icon-tip {
-  background:
-    no-repeat scroll 0.5em 50% / 16px 16px padding-box border-box
+  background: no-repeat scroll 0.5em 50% / 16px 16px padding-box border-box
     url(../img/phosphor-lightbulb.svg);
 }
 
@@ -301,8 +298,7 @@ mark {
 }
 
 .doc .admonitionblock td.icon i.icon-warning {
-  background:
-    no-repeat scroll 0.5em 50% / 16px 16px padding-box border-box
+  background: no-repeat scroll 0.5em 50% / 16px 16px padding-box border-box
     url(../img/phosphor-warning.svg);
 }
 
@@ -395,17 +391,16 @@ body.status-404 .page-404-image {
   margin: 0 auto 1rem;
   border: 2px solid color-mix(in oklab, var(--color-ol-orange) 45%, transparent);
   border-radius: 1.1rem;
-  clip-path:
-    polygon(
-      1rem 0,
-      calc(100% - 1rem) 0,
-      100% 1rem,
-      100% calc(100% - 1rem),
-      calc(100% - 1rem) 100%,
-      1rem 100%,
-      0 calc(100% - 1rem),
-      0 1rem
-    );
+  clip-path: polygon(
+    1rem 0,
+    calc(100% - 1rem) 0,
+    100% 1rem,
+    100% calc(100% - 1rem),
+    calc(100% - 1rem) 100%,
+    1rem 100%,
+    0 calc(100% - 1rem),
+    0 1rem
+  );
   box-shadow:
     0 0 0 1px color-mix(in oklab, var(--color-ol-orange) 18%, transparent),
     0 10px 28px color-mix(in oklab, var(--color-ol-orange) 28%, transparent),
@@ -591,4 +586,8 @@ html.dark .ol-logo {
   html:not(.dark) .ol-logo {
     color: #201e1d;
   }
+}
+
+.llm-only {
+  display: none;
 }

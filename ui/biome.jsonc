@@ -1,0 +1,55 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.4.2/schema.json",
+  "vcs": {
+    "enabled": false,
+    "clientKind": "git",
+    "useIgnoreFile": false
+  },
+  "files": {
+    "ignoreUnknown": true,
+    "includes": [
+      "gulpfile.js",
+      "gulp.d/**/*.js",
+      "src/helpers/**/*.js",
+      "src/js/**/*.js",
+      "src/css/**/*.css",
+      "!src/js/flask.js",
+      "!src/js/vendor/**/*.min.js",
+      "!build/**",
+      "!public/**"
+    ]
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 120
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "complexity": "off",
+      "style": "off",
+      "correctness": {
+        "noInnerDeclarations": "off"
+      },
+      "suspicious": {
+        "noAssignInExpressions": "off",
+        "noRedundantUseStrict": "off",
+        "noShorthandPropertyOverrides": "off",
+        "useIterableCallbackReturn": "warn"
+      }
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single",
+      "semicolons": "asNeeded",
+      "trailingCommas": "es5"
+    }
+  },
+  "assist": {
+    "enabled": false
+  }
+}

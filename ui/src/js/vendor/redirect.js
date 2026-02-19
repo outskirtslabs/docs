@@ -4,7 +4,7 @@
   window.addEventListener('load', onChange)
   window.addEventListener('hashchange', onChange)
 
-  function onChange () {
+  function onChange() {
     const params = new URLSearchParams(window.location.search)
     const page = params.get('page') || ''
     const fragment = window.location.hash

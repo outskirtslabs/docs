@@ -1,4 +1,5 @@
-;(function () { /*! Spring.io Asciidoctor Source Toolbox | ASL-2.0 License */
+;(function () {
+  /*! Spring.io Asciidoctor Source Toolbox | ASL-2.0 License */
   'use strict'
 
   var CMD_RX = /^\$ (\S[^\\\n]*(\\\n(?!\$ )[^\\\n]*)*)(?=\n|$)/gm
@@ -46,14 +47,14 @@
     }
   })
 
-  function extractCommands (text) {
+  function extractCommands(text) {
     var cmds = []
     var match
     while ((match = CMD_RX.exec(text))) cmds.push(match[1].replace(LINE_CONTINUATION_RX, '$1$2'))
     return cmds.join(' && ')
   }
 
-  function toggleFolds (code) {
+  function toggleFolds(code) {
     var scratchBlock = getScratchBlock(code)
     var newState = code.classList.contains('is-unfolded') ? 'folded' : 'unfolded'
     ;[].slice.call(code.querySelectorAll('.fold-block')).forEach(function (foldBlock) {
@@ -78,19 +79,19 @@
     //}, 300)
   }
 
-  function clearMaxHeight (e) {
+  function clearMaxHeight(e) {
     this.removeEventListener(e.type, clearMaxHeight)
     this.style.maxHeight = ''
   }
 
-  function getScratchBlock (code) {
+  function getScratchBlock(code) {
     var el = code.querySelector('.scratch-block')
     if (el) return el
     var style = 'clear: left; height: 0; overflow: hidden'
     return code.appendChild(Object.assign(document.createElement('div'), { className: 'scratch-block', style: style }))
   }
 
-  function writeToClipboard (code) {
+  function writeToClipboard(code) {
     var subject = code
     if (code.querySelector('.fold-block')) {
       subject = code.cloneNode(true)
@@ -108,10 +109,10 @@
           function () {
             this.classList.remove('clicked')
           }.bind(this),
-          900,
+          900
         )
       }.bind(this),
-      function () {},
+      function () {}
     )
   }
 })()

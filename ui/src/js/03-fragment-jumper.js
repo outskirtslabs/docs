@@ -4,15 +4,15 @@
   var article = document.querySelector('article.doc')
   var toolbar = document.querySelector('.header .navbar')
 
-  function decodeFragment (hash) {
+  function decodeFragment(hash) {
     return hash && (~hash.indexOf('%') ? decodeURIComponent(hash) : hash).slice(1)
   }
 
-  function computePosition (el, sum) {
+  function computePosition(el, sum) {
     return article.contains(el) ? computePosition(el.offsetParent, el.offsetTop + sum) : sum
   }
 
-  function jumpToAnchor (e) {
+  function jumpToAnchor(e) {
     if (e) {
       if (e.altKey || e.ctrlKey) return
       window.location.hash = '#' + this.id
@@ -21,7 +21,7 @@
     window.scrollTo(0, computePosition(this, 0) - toolbar.getBoundingClientRect().bottom - 80)
   }
 
-  window.addEventListener('load', function jumpOnLoad (e) {
+  window.addEventListener('load', function jumpOnLoad(_e) {
     var fragment, target
     if ((fragment = decodeFragment(window.location.hash)) && (target = document.getElementById(fragment))) {
       jumpToAnchor.bind(target)()

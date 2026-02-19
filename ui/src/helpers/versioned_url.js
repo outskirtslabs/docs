@@ -7,9 +7,10 @@ module.exports = (siteUrl, versionSegment, url) => {
   }
 
   const normalizedUrl = url.startsWith('/') ? url : `/${url}`
-  const versionPath = versionSegment && !normalizedUrl.includes(`/${versionSegment}/`)
-    ? `/${versionSegment}${normalizedUrl}`
-    : normalizedUrl
+  const versionPath =
+    versionSegment && !normalizedUrl.includes(`/${versionSegment}/`)
+      ? `/${versionSegment}${normalizedUrl}`
+      : normalizedUrl
 
   if (!siteUrl) return versionPath
 

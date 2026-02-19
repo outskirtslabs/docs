@@ -76,7 +76,7 @@
     isNavOpen = !isNavOpen
   })
 
-  function onHashChange () {
+  function onHashChange() {
     var navLink
     var hash = window.location.hash
     if (hash) {
@@ -119,7 +119,7 @@
     window.addEventListener('hashchange', onHashChange)
   }
 
-  function activateCurrentPath (navItem) {
+  function activateCurrentPath(navItem) {
     var ancestorClasses
     var ancestor = navItem.parentNode
     while (!(ancestorClasses = ancestor.classList).contains('nav-menu')) {
@@ -131,7 +131,7 @@
     navItem.classList.add('is-active')
   }
 
-  function toggleActive () {
+  function toggleActive() {
     if (this.classList.toggle('is-active')) {
       var padding = parseFloat(window.getComputedStyle(this).marginTop)
       var rect = this.getBoundingClientRect()
@@ -141,7 +141,7 @@
     }
   }
 
-  function showNav (e) {
+  function showNav(e) {
     if (navToggle1.classList.contains('is-active')) return hideNav(e)
     if (navToggle2.classList.contains('is-active')) return hideNav(e)
     trapEvent(e)
@@ -156,7 +156,7 @@
     html.addEventListener('click', hideNav)
   }
 
-  function hideNav (e) {
+  function hideNav(e) {
     trapEvent(e)
     var html = document.documentElement
     html.classList.remove('is-clipped--nav')
@@ -166,11 +166,11 @@
     html.removeEventListener('click', hideNav)
   }
 
-  function trapEvent (e) {
+  function trapEvent(e) {
     e.stopPropagation()
   }
 
-  function scrollItemToMidpoint (panel, el) {
+  function scrollItemToMidpoint(panel, el) {
     var rect = panel.getBoundingClientRect()
     var effectiveHeight = rect.height
     var navStyle = window.getComputedStyle(nav)
@@ -178,31 +178,31 @@
     panel.scrollTop = Math.max(0, (el.getBoundingClientRect().height - effectiveHeight) * 0.5 + el.offsetTop)
   }
 
-  function find (from, selector) {
+  function find(from, selector) {
     return [].slice.call(from.querySelectorAll(selector))
   }
 
-  function findNextElement (from, selector) {
+  function findNextElement(from, selector) {
     var el = from.nextElementSibling
     return el && selector ? el[el.matches ? 'matches' : 'msMatchesSelector'](selector) && el : el
   }
 
   // Navbar width
-  function setNavbarWidth (width) {
+  function setNavbarWidth(width) {
     document.documentElement.style.setProperty('--nav-width', `${width}px`)
     window.localStorage && window.localStorage.setItem('nav-width', `${width}`)
   }
-  document.querySelector('.nav-resize').addEventListener('mousedown', (event) => {
+  document.querySelector('.nav-resize').addEventListener('mousedown', (_event) => {
     document.addEventListener('mousemove', resize, false)
     document.addEventListener(
       'mouseup',
       () => {
         document.removeEventListener('mousemove', resize, false)
       },
-      false,
+      false
     )
   })
-  function resize (e) {
+  function resize(e) {
     let value = Math.max(250, e.x)
     value = Math.min(600, value)
     setNavbarWidth(value)

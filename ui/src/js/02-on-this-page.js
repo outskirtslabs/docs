@@ -71,7 +71,7 @@
     window.addEventListener('scroll', onScroll)
   })
 
-  function onScroll () {
+  function onScroll() {
     var scrolledBy = window.pageYOffset
     var buffer = getNumericStyleVal(document.documentElement, 'fontSize') * 1.15 + 80
     var ceil = article.offsetTop
@@ -102,6 +102,7 @@
     headings.some(function (heading) {
       if (heading.getBoundingClientRect().top + getNumericStyleVal(heading, 'paddingTop') - buffer > ceil) return true
       activeFragment = '#' + heading.id
+      return false
     })
     if (activeFragment) {
       if (activeFragment === lastActiveFragment) return
@@ -118,11 +119,11 @@
     }
   }
 
-  function find (selector, from) {
+  function find(selector, from) {
     return [].slice.call((from || document).querySelectorAll(selector))
   }
 
-  function getNumericStyleVal (el, prop) {
+  function getNumericStyleVal(el, prop) {
     return parseFloat(window.getComputedStyle(el)[prop])
   }
 })()
