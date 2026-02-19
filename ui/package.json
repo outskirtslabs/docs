@@ -3,7 +3,7 @@
     "node": ">=20.0.0"
   },
   "browserslist": [
-    "defaults"
+    "baseline widely available"
   ],
   "devDependencies": {
     "@asciidoctor/tabs": "1.0.0-beta.6",
