@@ -12,17 +12,20 @@
 }:
 let
   dateStamp =
-    if builtins.stringLength versionDate >= 8 then
-      builtins.substring 0 8 versionDate
-    else
-      "19700101";
-  version =
-    "${builtins.substring 0 4 dateStamp}-${builtins.substring 4 2 dateStamp}-${builtins.substring 6 2 dateStamp}";
+    if builtins.stringLength versionDate >= 8 then builtins.substring 0 8 versionDate else "19700101";
+  version = "${builtins.substring 0 4 dateStamp}-${builtins.substring 4 2 dateStamp}-${
+    builtins.substring 6 2 dateStamp
+  }";
   projects = import ./projects.nix;
 
   fetchedProjects = lib.mapAttrs (
     _projectName:
-    { url, rev, hash, ... }:
+    {
+      url,
+      rev,
+      hash,
+      ...
+    }:
     fetchgit {
       inherit url rev hash;
       leaveDotGit = true;
@@ -43,24 +46,26 @@ let
     }
   ) projects;
 
-  projectSources = lib.mapAttrsToList (
-    projectName:
-    project:
-    {
-      url = fetchedProjects.${projectName};
-      branches = project.branches or [
+  projectSources = lib.mapAttrsToList (projectName: project: {
+    url = fetchedProjects.${projectName};
+    branches =
+      project.branches or [
         "HEAD"
         "v{0..9}*"
       ];
-      start_path = project.start_path or "doc";
-    }
-  ) projects;
+    start_path = project.start_path or "doc";
+  }) projects;
 
   playbookJson = builtins.toJSON {
     site = {
       title = "Outskirts Labs Docs";
       url = "https://docs.outskirtslabs.com";
       start_page = "ROOT::index.adoc";
+      robots = ''
+        Sitemap: https://docs.outskirtslabs.com/sitemap.xml
+        User-agent: *
+        Crawl-delay: 1
+      '';
     };
     urls = {
       html_extension_style = "drop";
@@ -74,7 +79,8 @@ let
         branches = "HEAD";
         start_path = "components/home";
       }
-    ] ++ projectSources;
+    ]
+    ++ projectSources;
     ui.bundle.url = "${docsUi}/ui-bundle.zip";
     asciidoc = {
       attributes = {
@@ -113,38 +119,38 @@ buildNpmPackage {
   ];
 
   buildPhase = ''
-    runHook preBuild
+        runHook preBuild
 
-    export HOME="$TMPDIR/home"
-    mkdir -p "$HOME"
-    ${gitMinimal}/bin/git config --global user.email "nix-builder@example.invalid"
-    ${gitMinimal}/bin/git config --global user.name "nix builder"
-    ${gitMinimal}/bin/git config --global --add safe.directory "*"
+        export HOME="$TMPDIR/home"
+        mkdir -p "$HOME"
+        ${gitMinimal}/bin/git config --global user.email "nix-builder@example.invalid"
+        ${gitMinimal}/bin/git config --global user.name "nix builder"
+        ${gitMinimal}/bin/git config --global --add safe.directory "*"
 
-    # Antora local sources must be git repositories.
-    ${gitMinimal}/bin/git init -q
-    ${gitMinimal}/bin/git add components/home
-    ${gitMinimal}/bin/git commit -q -m "home component"
+        # Antora local sources must be git repositories.
+        ${gitMinimal}/bin/git init -q
+        ${gitMinimal}/bin/git add components/home
+        ${gitMinimal}/bin/git commit -q -m "home component"
 
-    cat > playbook.generated.yml <<'JSON'
-${playbookJson}
-JSON
-    cp playbook.generated.yml playbook.yml
+        cat > playbook.generated.yml <<'JSON'
+    ${playbookJson}
+    JSON
+        cp playbook.generated.yml playbook.yml
 
-    # Avoid loading repo bb.edn in the sandbox; it may include networked Maven deps.
-    bb --config /dev/null scripts/gen_home.clj
-    npx antora --stacktrace --to-dir build/site playbook.generated.yml
-    mkdir -p build/site/.etc/nginx
-    if [ ! -f build/site/.etc/nginx/rewrite.conf ]; then
-      cat > build/site/.etc/nginx/rewrite.conf <<'EOF'
-# No Antora redirects generated for this build.
-EOF
-    fi
-    chmod -R u+w build/site
-    node scripts/highlight-arborium.mjs --site-dir build/site
-    ${pagefind}/bin/pagefind --site build/site
+        # Avoid loading repo bb.edn in the sandbox; it may include networked Maven deps.
+        bb --config /dev/null scripts/gen_home.clj
+        npx antora --stacktrace --to-dir build/site playbook.generated.yml
+        mkdir -p build/site/.etc/nginx
+        if [ ! -f build/site/.etc/nginx/rewrite.conf ]; then
+          cat > build/site/.etc/nginx/rewrite.conf <<'EOF'
+    # No Antora redirects generated for this build.
+    EOF
+        fi
+        chmod -R u+w build/site
+        node scripts/highlight-arborium.mjs --site-dir build/site
+        ${pagefind}/bin/pagefind --site build/site
 
-    runHook postBuild
+        runHook postBuild
   '';
 
   installPhase = ''
