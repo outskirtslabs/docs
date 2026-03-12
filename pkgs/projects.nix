@@ -63,6 +63,15 @@
     start_path = "doc";
   };
 
+  "ol.clave" = {
+    url = "https://github.com/outskirtslabs/clave.git";
+    rev = "70ec0ff396b15f8ac0c894a64058756f20300ed4";
+    hash = "sha256-aX+hxJqEXBy1K2HJpUlEhs7US0jYZ+FMYEBBdwS2gRo=";
+    refs_hash = "sha256-nLPMwiccloIOmumJwvSIV2m1D7mJ/FVBb8hqinf1KEc=";
+    branches = [ "HEAD" ];
+    start_path = "doc";
+  };
+
   "ol.dirs" = {
     url = "https://github.com/outskirtslabs/dirs.git";
     rev = "b9a0916b5e2c8b307504bfd5c43ced7ce19ebaf3";
