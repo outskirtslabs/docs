@@ -6,6 +6,10 @@ Full release feed across all tracked projects.
 |===
 | Date | Library | Version
 
+| 2026-03-09
+| link:../ol.trixnity/next/[ol.trixnity]
+| `experimental`
+
 | 2026-02-03
 | link:../datomic-pro-flake/0.12/[datomic-pro-flake]
 | `v0.12.0`

@@ -4,6 +4,11 @@
 <div class="releases-scroll">
 <table class="releases-table">
 <tr>
+<td class="release-date">2026-03-09</td>
+<td class="release-lib"><a href="../ol.trixnity/next/">ol.trixnity</a></td>
+<td class="release-version">experimental</td>
+</tr>
+<tr>
 <td class="release-date">2026-02-03</td>
 <td class="release-lib"><a href="../datomic-pro-flake/0.12/">datomic-pro-flake</a></td>
 <td class="release-version">v0.12.0</td>
@@ -163,6 +168,13 @@ An assortment of general intersest documentation for the OSS project collector.
 <td><span class="status-badge status-maturing">maturing</span></td>
 <td class="lib-desc">An extremely tiny and simple wrapper around the awesome sops (previously known as mozilla/sops)</td>
 </tr>
+<tr>
+<td class="lib-name"><a href="../ol.trixnity/next/">ol.trixnity</a></td>
+<td><span class="platform-tag">clj</span></td>
+<td class="lib-version">&mdash;</td>
+<td><span class="status-badge status-experimental">experimental</span></td>
+<td class="lib-desc">A Clojure adapter for Trixnity, a Matrix SDK.</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -270,6 +282,17 @@ An assortment of general intersest documentation for the OSS project collector.
 </span>
 </div>
 <div class="project-desc">An extremely tiny and simple wrapper around the awesome sops (previously known as mozilla/sops)</div>
+</div>
+
+<div class="project-entry">
+<div class="project-header">
+<a href="../ol.trixnity/next/" class="project-name">ol.trixnity</a>
+<span class="project-meta">
+<span class="platform-tag">clj</span>
+<span class="status-badge status-experimental">experimental</span>
+</span>
+</div>
+<div class="project-desc">A Clojure adapter for Trixnity, a Matrix SDK.</div>
 </div>
 
 </div>
