@@ -38,9 +38,9 @@
 
   "h2o-zig" = {
     url = "https://github.com/outskirtslabs/h2o-zig.git";
-    rev = "ab127b417fd0fdce0933487e85ca5c6e16287f15";
-    hash = "sha256-36sHaP4ToSTpq9uDlr8VjwSzurkhaXwSQ5pZJp3dcdQ=";
-    refs_hash = "sha256-rvGJ00BxYzliCqVoyZuYR7P2Oy2hT7O5ZIno/QGpNl8=";
+    rev = "c76294cd9faf227a80f1f81710f2d84206cbe938";
+    hash = "sha256-h6Ym7a8kQ6L3bmJj+kjMSKGoQAoUW1RC4igsSLDSdY4=";
+    refs_hash = "sha256-roBNoWQRvX4Vujw3fcCn/quRJFaf1X2cjyGQrrw931w=";
     branches = [ "HEAD" ];
     start_path = "doc";
   };
@@ -65,9 +65,9 @@
 
   "ol.clave" = {
     url = "https://github.com/outskirtslabs/clave.git";
-    rev = "d2aeb6289030158fde00af98b1b2e0f6101afe5c";
-    hash = "sha256-R0yjj26hwBx4BnH8TMjAI/h7jZauBzMgJJq/uT4+Qac=";
-    refs_hash = "sha256-bmM9+JbAyXSEvMGtEzT7W43I7ypLIUe57yR7Qk+3QME=";
+    rev = "c47cededac7d920e9056d8a1b4c2e3d54885af22";
+    hash = "sha256-xLtSn0rSxIf4NNJQ8/iWfp7DN25AImmCm5hcXsz53LQ=";
+    refs_hash = "sha256-RuisCCuKNLUWWJCLWkV3gUlBm1wNeVvSPhkPSlpwUBo=";
     branches = [ "HEAD" ];
     start_path = "doc";
   };
