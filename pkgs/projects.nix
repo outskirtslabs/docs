@@ -63,6 +63,15 @@
     start_path = "doc";
   };
 
+  "ol.dirs" = {
+    url = "https://github.com/outskirtslabs/ol.dirs.git";
+    rev = "ed636227a487676936a183a2a757b18e5c0d581a";
+    hash = "sha256-Tcid1xgRW3AIXHgIvllHYLTjEdweJ+b6W6Lg7V1t2h0=";
+    refs_hash = "sha256-5+RyhsVADazXNymvR4RTbpQ3TeKRCmqpgxpd/rvcbNg=";
+    branches = [ "HEAD" ];
+    start_path = "doc";
+  };
+
   "ol.sfv" = {
     url = "https://github.com/outskirtslabs/sfv.git";
     rev = "1dc1262ee4e8b121e6062d1bb50cc8dc5cbed6f4";

@@ -6,6 +6,10 @@ Full release feed across all tracked projects.
 |===
 | Date | Library | Version
 
+| 2026-03-12
+| link:../ol.dirs/next/[ol.dirs]
+| `maturing`
+
 | 2026-03-09
 | link:../ol.trixnity/next/[ol.trixnity]
 | `experimental`

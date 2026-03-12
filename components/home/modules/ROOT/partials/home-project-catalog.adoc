@@ -4,6 +4,11 @@
 <div class="releases-scroll">
 <table class="releases-table">
 <tr>
+<td class="release-date">2026-03-12</td>
+<td class="release-lib"><a href="../ol.dirs/next/">ol.dirs</a></td>
+<td class="release-version">maturing</td>
+</tr>
+<tr>
 <td class="release-date">2026-03-09</td>
 <td class="release-lib"><a href="../ol.trixnity/next/">ol.trixnity</a></td>
 <td class="release-version">experimental</td>
@@ -155,6 +160,13 @@ An assortment of general intersest documentation for the OSS project collector.
 <td class="lib-desc">A 0-dependency ring middleware for determining a request's real client IP address from HTTP headers</td>
 </tr>
 <tr>
+<td class="lib-name"><a href="../ol.dirs/next/">ol.dirs</a></td>
+<td><span class="platform-tag">clj</span> <span class="platform-tag">cljs</span> <span class="platform-tag">cljd</span></td>
+<td class="lib-version">&mdash;</td>
+<td><span class="status-badge status-maturing">maturing</span></td>
+<td class="lib-desc">A 0-dependency implementation of XDG base directories, systemd unit directories, Windows Known Folder paths, and macOS standard directories for Clojure, ClojureScript, and ClojureDart.</td>
+</tr>
+<tr>
 <td class="lib-name"><a href="../ol.sfv/0.1/">ol.sfv</a></td>
 <td><span class="platform-tag">clj</span></td>
 <td class="lib-version"><a href="https://github.com/outskirtslabs/sfv/releases/tag/v0.1.0">v0.1.0</a></td>
@@ -259,6 +271,17 @@ An assortment of general intersest documentation for the OSS project collector.
 </span>
 </div>
 <div class="project-desc">A 0-dependency ring middleware for determining a request's real client IP address from HTTP headers</div>
+</div>
+
+<div class="project-entry">
+<div class="project-header">
+<a href="../ol.dirs/next/" class="project-name">ol.dirs</a>
+<span class="project-meta">
+<span class="platform-tag">clj</span> <span class="platform-tag">cljs</span> <span class="platform-tag">cljd</span>
+<span class="status-badge status-maturing">maturing</span>
+</span>
+</div>
+<div class="project-desc">A 0-dependency implementation of XDG base directories, systemd unit directories, Windows Known Folder paths, and macOS standard directories for Clojure, ClojureScript, and ClojureDart.</div>
 </div>
 
 <div class="project-entry">
