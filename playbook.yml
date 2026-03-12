@@ -53,11 +53,11 @@ content:
       branches: [HEAD]
       start_path: doc
 
-    - url: /home/ramblurr/src/github.com/outskirtslabs/ol.dirs
+    - url: /home/ramblurr/src/github.com/outskirtslabs/dirs
       branches: [HEAD]
       start_path: doc
 
-    - url: /home/ramblurr/src/github.com/outskirtslabs/ol.sops
+    - url: /home/ramblurr/src/github.com/outskirtslabs/sops
       branches: [HEAD]
       start_path: doc
 ui:

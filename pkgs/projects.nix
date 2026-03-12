@@ -64,7 +64,7 @@
   };
 
   "ol.dirs" = {
-    url = "https://github.com/outskirtslabs/ol.dirs.git";
+    url = "https://github.com/outskirtslabs/dirs.git";
     rev = "b2b0f75b5564ec5a38a15216ae52c35f169a95b3";
     hash = "sha256-1dqieuBVqB343PB5cbXOPzWiRk4PzQeGM1gPq9kNBdU=";
     refs_hash = "sha256-8N36/Q2wfcrrL7qLBRFCNNnDczTtR7CrSRtJ0w22XQU=";
@@ -82,7 +82,7 @@
   };
 
   "ol.sops" = {
-    url = "https://github.com/outskirtslabs/ol.sops.git";
+    url = "https://github.com/outskirtslabs/sops.git";
     rev = "39a93982f197be937a0bc16480d0b4e80fa46f91";
     hash = "sha256-WQBGCMItZm+aonXSce7DTgf83ad4QtQviC77xu9ihk4=";
     refs_hash = "sha256-/ger+gm3nDrwWGUE5jd1jK/DIJxeWpJceuK9Tej1Wjg=";
