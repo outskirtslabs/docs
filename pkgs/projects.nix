@@ -3,8 +3,8 @@
   "client-ip" = {
     url = "https://github.com/outskirtslabs/client-ip.git";
     rev = "9b792daadfa7aae7e9109495aa84c805fb1c58a5";
-    hash = "sha256-fJxDLVubDUg3nFyhDysOyYeqM6WrGrJLLDCr0xzkPZ4=";
-    refs_hash = "sha256-tAoDO8HyaWFn315tONUXtkmyiUsJ6txwtDRmVDT4KV4=";
+    hash = "sha256-GSE9lm/8RWgvqd1cxujbJwkC4+g7bIAmIZbdpJ47KGM=";
+    refs_hash = "sha256-5IDzgVIaZSjUHxLpymgMRuGkbefjCSCjQcKTQYfqAvo=";
     branches = [ "HEAD" "v{0..9}*" ];
     start_path = "doc";
   };
@@ -66,9 +66,9 @@
   "ol.dirs" = {
     url = "https://github.com/outskirtslabs/dirs.git";
     rev = "b9a0916b5e2c8b307504bfd5c43ced7ce19ebaf3";
-    hash = "sha256-W08XgWliDzfR5xIHrTofJ1YT0Shw3v062G6D8Mz5wrA=";
-    refs_hash = "sha256-72OeaEQWmMX/+SHy5eGFXgW0EFBK1xzKsm+Uw5MZhjU=";
-    branches = [ "HEAD" ];
+    hash = "sha256-EYoJq5H0r5aQxtmz8g+Q7FCVWxoXrEt27pxEPHdr+iw=";
+    refs_hash = "sha256-1JOuvQFs1pRa7YBxW9B2oaAAFG4Q7rjFfgtuHnn+4WU=";
+    branches = [ "HEAD" "v{0..9}*" ];
     start_path = "doc";
   };
 
@@ -84,9 +84,9 @@
   "ol.sops" = {
     url = "https://github.com/outskirtslabs/sops.git";
     rev = "22ab73af6b61f8336f3af790252baceedcf04b21";
-    hash = "sha256-eGCRjvrJtsRFQlXTurC4RFxjUelEudGeGVdLOgUy4HE=";
-    refs_hash = "sha256-wkwdzedsXAubdnMosJt+tk0h6zJ6OBJhH0wW2LReHY8=";
-    branches = [ "HEAD" ];
+    hash = "sha256-FxF/G9nIPTQf0IJdwCJltv82+Ldb2F0tLm9eJhdrcEQ=";
+    refs_hash = "sha256-zta2o3tzLD6LB3MOJPZhIuDtcEanaeY9BG4O3SpR4Y8=";
+    branches = [ "HEAD" "v{0..9}*" ];
     start_path = "doc";
   };
 

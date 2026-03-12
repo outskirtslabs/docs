@@ -54,11 +54,11 @@ content:
       start_path: doc
 
     - url: /home/ramblurr/src/github.com/outskirtslabs/dirs
-      branches: [HEAD]
+      branches: [HEAD, "v{0..9}*"]
       start_path: doc
 
     - url: /home/ramblurr/src/github.com/outskirtslabs/sops
-      branches: [HEAD]
+      branches: [HEAD, "v{0..9}*"]
       start_path: doc
 ui:
   bundle:
