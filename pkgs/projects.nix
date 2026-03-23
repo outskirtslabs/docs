@@ -65,9 +65,9 @@
 
   "ol.clave" = {
     url = "https://github.com/outskirtslabs/clave.git";
-    rev = "413657377041a3cacb2c8b7b058a7c5400b68739";
-    hash = "sha256-+hTtBj/2xkeScB1U1LbRA0JaIgB6Nv0ma3XXik7ZaEQ=";
-    refs_hash = "sha256-mEYZAr2L3rh9XSD7BRv2dj4eg9KgwJlVGUbEn9+RBYY=";
+    rev = "612125730b82f472cbb1484010979cd3d334dce5";
+    hash = "sha256-x7O7zqmIw0aKKi00VMH9JkT3GMGZO4ij2UniNEF5XwQ=";
+    refs_hash = "sha256-c8DXiJt/KxZ07CuPthSNSVtBwDJxnUoYraVumYXLY/Y=";
     branches = [ "HEAD" ];
     start_path = "doc";
   };
@@ -83,18 +83,18 @@
 
   "ol.llx" = {
     url = "https://github.com/outskirtslabs/llx.git";
-    rev = "1bd29955b2a30a79523d9a7025a0aca99d87a492";
-    hash = "sha256-ahm0JamL0QMaw5XNGvQ9K34MJtiIJMheQzU9GXG7HB8=";
-    refs_hash = "sha256-24oEigll92J1y9xUYA37kPtK/ox01GV8LOThDDN0K7c=";
+    rev = "3427a11a5ddff01d21b6c6fe24374cac270ecf62";
+    hash = "sha256-dMfKhyfte4mp/VTBQOVaOKi76Vk+sJmvPFiJOTZTsyQ=";
+    refs_hash = "sha256-yppR/QA+OatRqz9u4XcWpg4WdNP4gNOoeaa6AjaMdso=";
     branches = [ "HEAD" ];
     start_path = "doc";
   };
 
   "ol.sfv" = {
     url = "https://github.com/outskirtslabs/sfv.git";
-    rev = "17533ae5d4c4cd01014ca5928898221f3aa42997";
-    hash = "sha256-GKeCpv3lWJwlTBMvnIKbbV6Qpz+lVc9zIsQPbY6q/+w=";
-    refs_hash = "sha256-/xhv9hfGN782WzQLoiQAlBqOkSiTYEfR4mnJfpHk1eY=";
+    rev = "fa5c880e675ca1abb9c713803b0d6e9e8eb3f2d2";
+    hash = "sha256-YkTy6ToQV8RXnzCLqp1VBYU+iEQ4OiLixO4intL/BmA=";
+    refs_hash = "sha256-wDDL8/0aiv8SE5QP6Pbiv/nQovjsRuHkLROVN0hFmHg=";
     branches = [ "HEAD" "v{0..9}*" ];
     start_path = "doc";
   };
@@ -110,9 +110,9 @@
 
   "ol.trixnity" = {
     url = "https://github.com/outskirtslabs/trixnity-clj.git";
-    rev = "9ffc351980fafb0d6cb804a25d5b2433b71b45f9";
-    hash = "sha256-qM2YkQM2fKdXFrQEHhAAtjmZI6AC5HWEqGSj17hHprs=";
-    refs_hash = "sha256-ZWInlwMyQpdtxWslUOhlKqqM406PH6CAZYlrTm0RllI=";
+    rev = "530e5229e29f0c0d2ac2d78c941375c56aee2e38";
+    hash = "sha256-KyUPIkOQoIsjUUU2uUkNnmAzL5BLdmv6outJzfiyXlU=";
+    refs_hash = "sha256-iK7FKd+IxAlYI1x6/0ZeIT8cE0fx+5RcdRaDWyiC/6M=";
     branches = [ "HEAD" ];
     start_path = "doc";
   };
