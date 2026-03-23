@@ -61,6 +61,10 @@ content:
       branches: [HEAD, "v{0..9}*"]
       start_path: doc
 
+    - url: /home/ramblurr/src/github.com/outskirtslabs/llx
+      branches: [HEAD]
+      start_path: doc
+
     - url: /home/ramblurr/src/github.com/outskirtslabs/sops
       branches: [HEAD, "v{0..9}*"]
       start_path: doc

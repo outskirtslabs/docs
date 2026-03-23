@@ -5,12 +5,22 @@
 <table class="releases-table">
 <tr>
 <td class="release-date">2026-03-12</td>
-<td class="release-lib"><a href="../ol.dirs/next/">ol.dirs</a></td>
-<td class="release-version">maturing</td>
+<td class="release-lib"><a href="../ol.dirs/0.1/">ol.dirs</a></td>
+<td class="release-version">v0.1.0</td>
+</tr>
+<tr>
+<td class="release-date">2026-03-12</td>
+<td class="release-lib"><a href="../ol.sops/0.1/">ol.sops</a></td>
+<td class="release-version">v0.1.0</td>
 </tr>
 <tr>
 <td class="release-date">2026-03-09</td>
 <td class="release-lib"><a href="../ol.trixnity/next/">ol.trixnity</a></td>
+<td class="release-version">experimental</td>
+</tr>
+<tr>
+<td class="release-date">2026-02-09</td>
+<td class="release-lib"><a href="../ol.llx/next/">ol.llx</a></td>
 <td class="release-version">experimental</td>
 </tr>
 <tr>
@@ -44,13 +54,13 @@
 <td class="release-version">v0.9.0</td>
 </tr>
 <tr>
-<td class="release-date">2025-10-20</td>
-<td class="release-lib"><a href="../h2o-zig/next/">h2o-zig</a></td>
-<td class="release-version">maturing</td>
+<td class="release-date">2025-10-28</td>
+<td class="release-lib"><a href="../ol.clave/next/">ol.clave</a></td>
+<td class="release-version">experimental</td>
 </tr>
 <tr>
-<td class="release-date">2025-10-03</td>
-<td class="release-lib"><a href="../ol.sops/next/">ol.sops</a></td>
+<td class="release-date">2025-10-20</td>
+<td class="release-lib"><a href="../h2o-zig/next/">h2o-zig</a></td>
 <td class="release-version">maturing</td>
 </tr>
 <tr>
@@ -153,6 +163,13 @@ An assortment of general intersest documentation for the OSS project collector.
 <td class="lib-desc">Continuous, rapid NixOS deployments to Hetzner Cloud with FlakeHub and OpenTofu</td>
 </tr>
 <tr>
+<td class="lib-name"><a href="../ol.clave/next/">ol.clave</a></td>
+<td><span class="platform-tag">clj</span></td>
+<td class="lib-version">&mdash;</td>
+<td><span class="status-badge status-experimental">experimental</span></td>
+<td class="lib-desc">Automatic HTTPS certificate management and renewal via ACME, implemented in pure Clojure with minimal dependencies</td>
+</tr>
+<tr>
 <td class="lib-name"><a href="../ol.client-ip/0.1/">ol.client-ip</a></td>
 <td><span class="platform-tag">clj</span></td>
 <td class="lib-version"><a href="https://github.com/outskirtslabs/client-ip/releases/tag/v0.1.0">v0.1.0</a></td>
@@ -160,11 +177,18 @@ An assortment of general intersest documentation for the OSS project collector.
 <td class="lib-desc">A 0-dependency ring middleware for determining a request's real client IP address from HTTP headers</td>
 </tr>
 <tr>
-<td class="lib-name"><a href="../ol.dirs/next/">ol.dirs</a></td>
+<td class="lib-name"><a href="../ol.dirs/0.1/">ol.dirs</a></td>
 <td><span class="platform-tag">clj</span> <span class="platform-tag">cljs</span> <span class="platform-tag">cljd</span></td>
-<td class="lib-version">&mdash;</td>
+<td class="lib-version"><a href="https://github.com/outskirtslabs/dirs/releases/tag/v0.1.0">v0.1.0</a></td>
 <td><span class="status-badge status-maturing">maturing</span></td>
 <td class="lib-desc">A 0-dependency implementation of XDG base directories, systemd unit directories, Windows Known Folder paths, and macOS standard directories for Clojure, ClojureScript, and ClojureDart.</td>
+</tr>
+<tr>
+<td class="lib-name"><a href="../ol.llx/next/">ol.llx</a></td>
+<td><span class="platform-tag">clj</span> <span class="platform-tag">cljs</span> <span class="platform-tag">cljd</span></td>
+<td class="lib-version">&mdash;</td>
+<td><span class="status-badge status-experimental">experimental</span></td>
+<td class="lib-desc">Unified LLM API and agent runtime for Clojure, ClojureScript, and Clojure Dart</td>
 </tr>
 <tr>
 <td class="lib-name"><a href="../ol.sfv/0.1/">ol.sfv</a></td>
@@ -174,9 +198,9 @@ An assortment of general intersest documentation for the OSS project collector.
 <td class="lib-desc">A 0-dependency Clojure library for parsing and generating Structured Field Values for HTTP (RFC 9651/8941)</td>
 </tr>
 <tr>
-<td class="lib-name"><a href="../ol.sops/next/">ol.sops</a></td>
+<td class="lib-name"><a href="../ol.sops/0.1/">ol.sops</a></td>
 <td><span class="platform-tag">clj</span> <span class="platform-tag">bb</span></td>
-<td class="lib-version">&mdash;</td>
+<td class="lib-version"><a href="https://github.com/outskirtslabs/sops/releases/tag/v0.1.0">v0.1.0</a></td>
 <td><span class="status-badge status-maturing">maturing</span></td>
 <td class="lib-desc">An extremely tiny and simple wrapper around the awesome sops (previously known as mozilla/sops)</td>
 </tr>
@@ -263,6 +287,17 @@ An assortment of general intersest documentation for the OSS project collector.
 
 <div class="project-entry">
 <div class="project-header">
+<a href="../ol.clave/next/" class="project-name">ol.clave</a>
+<span class="project-meta">
+<span class="platform-tag">clj</span>
+<span class="status-badge status-experimental">experimental</span>
+</span>
+</div>
+<div class="project-desc">Automatic HTTPS certificate management and renewal via ACME, implemented in pure Clojure with minimal dependencies</div>
+</div>
+
+<div class="project-entry">
+<div class="project-header">
 <a href="../ol.client-ip/0.1/" class="project-name">ol.client-ip</a>
 <span class="project-meta">
 <span class="platform-tag">clj</span>
@@ -275,13 +310,25 @@ An assortment of general intersest documentation for the OSS project collector.
 
 <div class="project-entry">
 <div class="project-header">
-<a href="../ol.dirs/next/" class="project-name">ol.dirs</a>
+<a href="../ol.dirs/0.1/" class="project-name">ol.dirs</a>
 <span class="project-meta">
 <span class="platform-tag">clj</span> <span class="platform-tag">cljs</span> <span class="platform-tag">cljd</span>
+<span class="project-version"><a href="https://github.com/outskirtslabs/dirs/releases/tag/v0.1.0">v0.1.0</a></span>
 <span class="status-badge status-maturing">maturing</span>
 </span>
 </div>
 <div class="project-desc">A 0-dependency implementation of XDG base directories, systemd unit directories, Windows Known Folder paths, and macOS standard directories for Clojure, ClojureScript, and ClojureDart.</div>
+</div>
+
+<div class="project-entry">
+<div class="project-header">
+<a href="../ol.llx/next/" class="project-name">ol.llx</a>
+<span class="project-meta">
+<span class="platform-tag">clj</span> <span class="platform-tag">cljs</span> <span class="platform-tag">cljd</span>
+<span class="status-badge status-experimental">experimental</span>
+</span>
+</div>
+<div class="project-desc">Unified LLM API and agent runtime for Clojure, ClojureScript, and Clojure Dart</div>
 </div>
 
 <div class="project-entry">
@@ -298,9 +345,10 @@ An assortment of general intersest documentation for the OSS project collector.
 
 <div class="project-entry">
 <div class="project-header">
-<a href="../ol.sops/next/" class="project-name">ol.sops</a>
+<a href="../ol.sops/0.1/" class="project-name">ol.sops</a>
 <span class="project-meta">
 <span class="platform-tag">clj</span> <span class="platform-tag">bb</span>
+<span class="project-version"><a href="https://github.com/outskirtslabs/sops/releases/tag/v0.1.0">v0.1.0</a></span>
 <span class="status-badge status-maturing">maturing</span>
 </span>
 </div>
