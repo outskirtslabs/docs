@@ -110,9 +110,9 @@
 
   "ol.trixnity" = {
     url = "https://github.com/outskirtslabs/trixnity-clj.git";
-    rev = "516ca10001314d790c7df0e70a582562b58190f3";
-    hash = "sha256-Mvdh8mKIKIjBui8wgqnrK1rkVT3mbeTFgHEZuHMhqWM=";
-    refs_hash = "sha256-EKDmht1jr+bgy+tmXOsQIh6YbuJv2eiSWW5VngcpjDg=";
+    rev = "c893c8b2115fd8c62db8b518f4a4a11ff302e7f7";
+    hash = "sha256-K7WIAUjxnxlhqBjdURn9OzDpEZhtiakEhrSV1/NVwpI=";
+    refs_hash = "sha256-cSdteFfcymVD3wrtEArM/Y0IF9A8B86V5jrf5YWwrLo=";
     branches = [ "HEAD" ];
     start_path = "doc";
   };
