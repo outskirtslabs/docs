@@ -83,9 +83,9 @@
 
   "ol.llx" = {
     url = "https://github.com/outskirtslabs/llx.git";
-    rev = "3474768ee47a5884fbb2622eca047a028c3d5a7f";
-    hash = "sha256-rBmT2BQa2eYjJ1RbIeCVDsnd3+20DDm9/Xyl0AqPMD0=";
-    refs_hash = "sha256-KoZtUEnELdcE+KKPMBPOVX+h3eEp2SKMdwJbJBt+qJQ=";
+    rev = "969d11c8551ae9add3fad2b856ba6d8eb01cb60e";
+    hash = "sha256-XZwsu2JwcOlg9sV/HrTNTOu4yVEjcgNEu45R7vgE7bo=";
+    refs_hash = "sha256-DR1z1J2X1E+RGPig3E71DXSjIXYcQy62BrDU9Q/Zwew=";
     branches = [ "HEAD" ];
     start_path = "doc";
   };
