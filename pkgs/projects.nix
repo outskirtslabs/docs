@@ -11,9 +11,9 @@
 
   "datahike-sqlite" = {
     url = "https://github.com/outskirtslabs/datahike-sqlite.git";
-    rev = "47a12ab44d08ac106b922e4dfa6bd5a7d43e3802";
-    hash = "sha256-MLTlB0ohz6ZqkIQyxAZhfSrdGlJ767NFBuqL12Ai0b0=";
-    refs_hash = "sha256-3LQStzeMOQxBaSWNUu6y9/JBNrYHYuewPjmaESILLg4=";
+    rev = "b83e0c693d98e469269206d89eca74e995bc41df";
+    hash = "sha256-6jEAIEWyxwqy25TWDd43L/YyBxPKA8rePtOaMICrPLM=";
+    refs_hash = "sha256-wlu75jR9bXMhuVoJt0e2WYJt3HIDAZIWk3eCTNNAydg=";
     branches = [ "HEAD" ];
     start_path = "doc";
   };
@@ -48,8 +48,8 @@
   "nixos-hetzner" = {
     url = "https://github.com/outskirtslabs/nixos-hetzner.git";
     rev = "403fda835f15b338488792aee60efb9cb2cb302d";
-    hash = "sha256-abPLer69hC8iO7Cm6DNcrMvjOnS2liuPE0JQ7j7Nkxg=";
-    refs_hash = "sha256-visqWrbRW0aN1z90jRonu2kAt4nRn9j6HGoZ3yBa4cA=";
+    hash = "sha256-Wqq+Xmv19rAJg2YGEmwtt7cjJWE+0FpgGH6AzkoTBWg=";
+    refs_hash = "sha256-87nhxOX7UIZTO369BXVQxeuBc5mGaTWKujDXX2AsP8Y=";
     branches = [ "HEAD" ];
     start_path = "doc";
   };
@@ -66,8 +66,8 @@
   "ol.clave" = {
     url = "https://github.com/outskirtslabs/clave.git";
     rev = "612125730b82f472cbb1484010979cd3d334dce5";
-    hash = "sha256-x7O7zqmIw0aKKi00VMH9JkT3GMGZO4ij2UniNEF5XwQ=";
-    refs_hash = "sha256-c8DXiJt/KxZ07CuPthSNSVtBwDJxnUoYraVumYXLY/Y=";
+    hash = "sha256-Oo5xF5Nenl8530MLylc+s2At8l+yDk0sCkrto1CaY/A=";
+    refs_hash = "sha256-8zFuAYtnyzKXZyUa21K9wbmILuEQBbc6QBm5FRZleY4=";
     branches = [ "HEAD" ];
     start_path = "doc";
   };
@@ -83,9 +83,9 @@
 
   "ol.llx" = {
     url = "https://github.com/outskirtslabs/llx.git";
-    rev = "3474768ee47a5884fbb2622eca047a028c3d5a7f";
-    hash = "sha256-rBmT2BQa2eYjJ1RbIeCVDsnd3+20DDm9/Xyl0AqPMD0=";
-    refs_hash = "sha256-KoZtUEnELdcE+KKPMBPOVX+h3eEp2SKMdwJbJBt+qJQ=";
+    rev = "969d11c8551ae9add3fad2b856ba6d8eb01cb60e";
+    hash = "sha256-N15F5xlRVIz4JOlmMNqIrpxeZvGuVJ3UjMXSn2f6XWA=";
+    refs_hash = "sha256-XT5LYrV5ncLb4Zo3x3iI38Lxj2sh/qkhsdWgMUaKHv0=";
     branches = [ "HEAD" ];
     start_path = "doc";
   };
