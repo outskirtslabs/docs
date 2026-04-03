@@ -66,6 +66,10 @@ Full release feed across all tracked projects.
 | link:../ol.client-ip/0.1/[ol.client-ip]
 | `v0.1.0`
 
+| 2025-05-29
+| link:../ol.vips/next/[ol.vips]
+| `experimental`
+
 | 2025-04-22
 | link:../datahike-sqlite/next/[datahike-sqlite]
 | `experimental`
