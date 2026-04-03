@@ -95,8 +95,6 @@
        "    ${pkgs.gitMinimal}/bin/git fetch origin '+refs/heads/*:refs/heads/*'\n"
        "    rm -f .git/FETCH_HEAD\n"
        "    ${pkgs.gitMinimal}/bin/git reflog expire --expire=all --all || true\n"
-       "    ${pkgs.gitMinimal}/bin/git repack -a -d -f --depth=50 --window=250\n"
-       "    ${pkgs.gitMinimal}/bin/git prune-packed\n"
        "    find .git/objects -type f -name '*.keep' -delete\n"
        "    find .git/objects -type f -name '*.bitmap' -delete\n"
        "  '';\n"
@@ -215,7 +213,7 @@
   Hashes are computed via the same `fetchgit` + `postFetch` pipeline used by
   `pkgs/docs-site.nix` (inside `prefetch-hash`), not plain `nix-prefetch-git`.
   We intentionally normalize `.git` internals there (`rm .git/FETCH_HEAD`,
-  expire reflogs, repack/prune, remove volatile `*.bitmap`/`*.keep`) because
+  expire reflogs, remove volatile `*.bitmap`/`*.keep`) because
   `leaveDotGit = true` makes `.git` part of the fixed-output hash and those
   files can otherwise vary across runs/machines.
 
