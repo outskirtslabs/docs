@@ -72,6 +72,7 @@ http {
     listen 127.0.0.1:$PORT;
     server_name localhost;
     root $SITE_DIR;
+    absolute_redirect off;
     etag on;
     if_modified_since exact;
     error_page 404 /404.html;
@@ -84,7 +85,9 @@ http {
     }
 
     location / {
-      rewrite ^(.+)/$ \$1 break;
+      if (\$uri ~ "^(.+)/\$") {
+        return 301 \$1\$is_args\$args;
+      }
       try_files \$uri \$uri.html \$uri/index.html \$uri/ =404;
     }
   }
