@@ -119,9 +119,9 @@
 
   "ol.vips" = {
     url = "https://github.com/outskirtslabs/vips.git";
-    rev = "592df6da6e7eac8b12da49ebeb19c6dd59e056fd";
-    hash = "sha256-I/K+ov2RZ0KjeLzCRyNvc9YO+pJb7gFaZDAWjGiN2Fw=";
-    refs_hash = "sha256-RvPOL3w7bqFuwgvJT76b80dlz21+lPhGdijLyutS7l8=";
+    rev = "a3bf1c54e974ae2c6b310d159e83c394125b89c6";
+    hash = "sha256-VxvqSHOXqc21aI6+gy9bwGGdyZkAmc7TPb6Gc/XQeWk=";
+    refs_hash = "sha256-Y4IVn1cCr+C5JEKEnc5afAdGAPjY52H8a9xt5TTHPR4=";
     branches = [ "HEAD" ];
     start_path = "doc";
   };
