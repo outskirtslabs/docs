@@ -29,9 +29,9 @@
 
   "datomic-pro-flake" = {
     url = "https://github.com/outskirtslabs/datomic-pro-flake.git";
-    rev = "d05507a06fcd1b679592c70de337ae60c88b928a";
-    hash = "sha256-ArTJeoEVcYmTqtk/xBk8lH5ZP9doMEkxFrrbf3RYpvI=";
-    refs_hash = "sha256-c+AoOudrGD6srmREBNJ0baeIFgh0gzGGZ3cyaLtm4Pg=";
+    rev = "904caad73435c79088edf6534c1155ba05478c90";
+    hash = "sha256-KSHwtxVliCF6BMUaKxWMt17+qDQyImAdOG0VK7631E0=";
+    refs_hash = "sha256-A/JGMJD9Np9SpcD+x4PV8Pg1dcR/o5DmcXywCeKO2ZU=";
     branches = [ "HEAD" "v{0..9}*" ];
     start_path = "doc";
   };
