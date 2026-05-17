@@ -11,9 +11,9 @@
 
   "datahike-sqlite" = {
     url = "https://github.com/outskirtslabs/datahike-sqlite.git";
-    rev = "3a8d04c9f580937ed69f8e02b33e2983ee43714c";
-    hash = "sha256-9acOtt3JLUaz5uoTlxxGI175nBT7hixs9A2e/MtaZQ0=";
-    refs_hash = "sha256-2MiR/X+xjy+aIhAm3jrjybW83Z7t2a187GOzSXCgogM=";
+    rev = "7b6ff570b50daa0ac1d9c93d80aac046c4837255";
+    hash = "sha256-NU/AE+r4SxSO5F0s65g+CtZjExTh5/a7wjFG8dCBB8Y=";
+    refs_hash = "sha256-va3J6w1dyTpQq6sWAgfjr2qGhMyzC9ubM4WihoAnPNk=";
     branches = [ "HEAD" ];
     start_path = "doc";
   };
@@ -110,9 +110,9 @@
 
   "ol.trixnity" = {
     url = "https://github.com/outskirtslabs/trixnity-clj.git";
-    rev = "807d4414eca6c190abc9aff2ea2e99bb304586c3";
-    hash = "sha256-4ZSB1MWw/xUwzmUV7Eydm8KuQpqVM0AraL8d+gw241U=";
-    refs_hash = "sha256-wmxOKboEMK+0GRa/Neg9ZTsxxcc2lVo6N6+hAEp1BmA=";
+    rev = "7d65246179f80bdc45dee9e6dc9028de12f0e218";
+    hash = "sha256-gr237G+A0p2WUlyC/Yvv+bg1Mi7q7ahGzOrTEJeN2Jw=";
+    refs_hash = "sha256-vYWvxYDFVe+uTtIaShBuzKaodDx6XYwkcXko88AfP4Y=";
     branches = [ "HEAD" ];
     start_path = "doc";
   };
