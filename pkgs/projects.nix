@@ -29,18 +29,18 @@
 
   "datomic-pro-flake" = {
     url = "https://github.com/outskirtslabs/datomic-pro-flake.git";
-    rev = "904caad73435c79088edf6534c1155ba05478c90";
-    hash = "sha256-KSHwtxVliCF6BMUaKxWMt17+qDQyImAdOG0VK7631E0=";
-    refs_hash = "sha256-A/JGMJD9Np9SpcD+x4PV8Pg1dcR/o5DmcXywCeKO2ZU=";
+    rev = "ee61d7d1f8959d45666380eeabf046f62e56bb1a";
+    hash = "sha256-hKKmLjek4ImUeDxEq3F3ZxPbG7PK95u11ZUqX8gqa0w=";
+    refs_hash = "sha256-9B1Z4t2jS7+tDi5T0dwBhjSKqlIhFBN6iCY8cSauAxg=";
     branches = [ "HEAD" "v{0..9}*" ];
     start_path = "doc";
   };
 
   "h2o-zig" = {
     url = "https://github.com/outskirtslabs/h2o-zig.git";
-    rev = "97925511c72e6e35f2aaf7daf9cef749fef1aba7";
-    hash = "sha256-E9UN2+vGQWSvPp4SHc92t01g+i+mxmLJ6Fw5ndM2h+E=";
-    refs_hash = "sha256-IOlxzyYkTl5yNhkIR4s3ltJ90P3bzA/waez05cl8WyQ=";
+    rev = "907df8d80a1eefa5b1426433f37d89b6702aabc0";
+    hash = "sha256-NZ4eEaAQX0tjyF/Ob6pN4QWw/pPx2zZixyplKA57EtQ=";
+    refs_hash = "sha256-sNNaHGQ8QGkacEYH78PWjYXk2gKmx/k7k94hSd44ybI=";
     branches = [ "HEAD" ];
     start_path = "doc";
   };
