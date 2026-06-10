@@ -38,9 +38,9 @@
 
   "h2o-zig" = {
     url = "https://github.com/outskirtslabs/h2o-zig.git";
-    rev = "907df8d80a1eefa5b1426433f37d89b6702aabc0";
-    hash = "sha256-NZ4eEaAQX0tjyF/Ob6pN4QWw/pPx2zZixyplKA57EtQ=";
-    refs_hash = "sha256-sNNaHGQ8QGkacEYH78PWjYXk2gKmx/k7k94hSd44ybI=";
+    rev = "98eab0e6a752fa1ed620a4c35c295782f690eb8e";
+    hash = "sha256-tGADk5sAHStucIG4KrDTOdV4S95QMZtqGW0xWLWPQwE=";
+    refs_hash = "sha256-C2U8XNwO+X5dhwdzfRtTOJ4DzSbAx9c2mntPBcLqsw0=";
     branches = [ "HEAD" ];
     start_path = "doc";
   };
