@@ -1,23 +1,26 @@
 {
   lib,
   stdenv,
-  fetchFromGitHub,
+  fetchgit,
   rustPlatform,
   cacert,
   git,
   tree-sitter,
   cargo,
+  clang,
   nodejs ? null,
   nodejs_24 ? null,
 }:
 let
-  rev = "v2.12.4";
+  rev = "v2.18.0";
   version = lib.removePrefix "v" rev;
-  arboriumSrc = fetchFromGitHub {
-    owner = "bearcove";
-    repo = "arborium";
+  # fetchFromGitHub uses git-archive which respects export-ignore attributes;
+  # the gitattributes language sample (.gitattributes) excludes itself that way.
+  # fetchgit does a real clone so all tracked files are present.
+  arboriumSrc = fetchgit {
+    url = "https://github.com/bearcove/arborium";
     inherit rev;
-    hash = "sha256-xLOT+Y2w+r4ejEQclPk5/27CaCy8LAp7kdi0mPXRzRk=";
+    hash = "sha256-/h+FIMHf0q6B+/bo4GWXeoGjLzHFpR4C4TH4SB0lT2M=";
   };
   nodejsForArborium =
     if nodejs_24 != null then nodejs_24 else nodejs;
@@ -26,7 +29,7 @@ let
     pname = "arborium-xtask";
     inherit version;
     src = arboriumSrc;
-    sourceRoot = "source/xtask";
+    sourceRoot = "arborium/xtask";
     cargoHash = "sha256-vgiI0wTqikd2KHW2njmJaB8nMQBs2LYXowHOsAC83xk=";
     doCheck = false;
     meta.mainProgram = "xtask";
@@ -37,7 +40,7 @@ let
     inherit version;
     src = arboriumSrc;
 
-    outputHash = "sha256-VpCcWPlp4KaXI9XmN8FwOiK+2E4CM8ZvBStajdJBRFA=";
+    outputHash = "sha256-cMT6TMuIAyNAH11DDLbCTT6K0+MzirCQyaph3ZSsU/A=";
     outputHashMode = "recursive";
     outputHashAlgo = "sha256";
 
@@ -75,6 +78,10 @@ rustPlatform.buildRustPackage {
   inherit version;
   src = arborium-lock;
   sourceRoot = "${arborium-lock.name}/crates/arborium-cli";
-  cargoHash = "sha256-SdlxIfXv0r1wPAOXUKaWaH/Lf9sm81pfmxol9jjI9Uo=";
+  cargoHash = "sha256-igdr/DhTFAs961kNwBWznOXY8GuN1TJlDdN5QHHKMqY=";
   doCheck = false;
+  # Upstream uses clang; the tree-sitter grammar scanners have const
+  # violations that clang suppresses with -w but GCC 15 rejects as errors.
+  nativeBuildInputs = [ clang ];
+  CC = "clang";
 }
