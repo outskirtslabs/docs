@@ -19,6 +19,11 @@
 <td class="release-version">experimental</td>
 </tr>
 <tr>
+<td class="release-date">2026-02-16</td>
+<td class="release-lib"><a href="../ol.busker/next/">ol.busker</a></td>
+<td class="release-version">experimental</td>
+</tr>
+<tr>
 <td class="release-date">2026-02-09</td>
 <td class="release-lib"><a href="../ol.llx/next/">ol.llx</a></td>
 <td class="release-version">experimental</td>
@@ -168,6 +173,13 @@ An assortment of general intersest documentation for the OSS project collector.
 <td class="lib-desc">Continuous, rapid NixOS deployments to Hetzner Cloud with FlakeHub and OpenTofu</td>
 </tr>
 <tr>
+<td class="lib-name"><a href="../ol.busker/next/">ol.busker</a></td>
+<td><span class="platform-tag">clj</span> <span class="platform-tag">linux</span> <span class="platform-tag">macos</span></td>
+<td class="lib-version">&mdash;</td>
+<td><span class="status-badge status-experimental">experimental</span></td>
+<td class="lib-desc">Busker is your Clojure web server that plays live on the open web</td>
+</tr>
+<tr>
 <td class="lib-name"><a href="../ol.clave/next/">ol.clave</a></td>
 <td><span class="platform-tag">clj</span></td>
 <td class="lib-version">&mdash;</td>
@@ -295,6 +307,17 @@ An assortment of general intersest documentation for the OSS project collector.
 </span>
 </div>
 <div class="project-desc">Continuous, rapid NixOS deployments to Hetzner Cloud with FlakeHub and OpenTofu</div>
+</div>
+
+<div class="project-entry">
+<div class="project-header">
+<a href="../ol.busker/next/" class="project-name">ol.busker</a>
+<span class="project-meta">
+<span class="platform-tag">clj</span> <span class="platform-tag">linux</span> <span class="platform-tag">macos</span>
+<span class="status-badge status-experimental">experimental</span>
+</span>
+</div>
+<div class="project-desc">Busker is your Clojure web server that plays live on the open web</div>
 </div>
 
 <div class="project-entry">
