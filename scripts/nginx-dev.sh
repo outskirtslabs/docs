@@ -84,9 +84,21 @@ http {
       return 404;
     }
 
+    location ~ ^(?<slashless>.+)/$ {
+      try_files \$slashless/index.html @strip_trailing_slash;
+    }
+
+    location @strip_trailing_slash {
+      return 301 \$slashless\$is_args\$args;
+    }
+
+    location = / {
+      try_files /index.html =404;
+    }
+
     location / {
-      if (\$uri ~ "^(.+)/\$") {
-        return 301 \$1\$is_args\$args;
+      if (-d \$request_filename) {
+        return 301 \$uri/\$is_args\$args;
       }
       try_files \$uri \$uri.html \$uri/index.html \$uri/ =404;
     }
