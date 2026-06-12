@@ -30,8 +30,8 @@
   "datomic-pro-flake" = {
     url = "https://github.com/outskirtslabs/datomic-pro-flake.git";
     rev = "0fa16e79b44eaa36bef56ae4391bdbae81306158";
-    hash = "sha256-sOfugOy0WkhF2FDkWo925+P82/VSLsCEo8Iuyxltuf0=";
-    refs_hash = "sha256-K7hjO7tJ9xIn87bV7gmb/XaNCPTbOmOeodYNmOfykuc=";
+    hash = "sha256-Zt/uX0QH2tAyIIDPF3dK/Kpbi/2L+4CxPnSfKH6gRDU=";
+    refs_hash = "sha256-x8HNGgOSVOyuYAR0eGe3zeKBkcK+BhesbatGCmPLwH4=";
     branches = [ "HEAD" "v{0..9}*" ];
     start_path = "doc";
   };
@@ -65,9 +65,9 @@
 
   "ol.clave" = {
     url = "https://github.com/outskirtslabs/clave.git";
-    rev = "052151089cf13830b37d3540ce08ad50fb65025e";
-    hash = "sha256-NtJYrKnICnY2B/2mf64lVcMplUst+qgDeXLHRqMoHEM=";
-    refs_hash = "sha256-OxpQLhFcGHcDZDuctC0O9tnOJX6SEy98HUXHdjoE47s=";
+    rev = "1d142463fc7690d93f5292cf768d72bbc245f997";
+    hash = "sha256-VkI7ep5VxKrAE2UkuEk16Is2z4GA5MdkWVa0OwdVji4=";
+    refs_hash = "sha256-6MeL+ClpAEaleekPCoCqRgHCsskxDx+RlVErK0R64t0=";
     branches = [ "HEAD" ];
     start_path = "doc";
   };
