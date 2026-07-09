@@ -6,6 +6,14 @@ Full release feed across all tracked projects.
 |===
 | Date | Library | Version
 
+| 2026-04-29
+| link:../datomic-pro-flake/0.14/[datomic-pro-flake]
+| `v0.14.0`
+
+| 2026-04-01
+| link:../datomic-pro-flake/0.13/[datomic-pro-flake]
+| `v0.13.0`
+
 | 2026-03-12
 | link:../ol.dirs/0.1/[ol.dirs]
 | `v0.1.0`
@@ -16,10 +24,6 @@ Full release feed across all tracked projects.
 
 | 2026-03-09
 | link:../ol.trixnity/next/[ol.trixnity]
-| `experimental`
-
-| 2026-02-16
-| link:../ol.busker/next/[ol.busker]
 | `experimental`
 
 | 2026-02-09
@@ -57,6 +61,10 @@ Full release feed across all tracked projects.
 | 2025-10-20
 | link:../h2o-zig/next/[h2o-zig]
 | `maturing`
+
+| 2025-10-10
+| link:../ol.busker/next/[ol.busker]
+| `experimental`
 
 | 2025-09-08
 | link:../datomic-pro-flake/0.8/[datomic-pro-flake]

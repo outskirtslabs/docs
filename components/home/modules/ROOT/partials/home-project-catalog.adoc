@@ -4,6 +4,16 @@
 <div class="releases-scroll">
 <table class="releases-table">
 <tr>
+<td class="release-date">2026-04-29</td>
+<td class="release-lib"><a href="../datomic-pro-flake/0.14/">datomic-pro-flake</a></td>
+<td class="release-version">v0.14.0</td>
+</tr>
+<tr>
+<td class="release-date">2026-04-01</td>
+<td class="release-lib"><a href="../datomic-pro-flake/0.13/">datomic-pro-flake</a></td>
+<td class="release-version">v0.13.0</td>
+</tr>
+<tr>
 <td class="release-date">2026-03-12</td>
 <td class="release-lib"><a href="../ol.dirs/0.1/">ol.dirs</a></td>
 <td class="release-version">v0.1.0</td>
@@ -16,11 +26,6 @@
 <tr>
 <td class="release-date">2026-03-09</td>
 <td class="release-lib"><a href="../ol.trixnity/next/">ol.trixnity</a></td>
-<td class="release-version">experimental</td>
-</tr>
-<tr>
-<td class="release-date">2026-02-16</td>
-<td class="release-lib"><a href="../ol.busker/next/">ol.busker</a></td>
 <td class="release-version">experimental</td>
 </tr>
 <tr>
@@ -67,6 +72,11 @@
 <td class="release-date">2025-10-20</td>
 <td class="release-lib"><a href="../h2o-zig/next/">h2o-zig</a></td>
 <td class="release-version">maturing</td>
+</tr>
+<tr>
+<td class="release-date">2025-10-10</td>
+<td class="release-lib"><a href="../ol.busker/next/">ol.busker</a></td>
+<td class="release-version">experimental</td>
 </tr>
 <tr>
 <td class="release-date">2025-09-08</td>
@@ -145,9 +155,9 @@ An assortment of general intersest documentation for the OSS project collector.
 <td class="lib-desc">Clojure to Datastar expression transpiler</td>
 </tr>
 <tr>
-<td class="lib-name"><a href="../datomic-pro-flake/0.12/">datomic-pro-flake</a></td>
+<td class="lib-name"><a href="../datomic-pro-flake/0.14/">datomic-pro-flake</a></td>
 <td><span class="platform-tag">nix</span> <span class="platform-tag">linux</span> <span class="platform-tag">docker</span></td>
-<td class="lib-version"><a href="https://github.com/outskirtslabs/datomic-pro-flake/releases/tag/v0.12.0">v0.12.0</a></td>
+<td class="lib-version"><a href="https://github.com/outskirtslabs/datomic-pro-flake/releases/tag/v0.14.0">v0.14.0</a></td>
 <td><span class="status-badge status-stable">stable</span></td>
 <td class="lib-desc">Nix flake packaging Datomic Pro with NixOS modules and OCI images</td>
 </tr>
@@ -266,10 +276,10 @@ An assortment of general intersest documentation for the OSS project collector.
 
 <div class="project-entry">
 <div class="project-header">
-<a href="../datomic-pro-flake/0.12/" class="project-name">datomic-pro-flake</a>
+<a href="../datomic-pro-flake/0.14/" class="project-name">datomic-pro-flake</a>
 <span class="project-meta">
 <span class="platform-tag">nix</span> <span class="platform-tag">linux</span> <span class="platform-tag">docker</span>
-<span class="project-version"><a href="https://github.com/outskirtslabs/datomic-pro-flake/releases/tag/v0.12.0">v0.12.0</a></span>
+<span class="project-version"><a href="https://github.com/outskirtslabs/datomic-pro-flake/releases/tag/v0.14.0">v0.14.0</a></span>
 <span class="status-badge status-stable">stable</span>
 </span>
 </div>
