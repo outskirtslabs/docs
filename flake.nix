@@ -72,7 +72,7 @@
                 pkgs.asciidoctor
                 pkgs.esbuild
                 pkgs.lightningcss
-                pkgs.nodejs_24
+                pkgs.nodejs_22
                 pkgs.pagefind
                 pkgs.playwright
                 pkgs.playwright-test

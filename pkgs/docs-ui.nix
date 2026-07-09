@@ -1,13 +1,15 @@
 {
   buildNpmPackage,
+  nodejs_22,
   esbuild,
   lightningcss,
   zip,
 }:
 let
   version = "0.0.1-prototype";
+  buildNpmPackageNode22 = buildNpmPackage.override { nodejs = nodejs_22; };
 in
-buildNpmPackage {
+buildNpmPackageNode22 {
   pname = "docs-ui";
   inherit version;
   src = ../ui;

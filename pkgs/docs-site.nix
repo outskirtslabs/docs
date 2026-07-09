@@ -1,6 +1,7 @@
 {
   lib,
   buildNpmPackage,
+  nodejs_22,
   fetchgit,
   babashka,
   gitMinimal,
@@ -11,6 +12,7 @@
   versionDate ? "19700101000000",
 }:
 let
+  buildNpmPackageNode22 = buildNpmPackage.override { nodejs = nodejs_22; };
   dateStamp =
     if builtins.stringLength versionDate >= 8 then builtins.substring 0 8 versionDate else "19700101";
   version = "${builtins.substring 0 4 dateStamp}-${builtins.substring 4 2 dateStamp}-${
@@ -102,7 +104,7 @@ let
   };
 in
 assert docsUi != null;
-buildNpmPackage {
+buildNpmPackageNode22 {
   pname = "docs-site";
   inherit version;
   src = ../.;
@@ -137,7 +139,7 @@ buildNpmPackage {
 
         # Avoid loading repo bb.edn in the sandbox; it may include networked Maven deps.
         bb --config /dev/null scripts/gen_home.clj
-        npx antora --stacktrace --to-dir build/site playbook.generated.yml
+        npx antora --stacktrace --clean --to-dir build/site playbook.generated.yml
         mkdir -p build/site/.etc/nginx
         if [ ! -f build/site/.etc/nginx/rewrite.conf ]; then
           cat > build/site/.etc/nginx/rewrite.conf <<'EOF'
