@@ -48,8 +48,8 @@
   "nixos-hetzner" = {
     url = "https://github.com/outskirtslabs/nixos-hetzner.git";
     rev = "a1922f96e41e8b60d3eed5929c012dc2b5254657";
-    hash = "sha256-ufIXbxyXltxIqHz/ex4ZGzzGeMsZMvs7Qkzqo5BwNY4=";
-    refs_hash = "sha256-ZL584R+AJ6NvyIfxZr/ZKOKHCY+JJI/Er0+IMgVhy1k=";
+    hash = "sha256-RgQYlRDt5e3PO4fqhKT7SyG8IygMarZGOI5kWTAiyrI=";
+    refs_hash = "sha256-BKHiMlhPqvXLQwzMrk/zH4I0w3U62Cg/5YcjYVR4zHU=";
     branches = [ "HEAD" ];
     start_path = "doc";
   };
@@ -65,9 +65,9 @@
 
   "ol.clave" = {
     url = "https://github.com/outskirtslabs/clave.git";
-    rev = "e1d9bd9a7f50c487282de04b0c73382c6fdefbf9";
-    hash = "sha256-H65OHZGiUj4z67DI7w7jyu667ZZlgiTtsb3CSJT02nY=";
-    refs_hash = "sha256-5MJhAzkjldIxh709WYcTVzRNRPfkhEB9FOSXiespCVg=";
+    rev = "f00d90cd3c75db7df372b18aa672a29dd262614b";
+    hash = "sha256-e/m+GisVtHrQQgNTlp2L/DJMLsLWynw3DhGHpNGsgmo=";
+    refs_hash = "sha256-wktsW6RddPM07U/8GhKF1R7PPPykQ6Eil4PbCYgyZVY=";
     branches = [ "HEAD" ];
     start_path = "doc";
   };
@@ -84,8 +84,8 @@
   "ol.llx" = {
     url = "https://github.com/outskirtslabs/llx.git";
     rev = "cceae041a1be6eb685e2055daca2a6717947d569";
-    hash = "sha256-9fEuPZ3hJGV9tSI2amfI0agq3aNL4S6ff/KR7NudGUk=";
-    refs_hash = "sha256-m2iVrnorKZwb6jTVIv1a2yNbTqAT2GulVBkV5hx6h6Y=";
+    hash = "sha256-Qe1pc3cVj9mss9gQrOKWjMoiV2P50ISWU5dk/HzqrkU=";
+    refs_hash = "sha256-7tEhoiJ7vSlq+s3BaneOggPFq9Uy0nrztCpZ0nZd6e0=";
     branches = [ "HEAD" ];
     start_path = "doc";
   };
@@ -119,9 +119,9 @@
 
   "ol.vips" = {
     url = "https://github.com/outskirtslabs/vips.git";
-    rev = "f947faab0cfe41aba640965fff806a9e7615bccc";
-    hash = "sha256-0PI4pvDpWSArRbBrxLnEeQvEbOpGs2t9/wynwPds9XQ=";
-    refs_hash = "sha256-ZzCHfqhOXmiRAfwi48iu9AGiDPPBnanBY51R+gqISfw=";
+    rev = "cd81552591f2d5c3c6e5921e14a99ce83ae87bd1";
+    hash = "sha256-fn8TsPdt3JFEZKrhYWYQwqRYfy5U+JP4GEkaUBueyzU=";
+    refs_hash = "sha256-28J7nDoI8vjVnAX39d6tw+2VZG3KLa5NIVHhnZEkmoM=";
     branches = [ "HEAD" ];
     start_path = "doc";
   };
