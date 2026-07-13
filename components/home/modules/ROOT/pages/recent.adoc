@@ -6,6 +6,14 @@ Full release feed across all tracked projects.
 |===
 | Date | Library | Version
 
+| 2026-07-13
+| link:../fluent-tooling/0.0.1/[fluent-tooling]
+| `v0.0.1`
+
+| 2026-07-13
+| link:../ol.vips/0.0.1/[ol.vips]
+| `v0.0.1`
+
 | 2026-04-29
 | link:../datomic-pro-flake/0.14/[datomic-pro-flake]
 | `v0.14.0`
@@ -77,10 +85,6 @@ Full release feed across all tracked projects.
 | 2025-08-18
 | link:../ol.client-ip/0.1/[ol.client-ip]
 | `v0.1.0`
-
-| 2025-05-29
-| link:../ol.vips/next/[ol.vips]
-| `experimental`
 
 | 2025-04-22
 | link:../datahike-sqlite/next/[datahike-sqlite]

@@ -36,6 +36,15 @@
     start_path = "doc";
   };
 
+  "fluent-tooling" = {
+    url = "https://github.com/outskirtslabs/fluent-tooling.git";
+    rev = "cd24304eb73005109a70b1458cbd9e2ba1a76fe1";
+    hash = "sha256-UziiXMHi4DXQT2O37IdCFsFVWAcY5a1aGZHpHdKCHII=";
+    refs_hash = "sha256-1msIf2gPGdv5uuxKmXRqp6vlJrMc2qXCK22an5gLtsU=";
+    branches = [ "HEAD" "v{0..9}*" ];
+    start_path = "doc";
+  };
+
   "h2o-zig" = {
     url = "https://github.com/outskirtslabs/h2o-zig.git";
     rev = "a77dcf5b57287d6f3216b6bc485f8baafd478e65";

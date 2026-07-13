@@ -90,13 +90,23 @@
      :minor (parse-long minor)
      :patch (parse-long patch)}))
 
-(defn- release-branch-exists?
-  [repo-root major minor]
-  (let [branch (format "v%d.%d.x" major minor)
-        local-exit (:exit (p/shell {:continue true}
+(defn- branch-exists?
+  [repo-root branch]
+  (let [local-exit (:exit (p/shell {:continue true}
                                    "git" "-C" repo-root "show-ref" "--verify" "--quiet"
                                    (str "refs/heads/" branch)))]
     (zero? local-exit)))
+
+(defn- release-docs-version
+  [repo-root major minor patch]
+  (let [version-line-branch (format "v%d.%d.x" major minor)
+        exact-branch (format "v%d.%d.%d" major minor patch)]
+    (cond
+      (branch-exists? repo-root version-line-branch)
+      (format "%d.%d" major minor)
+
+      (branch-exists? repo-root exact-branch)
+      (format "%d.%d.%d" major minor patch))))
 
 (defn- collect-tagged-releases
   [repo-root component display-name]
@@ -104,7 +114,7 @@
     (->> tags
          (map (fn [tag]
                 (when-let [{:keys [major minor patch]} (tag->semver tag)]
-                  (if (release-branch-exists? repo-root major minor)
+                  (if-let [docs-version (release-docs-version repo-root major minor patch)]
                     {:date (str/trim (run! (str "git -C " repo-root " log -1 --format=%cs " tag)))
                      :name display-name
                      :component component
@@ -112,10 +122,11 @@
                      :major major
                      :minor minor
                      :patch patch
-                     :url (format "../%s/%d.%d/" component major minor)}
+                     :url (format "../%s/%s/" component docs-version)}
                     (do
-                      (warn! (format "Skipping %s %s because branch v%d.%d.x is missing"
-                                     component tag major minor))
+                      (warn! (format (str "Skipping %s %s because neither branch v%d.%d.x "
+                                          "nor exact branch v%d.%d.%d exists")
+                                     component tag major minor major minor patch))
                       nil)))))
          (remove nil?))))
 

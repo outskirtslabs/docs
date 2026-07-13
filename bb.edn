@@ -29,8 +29,12 @@
   webhook:remove
   {:doc "Delete docs webhook(s). Usage: bb webhook:remove [owner/repo]"
    :task (apply setup-webhook/remove-webhook *command-line-args*)}
+  test:scripts
+  {:doc "Run Babashka script tests."
+   :task (shell "bb scripts/run_clojure_tests.clj")}
   test
-  {:doc "Run flake checks."
+  {:doc "Run Babashka script tests and flake checks."
+   :depends [test:scripts]
    :task (shell "nix flake check")}
   dist:prepare
   {:doc "Update npmDepsHash in pkgs/docs-site.nix."

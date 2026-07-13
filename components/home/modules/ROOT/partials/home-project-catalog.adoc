@@ -4,6 +4,16 @@
 <div class="releases-scroll">
 <table class="releases-table">
 <tr>
+<td class="release-date">2026-07-13</td>
+<td class="release-lib"><a href="../fluent-tooling/0.0.1/">fluent-tooling</a></td>
+<td class="release-version">v0.0.1</td>
+</tr>
+<tr>
+<td class="release-date">2026-07-13</td>
+<td class="release-lib"><a href="../ol.vips/0.0.1/">ol.vips</a></td>
+<td class="release-version">v0.0.1</td>
+</tr>
+<tr>
 <td class="release-date">2026-04-29</td>
 <td class="release-lib"><a href="../datomic-pro-flake/0.14/">datomic-pro-flake</a></td>
 <td class="release-version">v0.14.0</td>
@@ -94,11 +104,6 @@
 <td class="release-version">v0.1.0</td>
 </tr>
 <tr>
-<td class="release-date">2025-05-29</td>
-<td class="release-lib"><a href="../ol.vips/next/">ol.vips</a></td>
-<td class="release-version">experimental</td>
-</tr>
-<tr>
 <td class="release-date">2025-04-22</td>
 <td class="release-lib"><a href="../datahike-sqlite/next/">datahike-sqlite</a></td>
 <td class="release-version">experimental</td>
@@ -160,6 +165,13 @@ An assortment of general intersest documentation for the OSS project collector.
 <td class="lib-version"><a href="https://github.com/outskirtslabs/datomic-pro-flake/releases/tag/v0.14.0">v0.14.0</a></td>
 <td><span class="status-badge status-stable">stable</span></td>
 <td class="lib-desc">Nix flake packaging Datomic Pro with NixOS modules and OCI images</td>
+</tr>
+<tr>
+<td class="lib-name"><a href="../fluent-tooling/0.0.1/">fluent-tooling</a></td>
+<td><span class="platform-tag">rust</span> <span class="platform-tag">nix</span> <span class="platform-tag">emacs</span></td>
+<td class="lib-version"><a href="https://github.com/outskirtslabs/fluent-tooling/releases/tag/v0.0.1">v0.0.1</a></td>
+<td><span class="status-badge status-experimental">experimental</span></td>
+<td class="lib-desc">Tree-sitter grammar, linter, and editor tooling for the Fluent localization system</td>
 </tr>
 <tr>
 <td class="lib-name"><a href="../h2o-zig/next/">h2o-zig</a></td>
@@ -239,9 +251,9 @@ An assortment of general intersest documentation for the OSS project collector.
 <td class="lib-desc">A Clojure adapter for Trixnity, a Matrix SDK.</td>
 </tr>
 <tr>
-<td class="lib-name"><a href="../ol.vips/next/">ol.vips</a></td>
+<td class="lib-name"><a href="../ol.vips/0.0.1/">ol.vips</a></td>
 <td><span class="platform-tag">clj</span></td>
-<td class="lib-version">&mdash;</td>
+<td class="lib-version"><a href="https://github.com/outskirtslabs/vips/releases/tag/v0.0.1">v0.0.1</a></td>
 <td><span class="status-badge status-experimental">experimental</span></td>
 <td class="lib-desc">Clojure bindings for libvips image processing library</td>
 </tr>
@@ -284,6 +296,18 @@ An assortment of general intersest documentation for the OSS project collector.
 </span>
 </div>
 <div class="project-desc">Nix flake packaging Datomic Pro with NixOS modules and OCI images</div>
+</div>
+
+<div class="project-entry">
+<div class="project-header">
+<a href="../fluent-tooling/0.0.1/" class="project-name">fluent-tooling</a>
+<span class="project-meta">
+<span class="platform-tag">rust</span> <span class="platform-tag">nix</span> <span class="platform-tag">emacs</span>
+<span class="project-version"><a href="https://github.com/outskirtslabs/fluent-tooling/releases/tag/v0.0.1">v0.0.1</a></span>
+<span class="status-badge status-experimental">experimental</span>
+</span>
+</div>
+<div class="project-desc">Tree-sitter grammar, linter, and editor tooling for the Fluent localization system</div>
 </div>
 
 <div class="project-entry">
@@ -413,9 +437,10 @@ An assortment of general intersest documentation for the OSS project collector.
 
 <div class="project-entry">
 <div class="project-header">
-<a href="../ol.vips/next/" class="project-name">ol.vips</a>
+<a href="../ol.vips/0.0.1/" class="project-name">ol.vips</a>
 <span class="project-meta">
 <span class="platform-tag">clj</span>
+<span class="project-version"><a href="https://github.com/outskirtslabs/vips/releases/tag/v0.0.1">v0.0.1</a></span>
 <span class="status-badge status-experimental">experimental</span>
 </span>
 </div>
