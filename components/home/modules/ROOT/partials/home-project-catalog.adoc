@@ -5,6 +5,11 @@
 <table class="releases-table">
 <tr>
 <td class="release-date">2026-07-13</td>
+<td class="release-lib"><a href="../datomic-pro-flake/0.15/">datomic-pro-flake</a></td>
+<td class="release-version">v0.15.0</td>
+</tr>
+<tr>
+<td class="release-date">2026-07-13</td>
 <td class="release-lib"><a href="../fluent-tooling/0.0.1/">fluent-tooling</a></td>
 <td class="release-version">v0.0.1</td>
 </tr>
@@ -160,9 +165,9 @@ An assortment of general intersest documentation for the OSS project collector.
 <td class="lib-desc">Clojure to Datastar expression transpiler</td>
 </tr>
 <tr>
-<td class="lib-name"><a href="../datomic-pro-flake/0.14/">datomic-pro-flake</a></td>
+<td class="lib-name"><a href="../datomic-pro-flake/0.15/">datomic-pro-flake</a></td>
 <td><span class="platform-tag">nix</span> <span class="platform-tag">linux</span> <span class="platform-tag">docker</span></td>
-<td class="lib-version"><a href="https://github.com/outskirtslabs/datomic-pro-flake/releases/tag/v0.14.0">v0.14.0</a></td>
+<td class="lib-version"><a href="https://github.com/outskirtslabs/datomic-pro-flake/releases/tag/v0.15.0">v0.15.0</a></td>
 <td><span class="status-badge status-stable">stable</span></td>
 <td class="lib-desc">Nix flake packaging Datomic Pro with NixOS modules and OCI images</td>
 </tr>
@@ -288,10 +293,10 @@ An assortment of general intersest documentation for the OSS project collector.
 
 <div class="project-entry">
 <div class="project-header">
-<a href="../datomic-pro-flake/0.14/" class="project-name">datomic-pro-flake</a>
+<a href="../datomic-pro-flake/0.15/" class="project-name">datomic-pro-flake</a>
 <span class="project-meta">
 <span class="platform-tag">nix</span> <span class="platform-tag">linux</span> <span class="platform-tag">docker</span>
-<span class="project-version"><a href="https://github.com/outskirtslabs/datomic-pro-flake/releases/tag/v0.14.0">v0.14.0</a></span>
+<span class="project-version"><a href="https://github.com/outskirtslabs/datomic-pro-flake/releases/tag/v0.15.0">v0.15.0</a></span>
 <span class="status-badge status-stable">stable</span>
 </span>
 </div>

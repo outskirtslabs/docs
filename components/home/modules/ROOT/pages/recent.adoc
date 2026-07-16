@@ -7,6 +7,10 @@ Full release feed across all tracked projects.
 | Date | Library | Version
 
 | 2026-07-13
+| link:../datomic-pro-flake/0.15/[datomic-pro-flake]
+| `v0.15.0`
+
+| 2026-07-13
 | link:../fluent-tooling/0.0.1/[fluent-tooling]
 | `v0.0.1`
 
