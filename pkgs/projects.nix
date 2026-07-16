@@ -20,9 +20,9 @@
 
   "datastar-expressions" = {
     url = "https://github.com/outskirtslabs/datastar-expressions.git";
-    rev = "d110f006fbff04810ae70e163fb693b4ac8f1fbb";
-    hash = "sha256-gXYDiCLiGr48D4TQBUqas7NTYtHJruejFo8+4Evbxs8=";
-    refs_hash = "sha256-WKV045lEYXJDkM6ONt1YMfbeuxm7BjRdUliDEVWkDYc=";
+    rev = "e8f9543daacef39a11ab58641aeef96d31be381d";
+    hash = "sha256-3TqQv0kxBpjb2ZocNuSHHYqUut/PnUnHaUyVHl6oOVs=";
+    refs_hash = "sha256-cDkZyRwSKnWyGrEburOU4tEYK/G+jWsrOp9LADrDb6k=";
     branches = [ "HEAD" ];
     start_path = "doc";
   };
