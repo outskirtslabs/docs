@@ -74,9 +74,9 @@
 
   "ol.clave" = {
     url = "https://github.com/outskirtslabs/clave.git";
-    rev = "dcb9fa002834fb7f50f3e233e482b45bfd5a4462";
-    hash = "sha256-TzaDWeXG9jxwnW4b+oEZwzXEr1h6GDEjF3Wmi2/0gV4=";
-    refs_hash = "sha256-0lo8BJ6Bita1HLBbMltNdvkI5tic9BR+YJZCqRWOUMU=";
+    rev = "a7b69296b4c2353c147cb509c9e81675956bc23b";
+    hash = "sha256-y+Fs7oZ9+2gpfThdfTKcWkIDiejgrTOnUbWmKbiYafc=";
+    refs_hash = "sha256-rp9ebE7fjS4Kyc+4UKwBOen20LveNpV8I6ZOaUoFJ0s=";
     branches = [ "HEAD" ];
     start_path = "doc";
   };
