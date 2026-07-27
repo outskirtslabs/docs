@@ -44,6 +44,11 @@
 <td class="release-version">experimental</td>
 </tr>
 <tr>
+<td class="release-date">2026-02-16</td>
+<td class="release-lib"><a href="../ol.protocol53/next/">ol.protocol53</a></td>
+<td class="release-version">experimental</td>
+</tr>
+<tr>
 <td class="release-date">2026-02-09</td>
 <td class="release-lib"><a href="../ol.llx/next/">ol.llx</a></td>
 <td class="release-version">experimental</td>
@@ -235,6 +240,13 @@ An assortment of general intersest documentation for the OSS project collector.
 <td class="lib-desc">Unified LLM API and agent runtime for Clojure, ClojureScript, and Clojure Dart</td>
 </tr>
 <tr>
+<td class="lib-name"><a href="../ol.protocol53/next/">ol.protocol53</a></td>
+<td><span class="platform-tag">clj</span></td>
+<td class="lib-version">&mdash;</td>
+<td><span class="status-badge status-experimental">experimental</span></td>
+<td class="lib-desc">One Clojure API for managing DNS records across providers</td>
+</tr>
+<tr>
 <td class="lib-name"><a href="../ol.sfv/0.1/">ol.sfv</a></td>
 <td><span class="platform-tag">clj</span></td>
 <td class="lib-version"><a href="https://github.com/outskirtslabs/sfv/releases/tag/v0.1.0">v0.1.0</a></td>
@@ -403,6 +415,17 @@ An assortment of general intersest documentation for the OSS project collector.
 </span>
 </div>
 <div class="project-desc">Unified LLM API and agent runtime for Clojure, ClojureScript, and Clojure Dart</div>
+</div>
+
+<div class="project-entry">
+<div class="project-header">
+<a href="../ol.protocol53/next/" class="project-name">ol.protocol53</a>
+<span class="project-meta">
+<span class="platform-tag">clj</span>
+<span class="status-badge status-experimental">experimental</span>
+</span>
+</div>
+<div class="project-desc">One Clojure API for managing DNS records across providers</div>
 </div>
 
 <div class="project-entry">

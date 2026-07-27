@@ -38,6 +38,10 @@ Full release feed across all tracked projects.
 | link:../ol.trixnity/next/[ol.trixnity]
 | `experimental`
 
+| 2026-02-16
+| link:../ol.protocol53/next/[ol.protocol53]
+| `experimental`
+
 | 2026-02-09
 | link:../ol.llx/next/[ol.llx]
 | `experimental`
