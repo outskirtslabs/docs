@@ -12,8 +12,8 @@
   "datahike-sqlite" = {
     url = "https://github.com/outskirtslabs/datahike-sqlite.git";
     rev = "2c9e1a08e50d98edab03821ec1ee33f1e3397e40";
-    hash = "sha256-lkBtXK6HLLOMBmxcqD+x0KO2L3ycDVzNb+LHclv4pl0=";
-    refs_hash = "sha256-XTWH1LO+/LJu+wMvDyXFpwXfPHCUZwKksQL8fvtTPYc=";
+    hash = "sha256-57XOJHOVtqm+a2fmFgzO3naOXPuRYO7nm/Gkc3mp3hw=";
+    refs_hash = "sha256-RKB3FdvrZeM7lkZpN5Gb+9LYqCciVBataiSt77FhuzI=";
     branches = [ "HEAD" ];
     start_path = "doc";
   };
@@ -38,9 +38,9 @@
 
   "fluent-tooling" = {
     url = "https://github.com/outskirtslabs/fluent-tooling.git";
-    rev = "cd24304eb73005109a70b1458cbd9e2ba1a76fe1";
-    hash = "sha256-2Ib0Fx8IasZwIwA4lEZA7l4p58rAHRljsCEjO/YyaAw=";
-    refs_hash = "sha256-Nh6gVrMVybkBsNIP+QUBM+2Bb5VG40250y1eTEabAks=";
+    rev = "970a2d0e72563b3bd5b50c6d5cfbaa2fcc68a1d3";
+    hash = "sha256-q61iBmQiZz12i0V+sMy6+xot6GXeOm1YpxRk4c2jyhU=";
+    refs_hash = "sha256-6WldlbVjk4/AlepZANUgVZNSFzXhiVAJFmbVG0U0u7A=";
     branches = [ "HEAD" "v{0..9}*" ];
     start_path = "doc";
   };
@@ -83,9 +83,9 @@
 
   "ol.dirs" = {
     url = "https://github.com/outskirtslabs/dirs.git";
-    rev = "bb1cfa4597e4cd3c26b3c4050d45877a3d47ed93";
-    hash = "sha256-x+bXniMp+eqLcko+oh5f6WqmI1XNAbd5ltyX9vFVtxY=";
-    refs_hash = "sha256-hmUQR7jidg3hXAKG1qyNZL/7e9vua5RGH4Kr2TDmNGg=";
+    rev = "0aaf5535aa0d99d220b45550404e33be87191b66";
+    hash = "sha256-UtRSxlqdwwunYohkqz7j4Harc1Vhagx97NIqh44bNOE=";
+    refs_hash = "sha256-VVPlgeyxdCH3fo/r1Oa0i0tiPW1ynFi6Wg9ITtLx08Y=";
     branches = [ "HEAD" "v{0..9}*" ];
     start_path = "doc";
   };
@@ -101,36 +101,36 @@
 
   "ol.sfv" = {
     url = "https://github.com/outskirtslabs/sfv.git";
-    rev = "1550fda6f15622792dae3e43b51d9598310aacd2";
-    hash = "sha256-zlrb0pKig9vFSRmjp5wx4ISit6K6DX90DVTQoDThgI0=";
-    refs_hash = "sha256-GIXr/re2UdwAOxpom3JTogZhix3OeTE7uT3fYiY1Q3A=";
+    rev = "0267153d7b207cc118df2324dab74210da5ed8ad";
+    hash = "sha256-Q0X6CSlCASbPcGUVFoUYKpo4A3YEebgHgREs/70Gplg=";
+    refs_hash = "sha256-T3KmrKjzz1TJn27rPygV8my3U9XVcBapDXaaZ9RBqfc=";
     branches = [ "HEAD" "v{0..9}*" ];
     start_path = "doc";
   };
 
   "ol.sops" = {
     url = "https://github.com/outskirtslabs/sops.git";
-    rev = "63afc84d7293340c005c9abdebec50c5349ba370";
-    hash = "sha256-A3njJL+IkcHkMY3S0y2pesyBHDXg4AdTNfjO4/pDNpo=";
-    refs_hash = "sha256-TJiokh0RFkBBm16Gme+5SonMfOOiXx85Mga3nCrwlEY=";
+    rev = "344bbcec229fb68750e08bfe4ad12ca92d368bd1";
+    hash = "sha256-3Avs6/3leGAdTHj8c9eZO8dMHkJFJ+J8B63aShPr4BU=";
+    refs_hash = "sha256-lyoyE3cH3TZ1A35oPPxy/popvLK1Btl9QYczQfk1zV8=";
     branches = [ "HEAD" "v{0..9}*" ];
     start_path = "doc";
   };
 
   "ol.trixnity" = {
     url = "https://github.com/outskirtslabs/trixnity-clj.git";
-    rev = "8db7b6754934ca1c6f63c6b4b2c41393a2bdcac4";
-    hash = "sha256-Vq+Qyw5dV2CbSjWof9pzd5h2+Sf2Ogsoa6bOkmru2wg=";
-    refs_hash = "sha256-Mthe0MowtYarq+3RzpPrR6VsrNTpfmmldy7yrJMlESU=";
+    rev = "d37c681fb397f21d4b2b51a1319ff67099e0e37e";
+    hash = "sha256-lRx0e7t3VY5FcNi4Txc5Hjg9wCX6Qfm5bIidGZ/+hKU=";
+    refs_hash = "sha256-3EhtW2OhLqQT2lZOHt9uKsEj3U3YJ/vK/qjY8+uzjnc=";
     branches = [ "HEAD" ];
     start_path = "doc";
   };
 
   "ol.vips" = {
     url = "https://github.com/outskirtslabs/vips.git";
-    rev = "afdf1f7a5184a8078fb567569f7657501dac42df";
-    hash = "sha256-UFkD1yvZ38Oq+SCPPssq3gZ6OOgABGjaHP6/UbRMH/A=";
-    refs_hash = "sha256-fQQyS3xSkzWNkdzLAeW04B9/KvJuLSk9JvdNU3N13b4=";
+    rev = "9190c46665e2f73984a5b4f07bff9ddab86f5a91";
+    hash = "sha256-rDJbVQeukySteZVQ/zxWkS59YTj4u8t8RvASBEA0OqE=";
+    refs_hash = "sha256-AT7SGFkiY1zE1h2BBNPwKypS4xeGZGyMkAXJLFxes4g=";
     branches = [ "HEAD" "v{0..9}*" ];
     start_path = "doc";
   };
