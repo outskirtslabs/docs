@@ -74,9 +74,9 @@
 
   "ol.busker" = {
     url = "https://github.com/outskirtslabs/busker.git";
-    rev = "c5fd6859cf819019d8b54aea0f863dafa85d632c";
-    hash = "sha256-Ik1SoYMIUdDuCTLQ506CcrDRMfH7f4KoNX7TaXNnjv0=";
-    refs_hash = "sha256-rSPfkoRUT6ZFNCmjTjMLitp9hXbELTxjtgH2oMEkqeY=";
+    rev = "286340f1772e1e62c53385989fd6e77335eb5021";
+    hash = "sha256-MkrMAPUQDap6oiWVL9F9HifCLty+SYqt/uy7Wcu/LEE=";
+    refs_hash = "sha256-2LvxtXJABiheeKhMSsTFZtjfkYnQawMRr6EN0Sgx1VA=";
     branches = [ "HEAD" ];
     start_path = "doc";
   };
