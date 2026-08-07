@@ -72,6 +72,15 @@
     start_path = "doc";
   };
 
+  "ol.busker" = {
+    url = "https://github.com/outskirtslabs/busker.git";
+    rev = "c5fd6859cf819019d8b54aea0f863dafa85d632c";
+    hash = "sha256-Ik1SoYMIUdDuCTLQ506CcrDRMfH7f4KoNX7TaXNnjv0=";
+    refs_hash = "sha256-rSPfkoRUT6ZFNCmjTjMLitp9hXbELTxjtgH2oMEkqeY=";
+    branches = [ "HEAD" ];
+    start_path = "doc";
+  };
+
   "ol.clave" = {
     url = "https://github.com/outskirtslabs/clave.git";
     rev = "04f7bf854bcbe379df14e3f9d7221af9d0c030d6";
