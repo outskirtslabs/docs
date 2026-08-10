@@ -57,8 +57,8 @@
   "nixos-hetzner" = {
     url = "https://github.com/outskirtslabs/nixos-hetzner.git";
     rev = "62c6e1ef4c943bef5453238fb2b43b57b400edd6";
-    hash = "sha256-I6oXZ3hvXcx090sh7ma6jzL/KugE7bjacCsunlpUtHo=";
-    refs_hash = "sha256-1lrMGksnwl81NXvxezIEqWhAZ3y2fNK89s92vj7V+wM=";
+    hash = "sha256-6wo1lMGgMoGfNSas5L5+pQ5CIimM+mEkVPgr+dBaDW8=";
+    refs_hash = "sha256-yRvpmP+KZRT8D6gn+Kiq4YH5EcXz4pxZmZcokyMhZw0=";
     branches = [ "HEAD" ];
     start_path = "doc";
   };
@@ -74,9 +74,9 @@
 
   "ol.busker" = {
     url = "https://github.com/outskirtslabs/busker.git";
-    rev = "286340f1772e1e62c53385989fd6e77335eb5021";
-    hash = "sha256-MkrMAPUQDap6oiWVL9F9HifCLty+SYqt/uy7Wcu/LEE=";
-    refs_hash = "sha256-2LvxtXJABiheeKhMSsTFZtjfkYnQawMRr6EN0Sgx1VA=";
+    rev = "9cb01bf1ac8ed373ff7d2e3bbaf4964d286efd1b";
+    hash = "sha256-tBnYIKMMrXIpD26JRchgqUctYKqK1cvJIJTel8dtiG4=";
+    refs_hash = "sha256-J4Hm4458HFf89KPwCQJ+iUggWy7nUhZwHm0MkuA4Xsk=";
     branches = [ "HEAD" ];
     start_path = "doc";
   };
@@ -84,8 +84,8 @@
   "ol.clave" = {
     url = "https://github.com/outskirtslabs/clave.git";
     rev = "04f7bf854bcbe379df14e3f9d7221af9d0c030d6";
-    hash = "sha256-9jve39YNU0wTLsljw9zhMbm/dlhfZR/4tiQEU+mLU4w=";
-    refs_hash = "sha256-PDDXOrLc8hgUpWhE7Cs0SjuqkRVnIjhXQS7/EpiOoI4=";
+    hash = "sha256-8WaR6mmXBJ1AiOlz42YOBryKBfwSdE29BlRo/gtRbOg=";
+    refs_hash = "sha256-F1Tw6c8OGpAFmOyQsa6jIQ09CdGZTtKhNkIUm8Qf3FE=";
     branches = [ "HEAD" ];
     start_path = "doc";
   };
@@ -102,8 +102,8 @@
   "ol.llx" = {
     url = "https://github.com/outskirtslabs/llx.git";
     rev = "70717b489022d6b1b5f4aef52a0128ca1ebf1d99";
-    hash = "sha256-PHKTwO6dnSkVs0lEg+j6N/Vrq9b327y6/s4IBcSq17U=";
-    refs_hash = "sha256-nv/YivFdjjOQUqnNYkK4aujZNnPuf3pdozyNQZlqq98=";
+    hash = "sha256-Aq7nIBbBYslzemPYNX42kiF+c59rCyWaCG1T4nl6kRo=";
+    refs_hash = "sha256-ID5HAtdpEtNdQeEHjog+t9+gdLGxTChL8pE5DNgutLk=";
     branches = [ "HEAD" ];
     start_path = "doc";
   };
@@ -147,8 +147,8 @@
   "ol.vips" = {
     url = "https://github.com/outskirtslabs/vips.git";
     rev = "ca66dab7ef627fd58ab3a324d8e9ec4b86ea3fc0";
-    hash = "sha256-hGqndmwOXX3JclLUkzqlnaCqTruWi2t6bQuZBAAoETs=";
-    refs_hash = "sha256-Cg8Lvp7pYoKZGdSpqSE2TcCRYep72jmftC2llEZOGRU=";
+    hash = "sha256-gZa/UeOyspTLH7TZwibpMNuXHHJml6Y3h9DizULyq64=";
+    refs_hash = "sha256-WhhOckNoRogNe8uxbKTnHmJj2BL4vF7GqbGSnbQFf04=";
     branches = [ "HEAD" "v{0..9}*" ];
     start_path = "doc";
   };
