@@ -125,7 +125,8 @@ in
           inherit hostname;
           sshUser = deployUser;
           user = deployUser;
-          remoteBuild = true;
+          # remote build only in github actions, not locally
+          #remoteBuild = true;
           sshOpts = [
             "-o"
             "StrictHostKeyChecking=no"
