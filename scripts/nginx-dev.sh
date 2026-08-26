@@ -5,6 +5,10 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 SITE_DIR="$ROOT_DIR/build/site"
 RUNTIME_DIR="$ROOT_DIR/build/.nginx-dev"
 CONF_PATH="$RUNTIME_DIR/nginx.conf"
+HTTP_CONF_PATH="$RUNTIME_DIR/http.conf"
+SITE_CONF_PATH="$RUNTIME_DIR/site.conf"
+HTTP_CONF_TEMPLATE="$ROOT_DIR/config/nginx-http.conf.in"
+SITE_CONF_TEMPLATE="$ROOT_DIR/config/nginx-site.conf.in"
 PID_FILE="$RUNTIME_DIR/nginx.pid"
 LOG_FILE="$RUNTIME_DIR/error.log"
 
@@ -30,6 +34,12 @@ if [ ! -f "$REWRITE_CONF" ]; then
 # No Antora redirects generated for this build.
 EOF
 fi
+sed "s|@TEMP_DIR@|$RUNTIME_DIR/tmp|g" \
+  "$HTTP_CONF_TEMPLATE" > "$HTTP_CONF_PATH"
+sed \
+  -e "s|@SITE_DIR@|$SITE_DIR|g" \
+  -e "s|@REWRITE_CONF@|$REWRITE_CONF|g" \
+  "$SITE_CONF_TEMPLATE" > "$SITE_CONF_PATH"
 
 cat > "$CONF_PATH" <<EOF
 worker_processes 1;
@@ -41,67 +51,12 @@ events {
 }
 
 http {
-  types {
-    text/html html htm shtml;
-    text/css css;
-    application/javascript js mjs;
-    application/json json map;
-    image/svg+xml svg svgz;
-    image/png png;
-    image/jpeg jpeg jpg;
-    image/webp webp;
-    image/x-icon ico;
-    font/woff woff;
-    font/woff2 woff2;
-    font/ttf ttf;
-    text/plain txt md;
-    application/xml xml;
-  }
-  default_type application/octet-stream;
-  sendfile on;
-  keepalive_timeout 65;
-  access_log off;
-
-  client_body_temp_path $RUNTIME_DIR/tmp/client_body;
-  proxy_temp_path $RUNTIME_DIR/tmp/proxy;
-  fastcgi_temp_path $RUNTIME_DIR/tmp/fastcgi;
-  uwsgi_temp_path $RUNTIME_DIR/tmp/uwsgi;
-  scgi_temp_path $RUNTIME_DIR/tmp/scgi;
+  include $HTTP_CONF_PATH;
 
   server {
     listen 127.0.0.1:$PORT;
     server_name localhost;
-    root $SITE_DIR;
-    absolute_redirect off;
-    etag on;
-    if_modified_since exact;
-    error_page 404 /404.html;
-
-    include $REWRITE_CONF;
-
-    location = /.etc/nginx/rewrite.conf {
-      deny all;
-      return 404;
-    }
-
-    location ~ ^(?<slashless>.+)/$ {
-      try_files \$slashless/index.html @strip_trailing_slash;
-    }
-
-    location @strip_trailing_slash {
-      return 301 \$slashless\$is_args\$args;
-    }
-
-    location = / {
-      try_files /index.html =404;
-    }
-
-    location / {
-      if (-d \$request_filename) {
-        return 301 \$uri/\$is_args\$args;
-      }
-      try_files \$uri \$uri.html \$uri/index.html \$uri/ =404;
-    }
+    include $SITE_CONF_PATH;
   }
 }
 EOF

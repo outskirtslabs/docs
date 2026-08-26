@@ -11,7 +11,8 @@ let
   deployUser = "docs.outskirtslabs.com";
   deployRoot = "/var/lib/static-web/outskirtslabs.com/docs";
   deployLink = "current";
-
+  deploySocket = "${deployRoot}/.run/docs-site.sock";
+  deployConfirmTimeout = 30;
   nixosModule =
     {
       config,
@@ -30,16 +31,21 @@ let
     in
     {
       options.services.docs-site-deploy = {
-        enable = mkEnableOption "docs-site static deployment target";
+        enable = mkEnableOption "docs-site nginx deployment backend";
         package = mkOption {
           type = types.package;
           default = self.packages.${system}.docs-site;
-          description = "Static site package deployed to james.";
+          description = "Generated docs site served by the deployment backend.";
         };
         rootPath = mkOption {
           type = types.str;
           default = deployRoot;
           description = "Directory containing the active symlink.";
+        };
+        socketPath = mkOption {
+          type = types.str;
+          default = deploySocket;
+          description = "Unix socket exposed by the docs nginx backend.";
         };
         linkName = mkOption {
           type = types.str;
@@ -53,6 +59,10 @@ let
           {
             assertion = hasPrefix "/" cfg.rootPath;
             message = "services.docs-site-deploy.rootPath must be absolute.";
+          }
+          {
+            assertion = hasPrefix "/" cfg.socketPath;
+            message = "services.docs-site-deploy.socketPath must be absolute.";
           }
         ];
       };
@@ -78,35 +88,14 @@ let
       };
       cfg = nixosSystem.config.services.docs-site-deploy;
 
-      activate = pkgs.writeShellScriptBin "activate" ''
-        set -euo pipefail
-
-        root_path='${cfg.rootPath}'
-        link_name='${cfg.linkName}'
-        target='${cfg.package}'
-
-        if [ ! -d "$target" ]; then
-          echo "deployment target $target is missing"
-          exit 1
-        fi
-
-        mkdir -p "$root_path"
-        ln -sfn "$target" "$root_path/.next"
-        mv -Tf "$root_path/.next" "$root_path/$link_name"
-      '';
-
-      deactivate = pkgs.writeShellScriptBin "deactivate" ''
-        set -euo pipefail
-        echo "deactivate: leaving ${cfg.rootPath}/${cfg.linkName} unchanged"
-      '';
+      deployment = import ./pkgs/docs-deployment.nix {
+        inherit pkgs branch;
+        site = cfg.package;
+        confirmTimeoutSeconds = deployConfirmTimeout;
+        inherit (cfg) linkName rootPath socketPath;
+      };
     in
-    pkgs.buildEnv {
-      name = "docs-site-${branch}-deploy-profile";
-      paths = [
-        activate
-        deactivate
-      ];
-    };
+    deployment.profile;
 in
 {
   inherit nixosModule;
@@ -125,6 +114,7 @@ in
           inherit hostname;
           sshUser = deployUser;
           user = deployUser;
+          confirmTimeout = deployConfirmTimeout;
           # remote build only in github actions, not locally
           #remoteBuild = true;
           sshOpts = [

@@ -1,0 +1,26 @@
+types {
+  text/html html htm shtml;
+  text/css css;
+  application/javascript js mjs;
+  application/json json map;
+  image/svg+xml svg svgz;
+  image/png png;
+  image/jpeg jpeg jpg;
+  image/webp webp;
+  image/x-icon ico;
+  font/woff woff;
+  font/woff2 woff2;
+  font/ttf ttf;
+  text/plain txt md;
+  application/xml xml;
+}
+default_type application/octet-stream;
+sendfile on;
+keepalive_timeout 65;
+access_log off;
+
+client_body_temp_path @TEMP_DIR@/client_body;
+proxy_temp_path @TEMP_DIR@/proxy;
+fastcgi_temp_path @TEMP_DIR@/fastcgi;
+uwsgi_temp_path @TEMP_DIR@/uwsgi;
+scgi_temp_path @TEMP_DIR@/scgi;

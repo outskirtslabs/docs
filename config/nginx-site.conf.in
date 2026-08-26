@@ -1,0 +1,42 @@
+root @SITE_DIR@;
+absolute_redirect off;
+etag on;
+if_modified_since exact;
+error_page 404 /404.html;
+
+include @REWRITE_CONF@;
+
+location = /.etc/nginx/rewrite.conf {
+  deny all;
+  return 404;
+}
+
+location ~ ^(?<slashless>.+)/$ {
+  try_files $slashless/index.html @strip_trailing_slash;
+  add_header Cache-Control "public, no-transform, max-age=1800, must-revalidate" always;
+}
+
+location @strip_trailing_slash {
+  rewrite ^(.+)/$ $1 permanent;
+}
+
+location = / {
+  try_files /index.html =404;
+  add_header Cache-Control "public, no-transform, max-age=1800, must-revalidate" always;
+}
+
+location / {
+  if (-d $request_filename) {
+    rewrite ^(.+[^/])$ $1/ permanent;
+  }
+  try_files $uri $uri.html $uri/index.html $uri/ =404;
+  add_header Cache-Control "public, no-transform, max-age=1800, must-revalidate" always;
+}
+
+location ~* \.(?:html|css|js|json|xml|txt|md)$ {
+  add_header Cache-Control "public, no-transform, max-age=1800, must-revalidate" always;
+}
+
+location ~* \.(?:png|jpg|jpeg|gif|svg|ico|webp|avif|woff|woff2|ttf|otf|eot)$ {
+  add_header Cache-Control "public, no-transform, max-age=2592000, must-revalidate" always;
+}

@@ -41,7 +41,25 @@
       };
       nixosModules.default = deploy.nixosModule;
       outputs = deploy.outputs;
-      checks = deploy.checks;
+      checks =
+        pkgs:
+        let
+          site = self.packages.${system}.docs-site;
+          backend = import ./pkgs/docs-backend.nix {
+            inherit pkgs site;
+            runtimePath = "/tmp/docs-backend-test";
+            socketPath = "/tmp/docs-backend-test/nginx.sock";
+          };
+        in
+        deploy.checks pkgs
+        // {
+          docs-backend = import ./pkgs/docs-backend-test.nix {
+            inherit pkgs site backend;
+          };
+          docs-deployment = import ./pkgs/docs-deployment-test.nix {
+            inherit pkgs site;
+          };
+        };
       devShells =
         let
           corePackages = pkgs: [
