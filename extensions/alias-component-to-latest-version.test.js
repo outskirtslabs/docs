@@ -10,6 +10,7 @@ test('aliases project roots and short ol project names', () => {
   const components = [
     { name: 'ROOT', versions: [{ version: '' }] },
     { name: 'ol.clave', versions: [{ version: 'next' }] },
+    { name: 'ol.ron', versions: [{ version: 'next' }] },
     { name: 'datahike-sqlite', versions: [{ version: 'next' }] },
     { name: 'ol.shared', versions: [{ version: 'next' }] },
     { name: 'shared', versions: [{ version: 'next' }] },
@@ -32,11 +33,13 @@ test('aliases project roots and short ol project names', () => {
   }
 
   let contentClassified
-  extension.register.call({
+  extension.register({
     once: (event, listener) => {
       assert.equal(event, 'contentClassified')
       contentClassified = listener
     },
+  }, {
+    config: { aliases: { 'ol.ron': ['clj-ron', 'ron-clj'] } },
   })
   contentClassified({ contentCatalog })
 
@@ -48,6 +51,16 @@ test('aliases project roots and short ol project names', () => {
   assert.equal(alias('ROOT', 'ol.clave.adoc').rel, pages.get('ol.clave'))
   assert.equal(alias('ROOT', 'clave.adoc').rel.pub.url, '/ol.clave/')
   assert.equal(alias('clave', 'index.adoc').rel.pub.url, '/ol.clave/')
+
+  const ronRoot = alias('ol.ron', 'index.adoc')
+  assert.equal(ronRoot.rel, pages.get('ol.ron'))
+  assert.equal(alias('ROOT', 'ol.ron.adoc').rel, pages.get('ol.ron'))
+  assert.equal(alias('ROOT', 'ron.adoc').rel.pub.url, '/ol.ron/')
+  assert.equal(alias('ron', 'index.adoc').rel.pub.url, '/ol.ron/')
+  assert.equal(alias('ROOT', 'clj-ron.adoc').rel.pub.url, '/ol.ron/')
+  assert.equal(alias('clj-ron', 'index.adoc').rel.pub.url, '/ol.ron/')
+  assert.equal(alias('ROOT', 'ron-clj.adoc').rel.pub.url, '/ol.ron/')
+  assert.equal(alias('ron-clj', 'index.adoc').rel.pub.url, '/ol.ron/')
 
   assert.equal(alias('datahike-sqlite', 'index.adoc').rel, pages.get('datahike-sqlite'))
   assert.equal(alias('ROOT', 'datahike-sqlite.adoc').rel, pages.get('datahike-sqlite'))

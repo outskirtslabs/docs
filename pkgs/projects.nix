@@ -117,6 +117,15 @@
     start_path = "doc";
   };
 
+  "ol.ron" = {
+    url = "https://github.com/outskirtslabs/ron-clj.git";
+    rev = "abdfcc56807f5921e1650319f2eedd1b5aef1d1b";
+    hash = "sha256-/JUutKC9Ew3k2gysjSV6Tbs0OnEcU8gKBoCtNmnIXiY=";
+    refs_hash = "sha256-ZDJz3Ie7c8tViVoueeAcZ9Q0Fas3R3raKDN1gge90Cs=";
+    branches = [ "HEAD" ];
+    start_path = "doc";
+  };
+
   "ol.sfv" = {
     url = "https://github.com/outskirtslabs/sfv.git";
     rev = "784c172686fac9a8ab7772866bb31ee12dc6be8f";

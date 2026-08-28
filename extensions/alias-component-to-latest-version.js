@@ -12,8 +12,10 @@ const addRootAlias = (contentCatalog, name, rel) =>
     rel,
   })
 
-module.exports.register = function register() {
-  this.once('contentClassified', ({ contentCatalog }) => {
+module.exports.register = function register(context, vars) {
+  const aliasesByComponent = vars?.config?.aliases || {}
+
+  context.once('contentClassified', ({ contentCatalog }) => {
     const components = contentCatalog.getComponents()
     const componentNames = new Set(components.map(({ name }) => name))
 
@@ -27,15 +29,21 @@ module.exports.register = function register() {
       const componentAlias = addIndexAlias(contentCatalog, component.name, page)
       addRootAlias(contentCatalog, component.name, page)
 
-      if (!component.name.startsWith('ol.')) return
+      const aliasNames = new Set()
+      if (component.name.startsWith('ol.')) aliasNames.add(component.name.slice(3))
 
-      const shortName = component.name.slice(3)
-      if (!shortName || componentNames.has(shortName)) return
+      const configuredAliases = aliasesByComponent[component.name]
+      if (Array.isArray(configuredAliases)) {
+        configuredAliases.forEach((name) => aliasNames.add(name))
+      }
 
       // Antora 3 cannot chain aliases, so present the component alias as a page target.
       const componentRoot = { src: { family: 'page' }, pub: componentAlias.pub }
-      addRootAlias(contentCatalog, shortName, componentRoot)
-      addIndexAlias(contentCatalog, shortName, componentRoot)
+      aliasNames.forEach((name) => {
+        if (!name || componentNames.has(name)) return
+        addRootAlias(contentCatalog, name, componentRoot)
+        addIndexAlias(contentCatalog, name, componentRoot)
+      })
     })
   })
 }

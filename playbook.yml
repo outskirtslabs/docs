@@ -77,6 +77,10 @@ content:
       branches: [HEAD, "v{0..9}*"]
       start_path: doc
 
+    - url: /home/ramblurr/src/github.com/ramblurr/clj-ron
+      branches: [HEAD]
+      start_path: doc
+
     - url: /home/ramblurr/src/github.com/outskirtslabs/protocol53
       branches: [HEAD]
       start_path: doc
@@ -96,6 +100,8 @@ asciidoc:
 antora:
   extensions:
     - require: "./extensions/alias-component-to-latest-version"
+      aliases:
+        ol.ron: [clj-ron, ron-clj]
     - require: "./extensions/antora-llm-generator"
       skippaths:
         - "**/api"

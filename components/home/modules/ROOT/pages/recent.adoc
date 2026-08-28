@@ -18,6 +18,10 @@ Full release feed across all tracked projects.
 | link:../ol.vips/0.0.1/[ol.vips]
 | `v0.0.1`
 
+| 2026-06-12
+| link:../ol.ron/next/[ol.ron]
+| `experimental`
+
 | 2026-04-29
 | link:../datomic-pro-flake/0.14/[datomic-pro-flake]
 | `v0.14.0`

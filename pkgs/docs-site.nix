@@ -90,7 +90,13 @@ let
       extensions = [ "@asciidoctor/tabs" ];
     };
     antora.extensions = [
-      { require = "./extensions/alias-component-to-latest-version"; }
+      {
+        require = "./extensions/alias-component-to-latest-version";
+        aliases."ol.ron" = [
+          "clj-ron"
+          "ron-clj"
+        ];
+      }
       {
         require = "./extensions/antora-llm-generator";
         skippaths = [

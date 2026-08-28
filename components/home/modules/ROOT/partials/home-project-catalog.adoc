@@ -19,6 +19,11 @@
 <td class="release-version">v0.0.1</td>
 </tr>
 <tr>
+<td class="release-date">2026-06-12</td>
+<td class="release-lib"><a href="../ol.ron/next/">ol.ron</a></td>
+<td class="release-version">experimental</td>
+</tr>
+<tr>
 <td class="release-date">2026-04-29</td>
 <td class="release-lib"><a href="../datomic-pro-flake/0.14/">datomic-pro-flake</a></td>
 <td class="release-version">v0.14.0</td>
@@ -247,6 +252,13 @@ An assortment of general intersest documentation for the OSS project collector.
 <td class="lib-desc">One Clojure API for managing DNS records across providers</td>
 </tr>
 <tr>
+<td class="lib-name"><a href="../ol.ron/next/">ol.ron</a></td>
+<td><span class="platform-tag">clj</span></td>
+<td class="lib-version">&mdash;</td>
+<td><span class="status-badge status-experimental">experimental</span></td>
+<td class="lib-desc">Fast RON (Readable Object Notation) reader and writer for Clojure</td>
+</tr>
+<tr>
 <td class="lib-name"><a href="../ol.sfv/0.1/">ol.sfv</a></td>
 <td><span class="platform-tag">clj</span></td>
 <td class="lib-version"><a href="https://github.com/outskirtslabs/sfv/releases/tag/v0.1.0">v0.1.0</a></td>
@@ -426,6 +438,17 @@ An assortment of general intersest documentation for the OSS project collector.
 </span>
 </div>
 <div class="project-desc">One Clojure API for managing DNS records across providers</div>
+</div>
+
+<div class="project-entry">
+<div class="project-header">
+<a href="../ol.ron/next/" class="project-name">ol.ron</a>
+<span class="project-meta">
+<span class="platform-tag">clj</span>
+<span class="status-badge status-experimental">experimental</span>
+</span>
+</div>
+<div class="project-desc">Fast RON (Readable Object Notation) reader and writer for Clojure</div>
 </div>
 
 <div class="project-entry">
