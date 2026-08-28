@@ -83,9 +83,9 @@
 
   "ol.clave" = {
     url = "https://github.com/outskirtslabs/clave.git";
-    rev = "04f7bf854bcbe379df14e3f9d7221af9d0c030d6";
-    hash = "sha256-d+7zEOS2mEC0Y9+iJL92MlX+soQjVDaax7VrcH8popQ=";
-    refs_hash = "sha256-648E+zv/DKbfmWAyy8lxK4G1/43cEeA5WrT77/dAX6k=";
+    rev = "bfd23d048c6b1f11128dba9cb4b771823430e27c";
+    hash = "sha256-/DzO1XQvmGfEB2T3zV4uAuxCN41GT0qRBE3ZGGN+26c=";
+    refs_hash = "sha256-A9XPJDyDDzYXR3r8mpL0GRY8B11/iVDPzlkPqUalepc=";
     branches = [ "HEAD" ];
     start_path = "doc";
   };
@@ -119,9 +119,9 @@
 
   "ol.ron" = {
     url = "https://github.com/outskirtslabs/ron-clj.git";
-    rev = "abdfcc56807f5921e1650319f2eedd1b5aef1d1b";
-    hash = "sha256-/JUutKC9Ew3k2gysjSV6Tbs0OnEcU8gKBoCtNmnIXiY=";
-    refs_hash = "sha256-ZDJz3Ie7c8tViVoueeAcZ9Q0Fas3R3raKDN1gge90Cs=";
+    rev = "db946dbcd453c53098858295c9304109c76a5d96";
+    hash = "sha256-U28426Yz73RzbUhHeJReeIs5uKw8FLiy3BosyrOxLfQ=";
+    refs_hash = "sha256-0J96hlhKIFuIBBNlwZI4wTTFAc52pmNOi4WJD0PIj6U=";
     branches = [ "HEAD" ];
     start_path = "doc";
   };
