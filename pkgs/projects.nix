@@ -20,9 +20,9 @@
 
   "datastar-expressions" = {
     url = "https://github.com/outskirtslabs/datastar-expressions.git";
-    rev = "e8f9543daacef39a11ab58641aeef96d31be381d";
-    hash = "sha256-3TqQv0kxBpjb2ZocNuSHHYqUut/PnUnHaUyVHl6oOVs=";
-    refs_hash = "sha256-cDkZyRwSKnWyGrEburOU4tEYK/G+jWsrOp9LADrDb6k=";
+    rev = "77a9d0667965fba2c99bea01bb5838df4d567a29";
+    hash = "sha256-ENiIPAtG9Hweqx6NRw/P0lsW796TuL6ncRnVleiSDdU=";
+    refs_hash = "sha256-JkegcF2hTlyw0o64zGG6RQHGXFBpK+yTeMgO5iiaJRc=";
     branches = [ "HEAD" ];
     start_path = "doc";
   };
@@ -74,9 +74,9 @@
 
   "ol.busker" = {
     url = "https://github.com/outskirtslabs/busker.git";
-    rev = "9cb01bf1ac8ed373ff7d2e3bbaf4964d286efd1b";
-    hash = "sha256-Z8TKV4xZyGCKn809dXEu3QADDMPKB0k3E57uzOrMttw=";
-    refs_hash = "sha256-0pXLnXdawYyizjy+KET2UbTPpH456st5UV6Rx2LDew4=";
+    rev = "270a2b9c9898efedd367dde1d2e6acb6446775ff";
+    hash = "sha256-o2oQwNtsKp6PGw2R461JkhJnwgNpTuiptRuMeAXjY+w=";
+    refs_hash = "sha256-z+RTbAtan51504gz4NArQaxPhXF7E2LWzHIQrxxFez0=";
     branches = [ "HEAD" ];
     start_path = "doc";
   };
@@ -128,9 +128,9 @@
 
   "ol.sfv" = {
     url = "https://github.com/outskirtslabs/sfv.git";
-    rev = "784c172686fac9a8ab7772866bb31ee12dc6be8f";
-    hash = "sha256-Iwk3LWp8AqP2YCQGYPsCEhPE+UJgTmrgXbCbyvkvDx8=";
-    refs_hash = "sha256-MA7ONeLVby+ZZ9pQ5eITbn4vvoZr43ilUMlHCFxcNNE=";
+    rev = "db2b1ae39b0df95dcc810a1d8bbed39fa5cab0e8";
+    hash = "sha256-dk3P0S1S/M0TJg1YCme86UI+SpASetdzdWqylMyd7w8=";
+    refs_hash = "sha256-FzfhRTuxsWtSYkXpZetikGduyku2brarDonKkY0q3EI=";
     branches = [ "HEAD" "v{0..9}*" ];
     start_path = "doc";
   };
