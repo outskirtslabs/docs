@@ -7,6 +7,10 @@ on:
     - cron: "0 06 ? * MON"
   workflow_dispatch:
 
+concurrency:
+  group: update-projects-nix
+  cancel-in-progress: false
+
 jobs:
   update-projects-nix:
     name: Update projects.nix
@@ -18,6 +22,8 @@ jobs:
       pull-requests: write
     steps:
       - uses: actions/checkout@v6
+        with:
+          ref: main
       - uses: DeterminateSystems/determinate-nix-action@v3
         with:
           extra-conf: |
@@ -46,28 +52,49 @@ jobs:
           git config --global user.name "Casey Link"
           git config --global user.email "14830+Ramblurr@users.noreply.github.com"
 
-          BRANCH="auto-update/projects-nix-$(date +%Y-%m-%d)"
+          # Reuse the oldest open update PR, including legacy date-named branches.
+          PR="$(gh pr list --base main --state open --limit 1000 \
+            --json number,headRefName,isCrossRepository,createdAt \
+            --jq '[.[] | select(.isCrossRepository == false) |
+              select(.headRefName == "auto-update/projects-nix" or
+                (.headRefName | startswith("auto-update/projects-nix-")))] |
+              sort_by(.createdAt) | first // empty')"
+          PR_NUMBER="$(jq -r '.number // empty' <<< "$PR")"
+          BRANCH="$(jq -r '.headRefName // empty' <<< "$PR")"
+          BRANCH="${BRANCH:-auto-update/projects-nix}"
 
+          # Compare evaluated project entries with main, not the previous update run.
+          BASE_FILE="$(mktemp --suffix=.nix)"
+          BODY_FILE="$(mktemp)"
+          trap 'rm -f "$BASE_FILE" "$BODY_FILE"' EXIT
+          git show HEAD:pkgs/projects.nix > "$BASE_FILE"
+          BASE_JSON="$(nix eval --json --file "$BASE_FILE")"
+          UPDATED_JSON="$(nix eval --json --file pkgs/projects.nix)"
+          {
+            printf 'Automated update of `pkgs/projects.nix` via `bb projects.nix`.\n\nUpdated projects:\n\n'
+            jq -nr --argjson base "$BASE_JSON" --argjson updated "$UPDATED_JSON" '
+              (($base | keys) + ($updated | keys) | unique)[] as $name |
+              select($base[$name] != $updated[$name]) | "- \($name)"'
+          } > "$BODY_FILE"
+
+          # Record the remote tip so the lease protects against concurrent edits.
+          EXPECTED="$(git ls-remote --heads origin "refs/heads/$BRANCH" | cut -f1)"
           git checkout -B "$BRANCH"
           git add pkgs/projects.nix
           git commit -m "update projects.nix"
+          git push --force-with-lease="refs/heads/$BRANCH:$EXPECTED" origin "$BRANCH"
 
-          if git ls-remote --exit-code --heads origin "$BRANCH" > /dev/null 2>&1; then
-            git push --force origin "$BRANCH"
-          else
-            git push -u origin "$BRANCH"
-          fi
-
-          PR_NUMBER="$(gh pr list --head "$BRANCH" --state open --json number --jq '.[0].number' || true)"
-          if [ -n "$PR_NUMBER" ] && [ "$PR_NUMBER" != "null" ]; then
-            echo "Open PR already exists: #$PR_NUMBER"
+          if [ -n "$PR_NUMBER" ]; then
+            gh pr edit "$PR_NUMBER" --body-file "$BODY_FILE"
+            gh pr comment "$PR_NUMBER" --body \
+              "Updated this PR with the latest project pins: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}."
           else
             gh pr create \
-              --title "chore: update projects.nix" \
-              --body "Automated update of pkgs/projects.nix via bb projects.nix." \
+              --title "update projects.nix" \
+              --body-file "$BODY_FILE" \
               --base main \
               --head "$BRANCH"
-            PR_NUMBER="$(gh pr list --head "$BRANCH" --state open --json number --jq '.[0].number')"
+            PR_NUMBER="$(gh pr list --head "$BRANCH" --base main --state open --json number --jq '.[0].number')"
           fi
 
           REVIEWER="Ramblurr"
