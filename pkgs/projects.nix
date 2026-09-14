@@ -75,8 +75,8 @@
   "ol.busker" = {
     url = "https://github.com/outskirtslabs/busker.git";
     rev = "270a2b9c9898efedd367dde1d2e6acb6446775ff";
-    hash = "sha256-h3aKIvlwaDm+WKjayRchtqGWO1YPkXm8z4+YwtLDCJo=";
-    refs_hash = "sha256-T5RF8KXwuuQ2awNnO5hVnDiMT23OmDnA7dDjhMmdG88=";
+    hash = "sha256-XJEsNSW3w1IPmf6KdsuO94b+s1HIleswjfTISrL4pgE=";
+    refs_hash = "sha256-0H7fFG3giUcjEcG3MoV+pGGaqiRs44nDZkgAYYBiTI0=";
     branches = [ "HEAD" ];
     start_path = "doc";
   };
@@ -84,8 +84,8 @@
   "ol.clave" = {
     url = "https://github.com/outskirtslabs/clave.git";
     rev = "bfd23d048c6b1f11128dba9cb4b771823430e27c";
-    hash = "sha256-qgO+Z5J3ZqtD7G+MHI7BDSXJIMRgiWq2m5fiY1dGiho=";
-    refs_hash = "sha256-2p90RZ77NvtiZ/1LZHnRg3nW+omUY2XZxH+vwgsgmyU=";
+    hash = "sha256-b3reR9GnE+RrdsL+iWa6Gizndk7Ve5KMy5bHKtCGCYg=";
+    refs_hash = "sha256-HSHXXWWFjkrf7fkJhXlY14dBuUQ7WnnCIzs9RBZFV2g=";
     branches = [ "HEAD" ];
     start_path = "doc";
   };
@@ -102,8 +102,8 @@
   "ol.llx" = {
     url = "https://github.com/outskirtslabs/llx.git";
     rev = "3c3273982c03ea0e719b27628d8a6aef829e18bc";
-    hash = "sha256-5vYf9m0TuGOCzTFkPLUMbt+nemXPNNt//Di1NW/Ubic=";
-    refs_hash = "sha256-K5eYtufxxPZeJtTxxBnczTzlp56ieegvefh8uquY95g=";
+    hash = "sha256-8bExV2RhibUFqwk3Jq3xKotDBKFFH6qXusLPy7QV65Y=";
+    refs_hash = "sha256-DmleQY/AtRa6Ah93WjlJTT/Z0N3tIYY5IDCHsIOXgMk=";
     branches = [ "HEAD" ];
     start_path = "doc";
   };
@@ -156,8 +156,8 @@
   "ol.vips" = {
     url = "https://github.com/outskirtslabs/vips.git";
     rev = "38a770c736fcb51a238d591a579abbb0d6abc8f2";
-    hash = "sha256-iELvIPpGd808l0bKN2/5EyAQtH9BUE0UzxzSFizm7Qw=";
-    refs_hash = "sha256-o1Ash5cWUp7CXFNv0jWSJvaJ5oDy2uZRSK4zkClsyC4=";
+    hash = "sha256-GO9So4MXN6n6wOnrUpkcKHmbQwpJd8IxtaseH830obE=";
+    refs_hash = "sha256-4L5hiHpPy4aN7u9D/KXYYPWhRbpq1Qoj3LhSiHHLUzo=";
     branches = [ "HEAD" "v{0..9}*" ];
     start_path = "doc";
   };
