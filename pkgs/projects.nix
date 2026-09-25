@@ -110,9 +110,9 @@
 
   "ol.protocol53" = {
     url = "https://github.com/outskirtslabs/protocol53.git";
-    rev = "1c420fcb96fb43d5dae5111062ecab878685c289";
-    hash = "sha256-CzqIbe3j1Al+eov8jlrJF+YrB37n4jmqZYjytb6JJy0=";
-    refs_hash = "sha256-hLOzyuWi2VsfwMmEmmQqIdvavfMbn76tQVO8e7SKzNA=";
+    rev = "b4128186c63db0c0712a8b3066aa9a5d02b4f484";
+    hash = "sha256-zxnob/SOtWpdJZTxR/M6ck40nD36U+AyNrNIOTp82M0=";
+    refs_hash = "sha256-P10IEybffY8NR6Jx947I2ZHE9QzHoOVq9Y+KTRJQiYE=";
     branches = [ "HEAD" ];
     start_path = "doc";
   };
