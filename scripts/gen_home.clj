@@ -16,7 +16,7 @@
 (defn- run!
   ([cmd] (run! {} cmd))
   ([opts cmd]
-   (let [{:keys [out err exit]} (p/shell (merge {:out :string :err :string :continue true} opts) cmd)]
+   (let [{:keys [out err exit]} (apply p/shell (merge {:out :string :err :string :continue true} opts) cmd)]
      (if (zero? exit)
        out
        (throw (ex-info (str "Command failed: " cmd) {:cmd cmd :exit exit :err err}))))))
@@ -105,34 +105,36 @@
       (branch-exists? repo-root version-line-branch)
       (format "%d.%d" major minor)
 
-      (branch-exists? repo-root exact-branch)
+      (or (branch-exists? repo-root exact-branch)
+          (branch-exists? repo-root (str "docs/" exact-branch)))
       (format "%d.%d.%d" major minor patch))))
 
 (defn- collect-tagged-releases
-  [repo-root component display-name]
-  (let [tags (run-lines! (str "git -C " repo-root " tag --list 'v*'"))]
+  [repo-root component display-name release-tag-prefix]
+  (let [prefix (or release-tag-prefix "")
+        tags (run-lines! ["git" "-C" repo-root "tag" "--list"])]
     (->> tags
-         (map (fn [tag]
-                (when-let [{:keys [major minor patch]} (tag->semver tag)]
-                  (if-let [docs-version (release-docs-version repo-root major minor patch)]
-                    {:date (str/trim (run! (str "git -C " repo-root " log -1 --format=%cs " tag)))
-                     :name display-name
-                     :component component
-                     :version tag
-                     :major major
-                     :minor minor
-                     :patch patch
-                     :url (format "../%s/%s/" component docs-version)}
-                    (do
-                      (warn! (format (str "Skipping %s %s because neither branch v%d.%d.x "
-                                          "nor exact branch v%d.%d.%d exists")
-                                     component tag major minor major minor patch))
-                      nil)))))
-         (remove nil?))))
+         (filter #(str/starts-with? % prefix))
+         (keep (fn [tag]
+                 (let [version (subs tag (count prefix))]
+                   (when-let [{:keys [major minor patch]} (tag->semver version)]
+                     (if-let [docs-version (release-docs-version repo-root major minor patch)]
+                       {:date (str/trim (run! ["git" "-C" repo-root "log" "-1" "--format=%cs" tag "--"]))
+                        :name display-name
+                        :component component
+                        :version version
+                        :tag tag
+                        :major major
+                        :minor minor
+                        :patch patch
+                        :url (format "../%s/%s/" component docs-version)}
+                       (warn! (format (str "Skipping %s %s because neither branch v%d.%d.x "
+                                           "nor exact branch v%d.%d.%d or docs/v%d.%d.%d exists")
+                                      component tag major minor major minor patch major minor patch))))))))))
 
 (defn- collect-releases
-  [{:keys [repo-root component name status created]}]
-  (let [tagged (collect-tagged-releases repo-root component name)]
+  [{:keys [repo-root component name status created release-tag-prefix]}]
+  (let [tagged (collect-tagged-releases repo-root component name release-tag-prefix)]
     (if (seq tagged)
       tagged
       (if (and (contains? #{:experimental :maturing :static} status)
@@ -375,6 +377,7 @@
                                         :platforms (get-in manifest [:project :platforms])
                                         :created (get-in manifest [:project :created])
                                         :repo-url (get-in manifest [:repo :url])
+                                        :release-tag-prefix (get-in manifest [:repo :release-tag-prefix])
                                         :status (get-in manifest [:project :status])})))))))
                       (remove nil?)
                       vec)
@@ -391,8 +394,8 @@
                                  :platforms platforms
                                  :status status
                                  :latest (some-> latest-release-entry :version)
-                                 :latest-url (when-let [version (some-> latest-release-entry :version)]
-                                               (latest-version-url repo-url version))
+                                 :latest-url (when-let [tag (:tag latest-release-entry)]
+                                               (latest-version-url repo-url tag))
                                  :url (if latest-release-entry
                                         (:url latest-release-entry)
                                         (format "../%s/next/" component))})))
