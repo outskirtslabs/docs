@@ -135,6 +135,15 @@
     start_path = "doc";
   };
 
+  "ol.smolvm" = {
+    url = "https://github.com/outskirtslabs/smolvm-clj.git";
+    rev = "2371e40fa749b0d080f3ad47446e20573781b1c3";
+    hash = "sha256-vBzqFRC065PZcWQ1dqVqGW+xYzLbFTKcimnWZSB0Vt8=";
+    refs_hash = "sha256-IZyjHK4wJWCVJGifgj1za5gTWqlm8uDrMSkAE5CsyPg=";
+    branches = [ "HEAD" ];
+    start_path = "doc";
+  };
+
   "ol.sops" = {
     url = "https://github.com/outskirtslabs/sops.git";
     rev = "1dec557c7e5292cfb3fe209ee34a0e2f1a13eda8";
