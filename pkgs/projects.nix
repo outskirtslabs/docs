@@ -137,9 +137,9 @@
 
   "ol.smolvm" = {
     url = "https://github.com/outskirtslabs/smolvm-clj.git";
-    rev = "34f5a94d9c93d7c16dac0ba37466e7185b61c220";
-    hash = "sha256-hBGK1jIfuldLXCWKoLI9d1ALyhrkil7yM/htTq3grAE=";
-    refs_hash = "sha256-5hDoSZwEfQBNnqkhIm0yiqCch5Licdao5srkZQXd3Sw=";
+    rev = "2ef925058421dface7dc01e9305a3b2c97949138";
+    hash = "sha256-1I6fEa3L+KJo9DIZiZG0Tv25HGU9eo2ofuLdorVUN8o=";
+    refs_hash = "sha256-JJx1lsf38PzLyrR5KtONdR/dJJO0neKxuj0ZsfarCiU=";
     branches = [ "HEAD" ];
     start_path = "doc";
   };
